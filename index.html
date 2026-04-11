@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EMFAZY — Film dokumentalny o Lechu Emfazym Stefańskim</title>
+<meta name="description" content="Film dokumentalny o Lechu Emfazym Stefańskim — artyście, powstańcu, ojcu polskiej psychotroniki. Reżyseria: Jan Lubicz Przyłuski.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Sans:wght@400;500;700;900&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* ===== RESET ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: #080808;
+  color: #d8d4cc;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+
+/* ===== VARIABLES ===== */
+:root {
+  --gold: #c9a84c;
+  --gold-dim: rgba(201,168,76,0.4);
+  --red: #c23b22;
+  --purple: #8b5cf6;
+  --green: #2d8a4e;
+  --blue: #1e3a5f;
+  --bg: #080808;
+  --surface: #111;
+  --surface-2: #161616;
+  --border: #222;
+  --text: #d8d4cc;
+  --text-dim: #7a766e;
+  --text-bright: #fff;
+}
+
+/* ===== TOP BAR ===== */
+.topbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  height: 64px;
+  transition: background 0.4s ease;
+}
+.topbar.scrolled {
+  background: rgba(8,8,8,0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.topbar__logo {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 18px;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-decoration: none;
+}
+.topbar__menu-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 8px 0;
+}
+.topbar__menu-btn .menu-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 28px;
+}
+.topbar__menu-btn .menu-lines span {
+  display: block;
+  height: 2px;
+  background: #fff;
+  border-radius: 1px;
+  transition: all 0.3s ease;
+}
+.topbar__menu-btn .menu-lines span:nth-child(2) { width: 70%; margin-left: auto; }
+
+/* ===== FULLSCREEN MENU ===== */
+.fullmenu {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(8,8,8,0.97);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+.fullmenu.active {
+  opacity: 1;
+  visibility: visible;
+}
+.fullmenu__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  height: 64px;
+  flex-shrink: 0;
+}
+.fullmenu__logo {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 18px;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+.fullmenu__close {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 36px;
+  cursor: pointer;
+  width: 48px; height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+.fullmenu__close:hover { transform: rotate(90deg); }
+.fullmenu__nav {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 48px;
+  overflow-y: auto;
+}
+.fullmenu__item {
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-end;
+  gap: 20px;
+  padding: 18px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  opacity: 0;
+  transform: translateY(20px);
+}
+.fullmenu.active .fullmenu__item {
+  opacity: 1;
+  transform: translateY(0);
+}
+.fullmenu.active .fullmenu__item:nth-child(1) { transition-delay: 0.08s; }
+.fullmenu.active .fullmenu__item:nth-child(2) { transition-delay: 0.13s; }
+.fullmenu.active .fullmenu__item:nth-child(3) { transition-delay: 0.18s; }
+.fullmenu.active .fullmenu__item:nth-child(4) { transition-delay: 0.23s; }
+.fullmenu.active .fullmenu__item:nth-child(5) { transition-delay: 0.28s; }
+.fullmenu.active .fullmenu__item:nth-child(6) { transition-delay: 0.33s; }
+.fullmenu.active .fullmenu__item:nth-child(7) { transition-delay: 0.38s; }
+.fullmenu__item:first-child { border-top: 1px solid rgba(255,255,255,0.08); }
+.fullmenu__item:hover { padding-right: 12px; }
+.fullmenu__item:hover .fullmenu__label { color: var(--gold); }
+.fullmenu__num {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--gold);
+  letter-spacing: 1px;
+}
+.fullmenu__label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: clamp(42px, 8vw, 96px);
+  font-weight: 900;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  line-height: 1;
+  transition: color 0.25s ease;
+}
+.fullmenu__item.active .fullmenu__label { color: var(--gold); }
+.fullmenu__item.active .fullmenu__num { color: var(--red); }
+.fullmenu__footer {
+  padding: 20px 48px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 24px;
+  flex-shrink: 0;
+}
+.fullmenu__footer a {
+  font-size: 12px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: color 0.2s;
+}
+.fullmenu__footer a:hover { color: #fff; }
+
+/* ===== MAIN ===== */
+.main {
+  margin-left: 0;
+}
+
+/* ===== HERO ===== */
+.hero {
+  position: relative;
+  height: 100vh;
+  min-height: 600px;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+.hero__bg {
+  position: absolute;
+  inset: 0;
+}
+.hero__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 15%;
+  filter: brightness(0.35) contrast(1.15) saturate(0.7);
+  transform: scale(1.02);
+}
+.hero__bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to top, var(--bg) 0%, rgba(8,8,8,0.7) 35%, transparent 65%),
+    linear-gradient(to right, rgba(8,8,8,0.5) 0%, transparent 50%);
+}
+.hero__content {
+  position: relative;
+  z-index: 2;
+  padding: 0 80px 80px;
+  max-width: 800px;
+}
+.hero__badge {
+  display: inline-block;
+  padding: 6px 16px;
+  border: 1px solid var(--gold-dim);
+  border-radius: 20px;
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 24px;
+}
+.hero__title {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 80px;
+  font-weight: 900;
+  line-height: 0.92;
+  color: #fff;
+  letter-spacing: -3px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.hero__subtitle {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 24px;
+  color: var(--gold);
+  margin-bottom: 20px;
+}
+.hero__logline {
+  font-size: 17px;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.7;
+  max-width: 540px;
+  margin-bottom: 32px;
+}
+.hero__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 32px;
+  background: var(--gold);
+  color: #000;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-radius: 4px;
+  transition: all 0.2s;
+  border: none;
+  cursor: pointer;
+}
+.hero__cta:hover { background: #dbb85a; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(201,168,76,0.3); }
+.hero__scroll {
+  position: absolute;
+  bottom: 28px; right: 40px;
+  z-index: 2;
+  color: rgba(255,255,255,0.3);
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  writing-mode: vertical-rl;
+  animation: drift 2.5s ease-in-out infinite;
+}
+@keyframes drift {
+  0%,100% { opacity: 0.3; transform: translateY(0); }
+  50% { opacity: 0.8; transform: translateY(8px); }
+}
+
+/* ===== SECTIONS ===== */
+.section {
+  padding: 100px 80px;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+}
+.section--dark { background: var(--surface); }
+.section--accent { background: var(--surface-2); }
+.section__header {
+  margin-bottom: 56px;
+  max-width: 800px;
+}
+.section__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+  font-weight: 500;
+}
+.section__label::before {
+  content: '';
+  width: 28px; height: 1px;
+  background: var(--gold);
+}
+.section__title {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 44px;
+  font-weight: 900;
+  color: var(--text-bright);
+  line-height: 1.05;
+  letter-spacing: -1.5px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.section__intro {
+  font-size: 17px;
+  color: var(--text-dim);
+  line-height: 1.8;
+  max-width: 640px;
+}
+
+/* ===== ABOUT THE FILM ===== */
+.film-stats {
+  display: flex;
+  gap: 40px;
+  margin: 40px 0;
+  flex-wrap: wrap;
+}
+.film-stat {
+  text-align: center;
+}
+.film-stat__value {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 32px;
+  font-weight: 900;
+  color: var(--gold);
+}
+.film-stat__label {
+  font-size: 12px;
+  color: var(--text-dim);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+.film-pillars {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 48px;
+}
+.pillar {
+  padding: 32px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  border-top: 3px solid var(--gold-dim);
+  transition: border-top-color 0.3s, transform 0.2s;
+}
+.pillar:hover { border-top-color: var(--gold); transform: translateY(-2px); }
+.pillar__icon { font-size: 28px; margin-bottom: 16px; }
+.pillar h4 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-bright);
+  margin-bottom: 10px;
+}
+.pillar p {
+  font-size: 14px;
+  color: var(--text-dim);
+  line-height: 1.7;
+}
+
+/* ===== HERO (EMFAZY) ===== */
+.portrait-section {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 60px;
+  align-items: start;
+}
+.portrait-frame {
+  position: sticky;
+  top: 100px;
+}
+.portrait-frame img {
+  width: 100%;
+  border-radius: 4px;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.5);
+}
+.portrait-frame figcaption {
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-dim);
+  margin-top: 12px;
+  font-style: italic;
+}
+.portrait-bio h3 {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-bright);
+  margin: 32px 0 12px;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+}
+.portrait-bio h3:first-child { margin-top: 0; }
+.portrait-bio p {
+  font-size: 15px;
+  line-height: 1.85;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+.portrait-bio .tension {
+  display: inline-block;
+  padding: 3px 10px;
+  background: rgba(139,92,246,0.12);
+  border: 1px solid rgba(139,92,246,0.25);
+  border-radius: 4px;
+  font-size: 13px;
+  color: var(--purple);
+  margin: 4px 4px 4px 0;
+}
+
+/* ===== VISION / APPROACHES ===== */
+.vision-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+.vision-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 32px;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.vision-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--card-accent, var(--gold));
+}
+.vision-card:hover {
+  border-color: var(--card-accent, var(--gold));
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.4);
+}
+.vision-card__num {
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 10px;
+}
+.vision-card h4 {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 20px;
+  font-weight: 900;
+  color: var(--text-bright);
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+  margin-bottom: 6px;
+}
+.vision-card__genre {
+  font-size: 12px;
+  color: var(--card-accent, var(--purple));
+  margin-bottom: 14px;
+  font-weight: 500;
+}
+.vision-card p {
+  font-size: 14px;
+  color: var(--text-dim);
+  line-height: 1.7;
+}
+
+/* ===== TEAM ===== */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+}
+.team-card {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 32px;
+  transition: border-color 0.3s;
+}
+.team-card:hover { border-color: var(--gold-dim); }
+.team-card__avatar {
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold-dim), rgba(139,92,246,0.3));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 900;
+  font-size: 20px;
+  color: var(--text-bright);
+  margin-bottom: 16px;
+}
+.team-card__name {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text-bright);
+  margin-bottom: 4px;
+}
+.team-card__role {
+  font-size: 13px;
+  color: var(--gold);
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+.team-card__desc {
+  font-size: 14px;
+  color: var(--text-dim);
+  line-height: 1.6;
+}
+
+/* ===== GALLERY STRIP ===== */
+.gallery-strip {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding: 8px 0 20px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+.gallery-strip::-webkit-scrollbar { height: 5px; }
+.gallery-strip::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+.gallery-strip__item {
+  flex: 0 0 320px;
+  scroll-snap-align: start;
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+.gallery-strip__item:hover { transform: scale(1.02); }
+.gallery-strip__item img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+}
+.gallery-strip__item figcaption {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 32px 16px 12px;
+  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+  font-size: 12px;
+  color: rgba(255,255,255,0.8);
+}
+.gallery-controls {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  margin-bottom: 16px;
+}
+.gallery-btn {
+  width: 40px; height: 40px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  color: var(--text);
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+.gallery-btn:hover { background: var(--gold); color: #000; border-color: var(--gold); }
+
+/* ===== SUPPORT / CTA ===== */
+.support-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+}
+.support-needs h4 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-bright);
+  margin-bottom: 8px;
+  margin-top: 24px;
+}
+.support-needs h4:first-child { margin-top: 0; }
+.support-needs p {
+  font-size: 14px;
+  color: var(--text-dim);
+  line-height: 1.7;
+}
+.support-needs ul {
+  list-style: none;
+  margin-top: 8px;
+}
+.support-needs li {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.support-needs li::before {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+  flex-shrink: 0;
+}
+.contact-card {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 40px;
+  align-self: start;
+  position: sticky;
+  top: 100px;
+}
+.contact-card h3 {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--text-bright);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.contact-card__item {
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+}
+.contact-card__item:last-child { border-bottom: none; }
+.contact-card__label {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 4px;
+}
+.contact-card__value {
+  color: var(--text-bright);
+  font-weight: 500;
+}
+.contact-card__value a { color: var(--gold); }
+.contact-card__cta {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  margin-top: 24px;
+  background: var(--gold);
+  color: #000;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-align: center;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.contact-card__cta:hover { background: #dbb85a; }
+
+/* ===== LIGHTBOX ===== */
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.94);
+  z-index: 500;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.lightbox.active { display: flex; }
+.lightbox img {
+  max-width: 88vw;
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: 4px;
+}
+.lightbox__close {
+  position: absolute;
+  top: 20px; right: 28px;
+  color: #fff;
+  font-size: 32px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+.lightbox__close:hover { opacity: 1; }
+.lightbox__caption {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #aaa;
+  font-size: 13px;
+  font-style: italic;
+  text-align: center;
+}
+
+/* ===== QUOTE ===== */
+.pull-quote {
+  border-left: 3px solid var(--gold);
+  padding: 24px 0 24px 32px;
+  margin: 40px 0;
+  max-width: 640px;
+}
+.pull-quote p {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 22px;
+  color: var(--text);
+  line-height: 1.6;
+}
+.pull-quote cite {
+  display: block;
+  margin-top: 12px;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-size: 13px;
+  color: var(--text-dim);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .section { padding: 72px 40px; }
+  .portrait-section { grid-template-columns: 1fr; gap: 40px; }
+  .portrait-frame { position: static; max-width: 340px; }
+  .support-layout { grid-template-columns: 1fr; }
+  .hero__content { padding: 0 40px 60px; }
+  .hero__title { font-size: 56px; }
+  .film-pillars { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 768px) {
+  .section { padding: 56px 20px; }
+  .section__title { font-size: 32px; }
+  .hero__title { font-size: 40px; letter-spacing: -1.5px; }
+  .hero__content { padding: 0 24px 48px; }
+  .hero__subtitle { font-size: 18px; }
+  .film-pillars { grid-template-columns: 1fr; }
+  .vision-grid { grid-template-columns: 1fr; }
+  .gallery-strip__item { flex: 0 0 260px; }
+}
+
+/* ===== ANIMATIONS ===== */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.stagger-1 { transition-delay: 0.1s; }
+.stagger-2 { transition-delay: 0.2s; }
+.stagger-3 { transition-delay: 0.3s; }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<header class="topbar" id="topbar">
+  <a class="topbar__logo" href="#hero">EMFAZY</a>
+  <button class="topbar__menu-btn" onclick="toggleMenu()">
+    MENU
+    <div class="menu-lines"><span></span><span></span><span></span></div>
+  </button>
+</header>
+
+<!-- FULLSCREEN MENU -->
+<nav class="fullmenu" id="fullmenu">
+  <div class="fullmenu__top">
+    <div class="fullmenu__logo">EMFAZY</div>
+    <button class="fullmenu__close" onclick="toggleMenu()">&times;</button>
+  </div>
+  <div class="fullmenu__nav">
+    <a href="#hero" class="fullmenu__item" onclick="toggleMenu()"><span class="fullmenu__num">00.</span><span class="fullmenu__label">Początek</span></a>
+    <a href="#film" class="fullmenu__item" onclick="toggleMenu()"><span class="fullmenu__num">01.</span><span class="fullmenu__label">O filmie</span></a>
+    <a href="#bohater" class="fullmenu__item" onclick="toggleMenu()"><span class="fullmenu__num">02.</span><span class="fullmenu__label">Bohater</span></a>
+    <a href="#wizja" class="fullmenu__item" onclick="toggleMenu()"><span class="fullmenu__num">03.</span><span class="fullmenu__label">Wizja</span></a>
+    <a href="#zespol" class="fullmenu__item" onclick="toggleMenu()"><span class="fullmenu__num">04.</span><span class="fullmenu__label">Zespół</span></a>
+    <a href="#materialy" class="fullmenu__item" onclick="toggleMenu()"><span class="fullmenu__num">05.</span><span class="fullmenu__label">Materiały</span></a>
+    <a href="#wsparcie" class="fullmenu__item" onclick="toggleMenu()"><span class="fullmenu__num">06.</span><span class="fullmenu__label">Wesprzyj</span></a>
+  </div>
+  <div class="fullmenu__footer">
+    <a href="https://www.facebook.com/profile.php?id=100083371857729" target="_blank">Facebook</a>
+    <a href="mailto:kontakt@emfazy.film">Kontakt</a>
+    <a href="#zespol" onclick="toggleMenu()">Zespół</a>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="hero">
+    <div class="hero__bg">
+      <img src="images/les.jpg" alt="Lech Emfazy Stefański">
+    </div>
+    <div class="hero__content">
+      <div class="hero__badge">Film dokumentalny &bull; W produkcji</div>
+      <h1 class="hero__title">Emfazy</h1>
+      <p class="hero__subtitle">„Łowca dziwności"</p>
+      <p class="hero__logline">
+        Dziecko, które zobaczyło telewizję zanim świat spłonął, dorasta by udowodnić,
+        że magia jest nauką — i za to płaci wszystkim, co kocha.
+      </p>
+      <a href="#wsparcie" class="hero__cta">Wesprzyj projekt &rarr;</a>
+    </div>
+    <span class="hero__scroll">&#8595; Odkryj</span>
+  </section>
+
+  <!-- ===== O FILMIE ===== -->
+  <section class="section section--dark" id="film">
+    <div class="section__header fade-in">
+      <div class="section__label">O filmie</div>
+      <h2 class="section__title">Opowieść, która znika z archiwów</h2>
+      <p class="section__intro">
+        <strong>Emfazy</strong> to film dokumentalny o Lechu Emfazym Stefańskim (1928–2010) —
+        artyście awangardowym, powstańcu warszawskim, pionierze polskiej telewizji i ojcu psychotroniki.
+        Człowieku, którego dzieła systematycznie znikały z państwowych archiwów.
+      </p>
+    </div>
+
+    <div class="film-stats fade-in">
+      <div class="film-stat"><div class="film-stat__value">25–27</div><div class="film-stat__label">minut</div></div>
+      <div class="film-stat"><div class="film-stat__value">5</div><div class="film-stat__label">podejść narracyjnych</div></div>
+      <div class="film-stat"><div class="film-stat__value">16+</div><div class="film-stat__label">źródeł archiwalnych</div></div>
+      <div class="film-stat"><div class="film-stat__value">5</div><div class="film-stat__label">osób w zespole</div></div>
+    </div>
+
+    <div class="film-pillars fade-in">
+      <div class="pillar">
+        <div class="pillar__icon">&#127902;</div>
+        <h4>Materiał archiwalny</h4>
+        <p>Filmy i fotografie z Teatru na Tarczyńskiej (kolekcja Ireny Jarosińskiej), nagrania z sesji parapsychologicznych,
+        fragmenty filmów z udziałem Emfazego, kroniki filmowe, programy TV.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar__icon">&#9998;</div>
+        <h4>Animacja</h4>
+        <p>Inspirowana estetyką „teatru rąk i przedmiotów" Teatru na Tarczyńskiej — formalna transpozycja
+        twórczości Białoszewski-Stefański-Choiński na medium filmowe. Mini-sesje: seans hipnotyczny, Dziady, wywoływanie ducha.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar__icon">&#127908;</div>
+        <h4>Wywiady</h4>
+        <p>Rozmowy z przyjaciółmi, świadkami i współpracownikami — z drogi teatralnej i z czasów badań
+        paranormalnych. Ścieżka muzyczna: opera Prószyńskiego, Honegger, Strawiński, Krenek, Hába.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BOHATER ===== -->
+  <section class="section" id="bohater">
+    <div class="section__header fade-in">
+      <div class="section__label">Bohater</div>
+      <h2 class="section__title">Lech Emfazy Stefański</h2>
+    </div>
+
+    <div class="portrait-section fade-in">
+      <figure class="portrait-frame">
+        <img src="images/les3.jpg" alt="Lech Emfazy Stefański, 2003">
+        <figcaption>Fot. Wojciech Glinka / Forum, 2003</figcaption>
+      </figure>
+      <div class="portrait-bio">
+        <h3>Powstaniec i artysta</h3>
+        <p>Urodzony w 1928 w Warszawie. W 1939, mając 11 lat, zobaczył działający telewizor na wystawie radiowej — przełomowy moment.
+        Jako żołnierz AK walczył w Powstaniu Warszawskim, gdzie przyjął pseudonim „Emfazy".</p>
+        <p>W 1954 współtworzył z Mironem Białoszewskim słynny Teatr na Tarczyńskiej — awangardową scenę
+        w prywatnym mieszkaniu, która przyciągała ministrów i dyplomatów. Premiera <em>Homunculusa</em> odbyła się
+        na scenie ze skrzynki po bananach.</p>
+
+        <h3>Pionier telewizji</h3>
+        <p>W 1958 stworzył <em>Biały Pył</em> — pierwszy polski serial telewizyjny. Wszystkie sześć odcinków
+        zniknęło z archiwów państwowych. Ukończył reżyserię w PWST u Bardiniego, objął kierownictwo Teatru Muzycznego TV.</p>
+
+        <h3>Ojciec psychotroniki</h3>
+        <p>Prezes Polskiego Towarzystwa Psychotronicznego z 24 oddziałami. Prowadził eksperymenty dermooptyczne
+        z córką Bogną. Zwerbowany przez SB jako agent „Zygmuntowicz" — genialnie outmanewrował oficerów,
+        używając ich jako bezpłatnych tłumaczy korespondencji naukowej.</p>
+
+        <div class="pull-quote">
+          <p>Wiele razy wspominał, że najlepszym hipnotyzerem w Polsce był Gustaw Holoubek…</p>
+          <cite>— z relacji Jana Gondowicza</cite>
+        </div>
+
+        <h3>Napięcia dramatyczne</h3>
+        <p>Pięć fundamentalnych konfliktów, które napędzają film:</p>
+        <span class="tension">Naukowiec vs. Mag</span>
+        <span class="tension">Ojciec vs. Eksperymentator</span>
+        <span class="tension">Artysta vs. System</span>
+        <span class="tension">Racjonalizm vs. Irracjonalizm</span>
+        <span class="tension">Pamięć vs. Wymazywanie</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WIZJA ===== -->
+  <section class="section section--dark" id="wizja">
+    <div class="section__header fade-in">
+      <div class="section__label">Wizja artystyczna</div>
+      <h2 class="section__title">Pięć podejść narracyjnych</h2>
+      <p class="section__intro">
+        Każde podejście odsłania inny aspekt Stefańskiego. Finalny film łączy elementy wszystkich pięciu
+        w hybrydową strukturę.
+      </p>
+    </div>
+    <div class="vision-grid fade-in">
+      <div class="vision-card" style="--card-accent: var(--gold)">
+        <div class="vision-card__num">Podejście I</div>
+        <h4>Łowca Dziwności</h4>
+        <div class="vision-card__genre">Dokument kreacyjny / Realizm magiczny</div>
+        <p>Liniowa chronologia z wizualnym językiem ewoluującym od czarno-białego do eterycznej translucencji.
+        Ton: Werner Herzog spotyka Tarkowskiego.</p>
+      </div>
+      <div class="vision-card" style="--card-accent: var(--red)">
+        <div class="vision-card__num">Podejście II</div>
+        <h4>Czerwony Atrament</h4>
+        <div class="vision-card__genre">Dramat psychologiczny / Narracja zdrady</div>
+        <p>Nieliniowa spirala wokół motywu „wymazywania". Geniusz kasowany z historii trzykrotnie.
+        Ton: kafkowski thriller à la <em>Życie innych</em>.</p>
+      </div>
+      <div class="vision-card" style="--card-accent: #e07c4f">
+        <div class="vision-card__num">Podejście III</div>
+        <h4>Bogna</h4>
+        <div class="vision-card__genre">Intymny dramat rodzinny</div>
+        <p>Podwójna oś czasu: życie Bogny przeplatane z karierą ojca. Ojciec widzący niewidzialne
+        jest ślepy na to, co robi córce.</p>
+      </div>
+      <div class="vision-card" style="--card-accent: var(--green)">
+        <div class="vision-card__num">Podejście IV</div>
+        <h4>Agent Zygmuntowicz</h4>
+        <div class="vision-card__genre">Czarna komedia / Satyra szpiegowska</div>
+        <p>Tight thriller 1975–1989. Tajna policja werbuje jasnowidza, on zamienia ich w asystentów naukowych.
+        Najwyższy potencjał komercyjny.</p>
+      </div>
+      <div class="vision-card" style="--card-accent: var(--blue)">
+        <div class="vision-card__num">Podejście V</div>
+        <h4>Eksterioryzacja</h4>
+        <div class="vision-card__genre">Film eksperymentalny / Poemat filmowy</div>
+        <p>Odwrócona chronologia: od śmierci podczas zaćmienia do wystawy TV w 1939.
+        Termowizja, fotografia UV, wizualizacje EEG.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ZESPÓŁ ===== -->
+  <section class="section" id="zespol">
+    <div class="section__header fade-in">
+      <div class="section__label">Zespół</div>
+      <h2 class="section__title">Kto robi ten film</h2>
+    </div>
+    <div class="team-grid fade-in">
+      <div class="team-card">
+        <div class="team-card__avatar">JL</div>
+        <div class="team-card__name">Jan Lubicz Przyłuski</div>
+        <div class="team-card__role">Reżyser, scenarzysta</div>
+        <div class="team-card__desc">Koncepcja, scenariusz i reżyseria. Historyk sztuki, mediator, manager w sektorze pozarządowym.</div>
+      </div>
+      <div class="team-card">
+        <div class="team-card__avatar">ZŁ</div>
+        <div class="team-card__name">dr Zbigniew Łagosz</div>
+        <div class="team-card__role">Religioznawca, Uniwersytet Jagielloński</div>
+        <div class="team-card__desc">Poszukiwania archiwalne i naukowe. Autor kluczowych publikacji o Stefańskim, ezoterykach i służbach bezpieczeństwa w PRL.</div>
+      </div>
+      <div class="team-card">
+        <div class="team-card__avatar">OD</div>
+        <div class="team-card__name">Olga Drenda</div>
+        <div class="team-card__role">Pisarka</div>
+        <div class="team-card__desc">Badaczka duchologii i psychotroniki czasów PRL. Autorka bestsellerów o polskiej nostalgii i kulturze materialnej.</div>
+      </div>
+      <div class="team-card">
+        <div class="team-card__avatar">DM</div>
+        <div class="team-card__name">Dariusz Misiuna</div>
+        <div class="team-card__role">Socjolog, wydawnictwo Okultura</div>
+        <div class="team-card__desc">Ekspert w dziedzinie magii i okultyzmu. Prowadzi Okulturę — wydawnictwo poświęcone ezoteryce i kontrkulturze.</div>
+      </div>
+      <div class="team-card">
+        <div class="team-card__avatar">TS</div>
+        <div class="team-card__name">Tomasz Stawiszyński</div>
+        <div class="team-card__role">Filozof, konsultant</div>
+        <div class="team-card__desc">Konsultant filozoficzny. Autor podcastów o magii, psychotronice i okultystycznych kontekstach PRL.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MATERIAŁY ===== -->
+  <section class="section section--accent" id="materialy">
+    <div class="section__header fade-in">
+      <div class="section__label">Materiały archiwalne</div>
+      <h2 class="section__title">Z czym pracujemy</h2>
+      <p class="section__intro">Wybrane materiały z archiwum projektu — fotografie, dokumenty SB, zapisy sesji psychotronicznych.</p>
+    </div>
+    <div class="gallery-controls fade-in">
+      <button class="gallery-btn" onclick="document.getElementById('gstrip').scrollBy({left:-340,behavior:'smooth'})">&larr;</button>
+      <button class="gallery-btn" onclick="document.getElementById('gstrip').scrollBy({left:340,behavior:'smooth'})">&rarr;</button>
+    </div>
+    <div class="gallery-strip fade-in" id="gstrip">
+      <figure class="gallery-strip__item" onclick="openLightbox(this)">
+        <img src="images/les3.jpg" alt="Portret Stefańskiego, 2003">
+        <figcaption>Stefański, 2003 — fot. W. Glinka / Forum</figcaption>
+      </figure>
+      <figure class="gallery-strip__item" onclick="openLightbox(this)">
+        <img src="images/488911547_4043967705880342_3226160190632157620_n.jpg" alt="Młody Stefański">
+        <figcaption>Młody Lech Stefański, lata 40.</figcaption>
+      </figure>
+      <figure class="gallery-strip__item" onclick="openLightbox(this)">
+        <img src="images/TnT.jpg" alt="Teatr na Tarczyńskiej">
+        <figcaption>Teatr na Tarczyńskiej, lata 50. — Ośrodek KARTA</figcaption>
+      </figure>
+      <figure class="gallery-strip__item" onclick="openLightbox(this)">
+        <img src="images/les1.jpg" alt="Kolaż artystyczny Emfazy">
+        <figcaption>Kolaż artystyczny, sygn. „Emfazy"</figcaption>
+      </figure>
+      <figure class="gallery-strip__item" onclick="openLightbox(this)">
+        <img src="images/489788662_4046489795628133_8535082436562595797_n.jpg" alt="Czułki rąk">
+        <figcaption>Eksperymenty dermooptyczne — „Czułki rąk"</figcaption>
+      </figure>
+      <figure class="gallery-strip__item" onclick="openLightbox(this)">
+        <img src="images/sprzet .jpg" alt="Sprzęt psychotroniczny">
+        <figcaption>Sprzęt do badań psychotronicznych</figcaption>
+      </figure>
+      <figure class="gallery-strip__item" onclick="openLightbox(this)">
+        <img src="images/486398432_4027475514196228_4763764673005176011_n.jpg" alt="Ceremonia">
+        <figcaption>Ceremonia Rodzimego Kościoła Polskiego</figcaption>
+      </figure>
+      <figure class="gallery-strip__item" onclick="openLightbox(this)">
+        <img src="images/LIE.jpg" alt="Dokument SB">
+        <figcaption>Dokument SB — sprawa krypt. „LIE"</figcaption>
+      </figure>
+      <figure class="gallery-strip__item" onclick="openLightbox(this)">
+        <img src="images/494158171_4067382413538871_1837970023016288264_n.jpg" alt="Dokument SB">
+        <figcaption>SB — radiestezja, poszukiwanie osób</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ===== WESPRZYJ ===== -->
+  <section class="section" id="wsparcie">
+    <div class="section__header fade-in">
+      <div class="section__label">Wesprzyj projekt</div>
+      <h2 class="section__title">Pomóż opowiedzieć tę historię</h2>
+      <p class="section__intro">
+        Historia Stefańskiego znika z archiwów od 70 lat. Ten film to szansa, by ją utrwalić — zanim będzie za późno.
+      </p>
+    </div>
+    <div class="support-layout fade-in">
+      <div class="support-needs">
+        <h4>Czego szukamy</h4>
+        <ul>
+          <li>Finansowanie produkcji i postprodukcji</li>
+          <li>Dostęp do materiałów archiwalnych (IPN, TVP, kolekcje prywatne)</li>
+          <li>Kontakty z festiwalami i dystrybutorami</li>
+          <li>Animator/ka do sekwencji inspirowanych Teatrem na Tarczyńskiej</li>
+          <li>Wsparcie w licencjonowaniu muzyki (Honegger, Strawiński, Krenek)</li>
+        </ul>
+
+        <h4>Dlaczego teraz</h4>
+        <p>Świadkowie odchodzą. Materiały archiwalne giną lub ulegają degradacji.
+        Każdy rok opóźnienia oznacza bezpowrotną utratę głosów ludzi, którzy znali Stefańskiego osobiście.</p>
+
+        <h4>Co oferujemy</h4>
+        <ul>
+          <li>Umieszczenie w czołówce jako sponsor / producent wykonawczy</li>
+          <li>Dostęp do materiałów badawczych i konsultacje z zespołem</li>
+          <li>Pokazy zamknięte dla sponsorów przed premierą</li>
+          <li>Udział w strategii festiwalowej i dystrybucyjnej</li>
+        </ul>
+      </div>
+
+      <div class="contact-card">
+        <h3>Kontakt</h3>
+        <div class="contact-card__item">
+          <div class="contact-card__label">Reżyser</div>
+          <div class="contact-card__value">Jan Lubicz Przyłuski</div>
+        </div>
+        <div class="contact-card__item">
+          <div class="contact-card__label">E-mail</div>
+          <div class="contact-card__value"><a href="mailto:kontakt@emfazy.film">kontakt@emfazy.film</a></div>
+        </div>
+        <div class="contact-card__item">
+          <div class="contact-card__label">Konsultant naukowy</div>
+          <div class="contact-card__value">dr Zbigniew Łagosz (UJ)</div>
+        </div>
+        <div class="contact-card__item">
+          <div class="contact-card__label">Fanpage</div>
+          <div class="contact-card__value"><a href="https://www.facebook.com/profile.php?id=100083371857729" target="_blank">Facebook &rarr;</a></div>
+        </div>
+        <a href="mailto:kontakt@emfazy.film" class="contact-card__cta">Napisz do nas</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="padding:32px 80px; border-top:1px solid var(--border); text-align:center; font-size:12px; color:var(--text-dim);">
+    <p><strong style="color:var(--gold)">EMFAZY</strong> &bull; Film dokumentalny o Lechu Emfazym Stefańskim &bull; &copy; 2026</p>
+    <p style="margin-top:6px">Projekt realizowany we współpracy z dr. Zbigniewem Łagoszem (Uniwersytet Jagielloński)</p>
+  </footer>
+
+</div><!-- /main -->
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <button class="lightbox__close" onclick="closeLightbox(event)">&times;</button>
+  <img id="lightbox-img" src="" alt="">
+  <div class="lightbox__caption" id="lightbox-caption"></div>
+</div>
+
+<script>
+// ===== FULLSCREEN MENU =====
+function toggleMenu() {
+  const menu = document.getElementById('fullmenu');
+  menu.classList.toggle('active');
+  document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : '';
+}
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && document.getElementById('fullmenu').classList.contains('active')) toggleMenu();
+});
+
+// ===== TOPBAR SCROLL EFFECT =====
+const topbar = document.getElementById('topbar');
+window.addEventListener('scroll', () => {
+  topbar.classList.toggle('scrolled', window.scrollY > 80);
+}, { passive: true });
+
+// ===== ACTIVE NAV (Intersection Observer — like Elders Project) =====
+const sections = document.querySelectorAll('section[id]');
+const menuLinks = document.querySelectorAll('.fullmenu__item');
+
+const navObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.getAttribute('id');
+      menuLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+      });
+      if (history.replaceState) {
+        history.replaceState(null, null, '#' + id);
+      }
+    }
+  });
+}, {
+  threshold: 0.15,
+  rootMargin: '-10% 0px -75% 0px'
+});
+
+sections.forEach(s => navObserver.observe(s));
+
+// ===== SCROLL ANIMATIONS =====
+const fadeObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      fadeObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+
+document.querySelectorAll('.fade-in').forEach(el => fadeObserver.observe(el));
+
+
+// ===== LIGHTBOX =====
+function openLightbox(el) {
+  const img = el.querySelector('img');
+  const cap = el.querySelector('figcaption');
+  document.getElementById('lightbox-img').src = img.src;
+  document.getElementById('lightbox-caption').textContent = cap ? cap.textContent : '';
+  document.getElementById('lightbox').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox(e) {
+  if (e && e.target.tagName === 'IMG') return;
+  document.getElementById('lightbox').classList.remove('active');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+</script>
+
+</body>
+</html>

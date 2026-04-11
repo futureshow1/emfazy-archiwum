@@ -1,0 +1,5 @@
+previous_context/
+previous_conversation_context.txt
+.claude/
+opener.rb
+.DS_Store

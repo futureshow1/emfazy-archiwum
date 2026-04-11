@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LES — Archiwum Materiałów</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=DM+Sans:wght@400;500;700;900&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:20px}
+body{font-family:'Inter',sans-serif;background:#080808;color:#d8d4cc;line-height:1.7;display:flex;min-height:100vh}
+a{color:#c9a84c;text-decoration:none}a:hover{text-decoration:underline}
+:root{
+  --gold:#c9a84c;--gold-dim:rgba(201,168,76,0.4);--red:#c44;--green:#4a9;--blue:#5a8abf;--purple:#9b7ed8;
+  --bg:#080808;--surface:#111;--surface2:#161616;--border:#222;
+  --text:#d8d4cc;--dim:#7a766e;--bright:#fff;
+}
+/* SIDEBAR */
+.sidebar{position:fixed;top:0;left:0;bottom:0;width:240px;background:#0d0d0d;border-right:1px solid rgba(255,255,255,.06);overflow-y:auto;z-index:100;padding:24px 0}
+.sidebar h1{font-family:'DM Sans',sans-serif;font-size:15px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);padding:0 20px 4px;font-weight:900}
+.sidebar .sub{font-size:11px;color:#999;padding:0 20px 20px;border-bottom:1px solid rgba(255,255,255,.06);margin-bottom:12px}
+.sidebar nav a{display:flex;align-items:center;gap:8px;padding:8px 20px;font-size:13px;color:#888;transition:all .2s;border-left:2px solid transparent;letter-spacing:0.2px}
+.sidebar nav a:hover{color:#ddd;background:rgba(255,255,255,.04);text-decoration:none;border-left-color:rgba(201,168,76,.4)}
+.sidebar nav a.active{color:#fff;background:rgba(201,168,76,.08);text-decoration:none;border-left-color:var(--gold);font-weight:600}
+.sidebar nav a .badge{margin-left:auto;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.2);border-radius:8px;padding:1px 7px;font-size:10px;font-family:'JetBrains Mono',monospace;color:var(--gold)}
+.sidebar nav .sep{height:1px;background:rgba(255,255,255,.06);margin:10px 20px}
+/* SEARCH */
+.search-box{padding:8px 16px;margin-bottom:8px}
+.search-box input{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:8px 12px;color:var(--text);font-size:12px;outline:none;transition:border-color .2s}
+.search-box input:focus{border-color:var(--gold)}
+/* HERO */
+.hero{position:relative;height:60vh;min-height:400px;display:flex;align-items:flex-end;overflow:hidden;margin-bottom:0}
+.hero__bg{position:absolute;inset:0}
+.hero__bg img{width:100%;height:100%;object-fit:cover;object-position:center 35%;filter:brightness(0.4) contrast(1.1) saturate(0.7);transform:scale(1.02)}
+.hero__bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,var(--bg) 0%,rgba(8,8,8,0.3) 20%,transparent 45%),linear-gradient(to right,rgba(8,8,8,0.4) 0%,transparent 40%)}
+.hero__content{position:relative;z-index:2;padding:0 60px 48px;max-width:700px}
+.hero__badge{display:inline-block;padding:5px 14px;border:1px solid var(--gold-dim);border-radius:20px;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:20px;font-weight:500}
+.hero__title{font-family:'DM Sans',sans-serif;font-size:64px;font-weight:900;line-height:0.92;color:#fff;letter-spacing:-2px;text-transform:uppercase;margin-bottom:12px}
+.hero__subtitle{font-family:'Playfair Display',serif;font-style:italic;font-size:20px;color:var(--gold);margin-bottom:16px}
+.hero__logline{font-size:15px;color:rgba(255,255,255,0.5);line-height:1.7;max-width:500px}
+/* MAIN */
+main{margin-left:240px;flex:1;padding:0 0 80px;max-width:1100px}
+.main-content{padding:40px 48px}
+section{margin-bottom:56px}
+/* SECTION HEADERS — promo style */
+.section-header{margin-bottom:28px}
+.section-label{display:inline-flex;align-items:center;gap:10px;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:12px;font-weight:500}
+.section-label::before{content:'';width:28px;height:1px;background:var(--gold)}
+.section-title{font-family:'DM Sans',sans-serif;font-size:28px;font-weight:900;color:var(--bright);line-height:1.1;letter-spacing:-1px;text-transform:uppercase;margin-bottom:8px}
+.section-subtitle{font-size:14px;color:var(--dim);line-height:1.7;max-width:640px}
+/* legacy h2 compat */
+h2{font-family:'DM Sans',sans-serif;font-size:22px;font-weight:900;color:var(--bright);margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;letter-spacing:-0.5px;text-transform:uppercase}
+h2 .count{font-size:11px;color:var(--dim);font-weight:400;font-family:'JetBrains Mono',monospace;text-transform:none}
+h3{font-size:14px;color:var(--gold);margin:24px 0 10px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase}
+h4{font-size:13px;color:var(--text);margin:14px 0 6px;font-weight:600}
+p,.desc{font-size:13.5px;color:var(--dim);margin-bottom:10px;line-height:1.7}
+/* TABLES */
+table{width:100%;border-collapse:collapse;font-size:12.5px;margin-bottom:16px}
+th{text-align:left;padding:9px 12px;background:var(--surface);color:var(--dim);font-weight:500;border-bottom:1px solid var(--border);font-size:10px;text-transform:uppercase;letter-spacing:1px}
+td{padding:8px 12px;border-bottom:1px solid rgba(255,255,255,.04);vertical-align:top}
+tr:hover td{background:rgba(255,255,255,.02)}
+.status-done{color:var(--green)}
+.status-partial{color:var(--gold)}
+.status-todo{color:var(--red)}
+.tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:500;font-family:'JetBrains Mono',monospace;border:1px solid}
+.tag-bn{color:#6aa;border-color:#3a6666;background:rgba(102,170,170,.08)}
+.tag-it{color:#a8a;border-color:#664466;background:rgba(170,136,170,.08)}
+.tag-tvp{color:#8a8;border-color:#446644;background:rgba(136,170,136,.08)}
+.tag-audio{color:#c9a84c;border-color:#665522;background:rgba(201,168,76,.08)}
+.tag-web{color:#88b;border-color:#445;background:rgba(136,136,187,.08)}
+.tag-fb{color:#68a;border-color:#345;background:rgba(102,136,170,.08)}
+.tag-film{color:#a86;border-color:#543;background:rgba(170,136,102,.08)}
+/* COLLAPSIBLE */
+details{margin-bottom:10px;border:1px solid var(--border);border-radius:8px;background:var(--surface)}
+details[open]{background:var(--surface2)}
+summary{padding:12px 16px;cursor:pointer;font-size:13px;font-weight:500;color:var(--text);list-style:none;display:flex;align-items:center;gap:8px}
+summary::before{content:'▸';color:var(--dim);font-size:11px;transition:transform .2s}
+details[open]>summary::before{transform:rotate(90deg)}
+summary:hover{color:var(--bright)}
+details .inner{padding:0 16px 14px;font-size:12.5px}
+/* CARD GRID */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;margin-bottom:16px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:20px;transition:all .25s;border-top:3px solid var(--gold-dim)}
+.card:hover{border-top-color:var(--gold);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.3)}
+.card h4{margin:0 0 4px;font-size:14px;color:var(--bright);font-weight:700}
+.card .meta{font-size:11px;color:var(--gold);margin-bottom:8px;font-family:'JetBrains Mono',monospace;letter-spacing:0.5px;text-transform:uppercase}
+.card p{font-size:12.5px;color:var(--dim);margin:0;line-height:1.6}
+/* STAT BAR */
+.stats{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:28px}
+.stat{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:18px 22px;min-width:120px;text-align:center;transition:all .2s;text-decoration:none;cursor:pointer;display:block;color:inherit}
+.stat:hover{border-color:var(--gold);transform:translateY(-2px);box-shadow:0 6px 20px rgba(201,168,76,.12);text-decoration:none}
+.stat .num{font-family:'DM Sans',sans-serif;font-size:32px;font-weight:900;color:var(--gold);line-height:1}
+.stat .label{font-size:11px;color:var(--dim);margin-top:6px;letter-spacing:0.3px}
+/* HIGHLIGHT */
+mark{background:rgba(201,168,76,.15);color:var(--gold);padding:1px 4px;border-radius:2px}
+/* DIVIDER */
+.section-divider{height:1px;background:var(--border);margin:48px 0}
+/* LOCAL FILE LINKS */
+a.local{color:var(--gold);cursor:pointer;border-bottom:1px dashed rgba(201,168,76,.3);padding-bottom:1px;transition:all .2s}
+a.local:hover{color:#dbb85a;border-bottom-color:var(--gold);text-decoration:none}
+a.local::after{content:' ↗';font-size:10px;opacity:0;transition:opacity .2s;color:var(--gold)}
+a.local:hover::after{opacity:.7}
+/* TOAST */
+.toast{position:fixed;bottom:24px;right:24px;background:var(--gold);color:#000;padding:12px 20px;border-radius:8px;font-size:13px;font-weight:600;z-index:999;opacity:0;transform:translateY(10px);transition:all .3s;pointer-events:none}
+.toast.show{opacity:1;transform:translateY(0)}
+/* MOBILE */
+@media(max-width:768px){
+  .sidebar{display:none}
+  main{margin-left:0;padding:0}
+  .hero{height:50vh;min-height:300px}
+  .hero__content{padding:0 24px 32px}
+  .hero__title{font-size:40px}
+  .main-content{padding:20px 16px}
+}
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <h1>LES ARCHIWUM</h1>
+  <div class="sub">Lech Emfazy Stefański<br>stan na 2026-04-05</div>
+  <div class="search-box"><input type="text" id="search" placeholder="Szukaj…" oninput="doSearch(this.value)"></div>
+  <nav>
+    <a href="#stats">Podsumowanie</a>
+    <a href="#chronologia">Chronologia <span class="badge">530+</span></a>
+    <div class="sep"></div>
+    <a href="#archiwum-bn">Archiwum BN / IT <span class="badge">322</span></a>
+    <a href="#transkrypcje">Transkrypcje <span class="badge">17</span></a>
+    <a href="#prasa">Prasa o TnT <span class="badge">13+</span></a>
+    <a href="#zdjecia-arch">Zdjęcia archiwalne</a>
+    <a href="#nac">NAC — zdjęcia <span class="badge">49</span></a>
+    <div class="sep"></div>
+    <a href="#tvp">Archiwum TVP <span class="badge">49</span></a>
+    <a href="#audio">Nagrania audio <span class="badge">23</span></a>
+    <div class="sep"></div>
+    <a href="#publikacje">Publikacje <span class="badge">68</span></a>
+    <a href="#dramaty-tnt">Dramaty TnT <span class="badge">NEW</span></a>
+    <a href="#po-prostu">"Po Prostu" 1949 <span class="badge">NEW</span></a>
+    <a href="#wideo-mega">Wideo z MEGA <span class="badge">10</span></a>
+    <a href="#youtube">YouTube <span class="badge">29</span></a>
+    <a href="#facebook">Facebook <span class="badge">47</span></a>
+    <div class="sep"></div>
+    <a href="#ciechan">Praca mgr Ciechan <span class="badge">NEW</span></a>
+    <a href="#googledrive">Google Drive <span class="badge">25</span></a>
+    <a href="#gmail">Gmail</a>
+    <a href="#film-parking">Film dok. (parking)</a>
+    <a href="#dodatki">Dodatki — opracowania <span class="badge">16</span></a>
+    <div class="sep"></div>
+    <a href="#nagrania-audio">Nagrania audio <span class="badge">7</span></a>
+    <a href="#do-zdobycia">Do zdobycia</a>
+    <a href="#dodatkowe">Materiały dodatkowe</a>
+    <a href="#zespol">Zespół</a>
+  </nav>
+</aside>
+
+<!-- MAIN CONTENT -->
+<main>
+
+<!-- ==================== HERO ==================== -->
+<div class="hero" id="top">
+  <div class="hero__bg">
+    <img src="images/les.jpg" alt="Lech Emfazy Stefanski z maska czaszki">
+  </div>
+  <div class="hero__content">
+    <div class="hero__badge">Archiwum materialow</div>
+    <h1 class="hero__title">Emfazy</h1>
+    <div class="hero__subtitle">Lech Emfazy Stefanski (1928-2010)</div>
+    <p class="hero__logline">Artysta, powstaniec, ojciec polskiej psychotroniki. Archiwum zrodel do filmu dokumentalnego.</p>
+  </div>
+</div>
+
+<div class="main-content">
+
+<!-- ==================== STATS ==================== -->
+<section id="stats">
+<div class="section-header">
+  <div class="section-label">Podsumowanie</div>
+  <div class="section-title">Archiwum w liczbach</div>
+</div>
+<div class="stats">
+  <a href="#archiwum-bn" class="stat"><div class="num">322</div><div class="label">zdjęć archiwum (5 ZIP)</div></a>
+  <a href="#transkrypcje" class="stat"><div class="num">17</div><div class="label">transkrypcji</div></a>
+  <a href="#tvp" class="stat"><div class="num">49</div><div class="label">pozycji TVP</div></a>
+  <a href="#tvp" class="stat"><div class="num">23</div><div class="label">wybranych TVP (żółte + 3)</div></a>
+  <a href="#nagrania-audio" class="stat"><div class="num">7+4</div><div class="label">nagrań audio + YT</div></a>
+  <a href="#prasa" class="stat"><div class="num">13+</div><div class="label">artykułów prasowych</div></a>
+  <a href="#nac" class="stat"><div class="num">49</div><div class="label">zdjęć z NAC</div></a>
+  <a href="#publikacje" class="stat"><div class="num">68</div><div class="label">publikacji i artykułów</div></a>
+  <a href="#wideo-mega" class="stat"><div class="num">10</div><div class="label">filmów z MEGA</div></a>
+  <a href="#youtube" class="stat"><div class="num">29</div><div class="label">filmów YouTube</div></a>
+  <a href="#facebook" class="stat"><div class="num">47</div><div class="label">postów FB</div></a>
+</div>
+<p class="desc">Archiwum projektu filmowego o Lechu Emfazym Stefanskim (1928-2010). Materialy zebrane z: Biblioteki Narodowej, Instytutu Teatralnego, TVP, Polskiego Radia, archiwow internetowych, prasy, Google Drive. Stan na: 2026-04-05.</p>
+</section>
+
+<!-- ==================== CHRONOLOGIA ==================== -->
+<section id="chronologia">
+<h2>Chronologia źródłowa <span class="count"><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/CHRONOLOGIA_ZRODLOWA_LES.md">CHRONOLOGIA_ZRODLOWA_LES.md</a></span></h2>
+<p class="desc">Główny dokument roboczy — uporządkowanie WSZYSTKICH znanych źródeł wg chronologii życia. Każdy fakt opatrzony znacznikiem źródła.</p>
+<table>
+<tr><th>Okres</th><th>Zakres dat</th><th>Kluczowe wydarzenia</th></tr>
+<tr><td>I. Dzieciństwo i wojna</td><td>1928–1945</td><td>Urodziny Warszawa, Tarczyńska 11 m.33, <mark>jedynak, rodzice: Leonia ze Sztarków + Zygmunt [MC]</mark>, szkoła chemiczna Szymonikowej, Witkacy, AK — ps. "Emfazy"</td></tr>
+<tr><td>II. Powojenne</td><td>1945–1954</td><td><mark>Teatr Cynobrowych Snów 1946 [MC]</mark>, ASP u Rafałowskiego, Kobylka, <mark>"Malarstwo jest dla wszystkich" — 7 odcinków w "Po Prostu" nr 8–14/1949 (8. cenzura)</mark>, <mark>Śpiewacy Norymbersey (1948)</mark>, Prometeusz (1953)</td></tr>
+<tr><td>III. Teatr na Tarczyńskiej</td><td>1954–1958</td><td><mark>Inspiracja: Boyé o "De l'Art et Action" [MC]</mark>, Homunculus, <mark>II Program: Lepy + Szara msza + Wyprawy krzyżowe (Białoszewski) — prem. 17.II.1956</mark>, <mark>8 sztuk LES [MC]</mark>, <mark>"Wyprawy krzyżowe" opubl. Dialog nr 8/1956 s.43-50</mark>, <mark>PKF 7 min niemego materiału w WFDiF [MC]</mark>, Stowarzyszenie 13.IV.1956, <mark>~8000 widzów Hybrydy [MC]</mark>, Konwencja Tożsamości, prasa zagraniczna</td></tr>
+<tr><td>IV. Biały Pył / Prowincja</td><td>1958–1964</td><td>Serial TV (6 odc. ZAGINĘŁO), <mark>domy dziecka Lucień+Środborów, adopcja Stefana, PWST u Bardiniego, Mandragora Wrocław [MC]</mark>, Wysokie Progi</td></tr>
+<tr><td>V. Kariera TV i teatralna</td><td>1965–1980</td><td>22 produkcji TVP, cykl Offenbacha, "Swego nie znacie", dermooptyka, SB</td></tr>
+<tr><td>VI. Od magii do psychotroniki</td><td>1980–1990</td><td>"Od magii do psychotroniki" (bestseller), PTP, Trzecie Oko, Kurs DU, "Siedem życzeń"</td></tr>
+<tr><td>VII. Athanor i Synchro-Theta</td><td>1990–1996</td><td>Firma Athanor, 15 kaset S-T, Instrukcja dla Wtajemniczonych, kursy językowe</td></tr>
+<tr><td>VIII. Rodzimy Kościół Polski</td><td>1995–2010</td><td>RKP — Ofiarnik Generalny, Mironalia, rekonstrukcje, Polskie Radio 2002</td></tr>
+<tr><td>IX. Śmierć</td><td>21.12.2010</td><td>Przesilenie zimowe + pełnia + zaćmienie Księżyca, Załubice</td></tr>
+<tr><td>X. Pośmiertnie</td><td>2012–</td><td>Tajny dziennik Białoszewskiego, album Alicja/Bandcamp, film dok.</td></tr>
+</table>
+</section>
+
+<!-- ==================== ARCHIWUM BN / IT ==================== -->
+<section id="archiwum-bn">
+<h2>Archiwum BN / Instytut Teatralny <span class="count">322 pliki, 5 zbiorów ZIP</span></h2>
+<p class="desc">Zdjęcia maszynopisów, dokumentów, zdjęć archiwalnych i prasy. Źródło: iCloud Photos, pobrane 2026-04-04.</p>
+
+<details><summary><span class="tag tag-bn">ZIP 1</span> Archiwum Teatralne — 68 plików (IMG_7247–7316)</summary>
+<div class="inner">
+<table>
+<tr><th>IMG</th><th>Opis</th><th>Transkrypcja</th></tr>
+<tr><td>7247</td><td>Teczka: "Teatr na Tarczyńskiej — kserokopie/zdjęcia"</td><td>—</td></tr>
+<tr><td>7248</td><td>Meskalina — nota programowa</td><td class="status-done">✅ 02</td></tr>
+<tr><td>7249</td><td>Rodzina Ludzka. Ofiary — liturgia</td><td class="status-done">✅ 03</td></tr>
+<tr><td>7250–51</td><td>Okładki "Wysokie Progi" (duplikat ZIP 4)</td><td>—</td></tr>
+<tr><td>7252</td><td>Logo/symbol TnT — wycinanka (niebieska na burgundowym)</td><td>— grafika</td></tr>
+<tr><td>7253</td><td><mark>Notatki żydowsko-liturgiczne</mark>: Szema Israel, Korbanes, jidysz, 3 świece</td><td>— notatka</td></tr>
+<tr><td>7256–71</td><td><strong>HOMUNCULUS</strong> — pełny tekst monodramu lalkowego</td><td class="status-done">✅ 06</td></tr>
+<tr><td>7272</td><td>Okładka "Osmędeusze" z pieczątką TnT</td><td class="status-done">✅ 07</td></tr>
+<tr><td>7273–90</td><td><strong>WIWISEKCJA</strong> Białoszewskiego (1955)</td><td class="status-done">✅ 07</td></tr>
+<tr><td>7291</td><td><strong>Lista repertuarowa TnT</strong> (odręczna)</td><td>— dokument</td></tr>
+<tr><td>7292–94</td><td>Wyrzuty skojarzenia — egz. suflerski (duplikat ZIP 3)</td><td>—</td></tr>
+<tr><td>7297–303</td><td>Legenda o sobie — drugi egz. z dopiskami reżyserskimi</td><td>—</td></tr>
+<tr><td>7304–09</td><td><strong>SFINKSÓWNA</strong> (1957)</td><td class="status-done">✅ 11</td></tr>
+<tr><td>7310</td><td>Portret młodego mężczyzny (Stefański?) — czarno-białe</td><td>— foto</td></tr>
+<tr><td>7311</td><td>Stefański na scenie TnT z siatką pomarańczowych sznurków</td><td>— foto</td></tr>
+<tr><td>7312</td><td>Zdjęcia kontaktowe z przedstawień TnT — 7 małych zdjęć</td><td>— foto</td></tr>
+<tr><td>7313–14</td><td>Rekwizyty Homunculusa: ręce, kielich, Chrystusik, zapałki</td><td>— foto</td></tr>
+<tr><td>7315</td><td>Portret sceniczny — ciemne ubranie, dym/mgła</td><td>— foto</td></tr>
+<tr><td>7316</td><td>Prometeusz — strona tytułowa (1953)</td><td class="status-done">✅ 01</td></tr>
+</table>
+</div></details>
+
+<details><summary><span class="tag tag-bn">ZIP 2</span> Książka o psychotronice — 22 pliki</summary>
+<div class="inner"><p>IMG_7496–7516. Strony z książki o psychotronice — do weryfikacji. Nie przejrzane szczegółowo.</p></div></details>
+
+<details><summary><span class="tag tag-bn">ZIP 3</span> Maszynopisy z BN — 62 pliki (IMG_7751–7814)</summary>
+<div class="inner">
+<table>
+<tr><th>IMG</th><th>Opis</th><th>Transkrypcja</th></tr>
+<tr><td>7751</td><td>Okładka: "Szminka" + "Suflerska"</td><td>—</td></tr>
+<tr><td>7752</td><td>"Jaka pani niedyskretna. Jestem w psychicznym negliżu"</td><td>—</td></tr>
+<tr><td>7754–59</td><td><strong>HIPOTEZA PODRÓŻY / FOXTROTA</strong> — jednoaktówka</td><td class="status-done">✅ 04</td></tr>
+<tr><td>7760–96</td><td><strong>LEGENDA O SOBIE</strong> — monodram (~30 stron)</td><td class="status-done">✅ 05</td></tr>
+<tr><td>7797–812</td><td><strong>WYRZUTY SKOJARZENIA</strong> — partytura reżyserska (16 stron)</td><td class="status-done">✅ 08</td></tr>
+<tr><td>7814</td><td><strong>"Pracujemy metodą realizmacji!"</strong> — odcisk dłoni, plakat TnT, 1955</td><td>— manifest</td></tr>
+</table>
+</div></details>
+
+<details><summary><span class="tag tag-it">ZIP 4</span> Instytut Teatralny — 121 plików HEIC (IMG_0064–0177 + IMG_7930–38)</summary>
+<div class="inner">
+<table>
+<tr><th>IMG</th><th>Opis</th><th>Transkrypcja</th></tr>
+<tr><td>0064–66</td><td>Materiały wstępne — strona tytułowa Wysokich Progów (odręczna)</td><td>—</td></tr>
+<tr><td>0067</td><td>Strona tytułowa: WYSOKIE PROGI (1960)</td><td class="status-done">✅ 09</td></tr>
+<tr><td>0068–76</td><td>Tekst mówiony Wysokich Progów (dialog K i M)</td><td class="status-done">✅ 09</td></tr>
+<tr><td>0077</td><td>Schemat formy muzycznej — A₁B₁→4 cykle→A₆B₂</td><td class="status-done">✅ 09</td></tr>
+<tr><td>0078–80</td><td>Rodzina Ludzka. Ofiary — czystsza wersja</td><td class="status-done">✅ 09</td></tr>
+<tr><td>0081–83</td><td>Pieśni obrzędowe z nutami (postrzyżyny, pogrzeb)</td><td class="status-done">✅ 09</td></tr>
+<tr><td>0084–86</td><td>Program Rodzinnego Obrzędu Okulizy (wesele)</td><td class="status-done">✅ 09</td></tr>
+<tr><td>0087–90</td><td>Rytuał pogrzebowy "Rodziny Kościoła Polskiego"</td><td class="status-done">✅ 09</td></tr>
+<tr><td>0091</td><td>Nuty — zapis odręczny pieśni obrzędowych</td><td class="status-done">✅ 09</td></tr>
+<tr><td>0092</td><td>Przypisy źródłowe: Bystroń, Kolberg, Eliade</td><td class="status-done">✅ 09</td></tr>
+<tr><td>0093</td><td>Meskalina — nota programowa (czytelniejsza wersja)</td><td class="status-done">✅ 09</td></tr>
+<tr><td>0094–96</td><td><strong>Gazeta</strong>: Przyboś + "Sztuka przedstawiania — Wnioski z Tarczyńskiej"</td><td>— prasa</td></tr>
+<tr><td>0097–105</td><td><mark><strong>MESKALINA — pełny scenariusz</strong></mark> (9 stron, /rapała/)</td><td class="status-done">✅ 12</td></tr>
+<tr><td>0106</td><td>Rozmyta strona słownika (nieczytelna)</td><td>—</td></tr>
+<tr><td>0107–109</td><td><strong>Program MIRONALIÓW '99</strong> + "Historia teatru na Tarczyńskiej"</td><td>— dokument</td></tr>
+<tr><td>0110</td><td>"Zaułek Komediantów" — Mironalia</td><td>—</td></tr>
+<tr><td>0119–120</td><td><mark><strong>Biogramy 7 aktorów TnT</strong></mark> + zdjęcie z ekipą PKF</td><td class="status-done">✅ 14</td></tr>
+<tr><td>0130</td><td>Rysunek ołówkiem — projekt scenografii (twarz/maska)</td><td>— grafika</td></tr>
+<tr><td>0140–141</td><td>O Konwencji Tożsamości — manifest (PL, 2 strony)</td><td class="status-done">✅ 10</td></tr>
+<tr><td>0142</td><td>Notatki odręczne "A" — o historii teatru</td><td>—</td></tr>
+<tr><td>0143–148</td><td><mark><strong>KONWENCJA TOŻSAMOŚCI — trójjęzyczna</strong></mark> (DE/PL/FR), 1954</td><td class="status-done">✅ 13</td></tr>
+<tr><td>0149</td><td>"Sztuka Przedstawiania" — wersja robocza</td><td>—</td></tr>
+<tr><td>0150–151</td><td><strong>Wywiad Białoszewski-Stefański</strong>: "SZTUKA PRZEDSTAWIANIA"</td><td class="status-todo">— potrzebny lepszy skan</td></tr>
+<tr><td>0160</td><td>Zdjęcie sceniczne — Stefański przy parawanie z lalkami</td><td>— foto</td></tr>
+<tr><td>0170</td><td>Scenografia — kubistyczna maska/twarz</td><td>— foto</td></tr>
+<tr><td>0177</td><td>Kobieta w białej sukni z figurką</td><td>— foto</td></tr>
+</table>
+</div></details>
+
+<details><summary><span class="tag tag-it">ZIP 5</span> IT i inne materiały — 49 plików (IMG_8031–8079)</summary>
+<div class="inner">
+<h4>Prasa (13+ artykułów)</h4>
+<table>
+<tr><th>IMG</th><th>Opis</th><th>Status</th></tr>
+<tr><td>8031–32</td><td>"Słowo Powszechne" — porwanie Bohdana Piaseckiego</td><td>— kontekst</td></tr>
+<tr><td>8033</td><td>"Słowo Powszechne" — <strong>zdjęcie ze sceny TnT</strong></td><td>— prasa + foto</td></tr>
+<tr><td>8034</td><td>"Express Wieczorny" — egzystencjalizm</td><td>— kontekst</td></tr>
+<tr><td>8035</td><td>"Express Wieczorny" (?) — "AFRODYTA" (dopisek czerwony)</td><td class="status-todo">do transkrypcji</td></tr>
+<tr><td>8036</td><td>"Sprawy i Ludzie" — <strong>"Fantazja z ulicy Tarczyńskiej"</strong></td><td class="status-todo">do transkrypcji</td></tr>
+<tr><td>8037</td><td>"Stolica" nr 20, 19 maja 1957 — okładka</td><td>—</td></tr>
+<tr><td>8038</td><td><mark><strong>"SZTUKA CZY NIEPOROZUMIENIE?"</strong></mark> — 2 zdjęcia sceniczne!</td><td class="status-todo">do transkrypcji</td></tr>
+<tr><td>8039</td><td>"Współczesność" nr 4 — "literatura wyklęta"</td><td>— kontekst</td></tr>
+<tr><td>8040</td><td><mark><strong>"Narodziny Afrodyty — Lech emfazy stefański!"</strong></mark> — 3 zdjęcia!</td><td class="status-todo">do transkrypcji</td></tr>
+<tr><td>8041</td><td><strong>Prasa WŁOSKA</strong>: "Serata esistenzialista..." — "teatro d'avanguardia privato"</td><td class="status-todo">do OCR (IT)</td></tr>
+<tr><td>8042</td><td><strong>Prasa FRANCUSKA</strong>: "Les satellites bougent..." — "Bikini-Boys"</td><td class="status-todo">do OCR (FR)</td></tr>
+<tr><td>8043</td><td><strong>"NA SCENACH EKSPERYMENTALNYCH"</strong> — TnT + Cricot II + Bim-Bom</td><td class="status-todo">do transkrypcji</td></tr>
+<tr><td>8044–47</td><td>"Życie Literackie", "Estrada TV", "Nowa awangarda" (Grodzicki)</td><td>— kontekst</td></tr>
+<tr><td>8048</td><td>Odręczny indeks teczki prasowej</td><td>— spis</td></tr>
+<tr><td>8049</td><td>Logo TnT — Pegaz z laurami, "Lauro Mirndina"</td><td>— grafika</td></tr>
+</table>
+<h4>Teksty dramatyczne i ezoteryczne</h4>
+<table>
+<tr><th>IMG</th><th>Opis</th><th>Transkrypcja</th></tr>
+<tr><td>8055</td><td>Grafika: 3 postacie w strojach liturgicznych</td><td>— grafika</td></tr>
+<tr><td>8056–58</td><td><strong>JEZUS I MARIA</strong> — dialog (ikona, Kielich, alchemia)</td><td class="status-done">✅ 17</td></tr>
+<tr><td>8059</td><td>Wiersz: Kowalski, "Towarzyszowi z Bezpieczeństwa"</td><td>—</td></tr>
+<tr><td>8060–76</td><td><strong>INSTRUKCJA DLA WTAJEMNICZONYCH</strong> (1993) — 7 rozdziałów + Sabat</td><td class="status-done">✅ 15</td></tr>
+<tr><td>8077–79</td><td><mark><strong>"ŚPIEWACY NORYMBERSEY"</strong></mark> — operomontaż Wagnera, V–1948</td><td class="status-done">✅ 16</td></tr>
+</table>
+<h4>Zdjęcia (lata 90.)</h4>
+<table>
+<tr><th>IMG</th><th>Opis</th></tr>
+<tr><td>8050</td><td>Stefański (starszy) na podwórku z plakatem, zielona szata</td></tr>
+<tr><td>8051</td><td>Stefański w zielonej szacie z parawanem</td></tr>
+<tr><td>8052</td><td>Stefański z koncertyną/akordeonem</td></tr>
+<tr><td>8053</td><td>Wiele zdjęć nakładających się</td></tr>
+<tr><td>8054</td><td>Performans na podwórku — Stefański + publiczność + mikrofon</td></tr>
+</table>
+</div></details>
+</section>
+
+<!-- ==================== TRANSKRYPCJE ==================== -->
+<section id="transkrypcje">
+<h2>Transkrypcje <span class="count">17 plików — BN_archiwum/TRANSKRYPCJE/</span></h2>
+<table>
+<tr><th>Rok</th><th>Plik</th><th>Tytuł</th><th>ZIP</th></tr>
+<tr style="background:rgba(201,168,76,.06)"><td>1948</td><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/BN_archiwum/TRANSKRYPCJE/16_SPIEWACY_NORYMBERSEY_1948.md">16_SPIEWACY_NORYMBERSEY_1948.md</a></td><td><strong>Śpiewacy Norymbersey — operomontaż Wagnera</strong></td><td>5</td></tr>
+<tr><td>1953</td><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/BN_archiwum/TRANSKRYPCJE/01_PROMETEUSZ_1953.md">01_PROMETEUSZ_1953.md</a></td><td>Prometeusz — monodram</td><td>1</td></tr>
+<tr style="background:rgba(201,168,76,.06)"><td>1954</td><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/BN_archiwum/TRANSKRYPCJE/13_KONWENCJA_TOZSAMOSCI_trojjezyczna_1954.md">13_KONWENCJA_TOZSAMOSCI_trojjezyczna_1954.md</a></td><td><strong>Konwencja Tożsamości — DE/PL/FR</strong></td><td>4</td></tr>
+<tr><td>~1954</td><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/BN_archiwum/TRANSKRYPCJE/10_O_KOMEDJI_TOZSAMOSCI_manifest.md">10_O_KOMEDJI_TOZSAMOSCI_manifest.md</a></td><td>O Konwencji Tożsamości — manifest (PL)</td><td>4</td></tr>
+<tr><td>1955</td><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/BN_archiwum/TRANSKRYPCJE/07_OSMEDEUSZE_WIWISEKCJA_1955.md">07_OSMEDEUSZE_WIWISEKCJA_1955.md</a></td><td>Osmędeusze/Wiwisekcja (Białoszewski!)</td><td>1</td></tr>
+<tr><td>1956</td><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/BN_archiwum/TRANSKRYPCJE/06_HOMUNCULUS_1956.md">06_HOMUNCULUS_1956.md</a></td><td>Homunculus — monodram lalkowy</td><td>1</td></tr>
+<tr><td>1956</td><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/BN_archiwum/TRANSKRYPCJE/05_LEGENDA_O_SOBIE_1956.md">05_LEGENDA_O_SOBIE_1956.md</a></td><td>Legenda o sobie — monodram autobiogr.</td><td>3</td></tr>
+<tr><td>1956</td><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/BN_archiwum/TRANSKRYPCJE/08_WYRZUTY_SKOJARZENIA_1956.md">08_WYRZUTY_SKOJARZENIA_1956.md</a></td><td>Wyrzuty skojarzenia — partytura reż.</td><td>3</td></tr>
+<tr style="background:rgba(201,168,76,.06)"><td>1956</td><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/BN_archiwum/TRANSKRYPCJE/12_MESKALINA_SCENARIUSZ_1956.md">12_MESKALINA_SCENARIUSZ_1956.md</a></td><td><strong>Meskalina — pełny scenariusz (9 str.)</strong></td><td>4</td></tr>
+<tr><td>1956-57</td><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/BN_archiwum/TRANSKRYPCJE/04_HIPOTEZA_PODROZY_1956.md">04_HIPOTEZA_PODROZY_1956.md</a></td><td>Hipoteza Podróży/foxtrota</td><td>3</td></tr>
+<tr><td>1957</td><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/BN_archiwum/TRANSKRYPCJE/02_MESKALINA_1957.md">02_MESKALINA_1957.md</a></td><td>Meskalina — nota programowa</td><td>1</td></tr>
+<tr><td>1957</td><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/BN_archiwum/TRANSKRYPCJE/11_SFINKSOWNA_1957.md">11_SFINKSOWNA_1957.md</a></td><td>Sfinksówna</td><td>1</td></tr>
+<tr><td>1960</td><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/BN_archiwum/TRANSKRYPCJE/09_WYSOKIE_PROGI_1960.md">09_WYSOKIE_PROGI_1960.md</a></td><td>Wysokie Progi — obrzędy + liturgia</td><td>4</td></tr>
+<tr style="background:rgba(201,168,76,.06)"><td>1993</td><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/BN_archiwum/TRANSKRYPCJE/15_INSTRUKCJA_DLA_WTAJEMNICZONYCH_1993.md">15_INSTRUKCJA_DLA_WTAJEMNICZONYCH_1993.md</a></td><td><strong>Instrukcja dla Wtajemniczonych (7 rozdziałów)</strong></td><td>5</td></tr>
+<tr style="background:rgba(201,168,76,.06)"><td>~1999</td><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/BN_archiwum/TRANSKRYPCJE/14_BIOGRAMY_AKTOROW_TnT.md">14_BIOGRAMY_AKTOROW_TnT.md</a></td><td><strong>Biogramy 7 aktorów TnT</strong></td><td>4</td></tr>
+<tr><td>b.d.</td><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/BN_archiwum/TRANSKRYPCJE/03_RODZINA_LUDZKA_OFIARY.md">03_RODZINA_LUDZKA_OFIARY.md</a></td><td>Rodzina Ludzka. Ofiary</td><td>1</td></tr>
+<tr style="background:rgba(201,168,76,.06)"><td>b.d.</td><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/BN_archiwum/TRANSKRYPCJE/17_JEZUS_MARIA_tekst_dramatyczny.md">17_JEZUS_MARIA_tekst_dramatyczny.md</a></td><td><strong>Jezus i Maria — dialog dramatyczny</strong></td><td>5</td></tr>
+</table>
+<p class="desc">Posortowane chronologicznie. Podświetlone: nowe transkrypcje z 2026-04-05. Kliknij nazwę pliku aby otworzyć.</p>
+</section>
+
+<!-- ==================== PRASA ==================== -->
+<section id="prasa">
+<h2>Prasa o TnT <span class="count"><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/BN_archiwum/INWENTARZ_PRASY_TnT.md">INWENTARZ_PRASY_TnT.md</a></span></h2>
+<p class="desc">Minimum 13 artykułów prasowych z lat 1956–57. Wycinki z: Stolica, Express Wieczorny, Słowo Powszechne, Współczesność, Życie Literackie, Sprawy i Ludzie, Corriere della Sera, France Soir, i inne. <strong>Transkrypcje: <a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/BN_archiwum/TRANSKRYPCJE/TRANSKRYPCJE_PRASY_TnT.md">TRANSKRYPCJE_PRASY_TnT.md</a> (458 linii)</strong></p>
+<h3>Transkrypcje prasowe (wykonane 2026-04-05):</h3>
+<table>
+<tr><th>IMG</th><th>Artykuł</th><th>Status</th></tr>
+<tr><td>8035</td><td>"AFRODYTA" — Express Wieczorny</td><td class="status-done">✅ transkrypcja</td></tr>
+<tr><td>8036</td><td>"Fantazja z ulicy Tarczyńskiej" — Sprawy i Ludzie</td><td class="status-done">✅ transkrypcja (częściowa, drobny druk)</td></tr>
+<tr><td>8038</td><td>"Sztuka czy nieporozumienie?" — Stolica, V.1957, 2 zdjęcia sceniczne</td><td class="status-done">✅ transkrypcja</td></tr>
+<tr><td>8040</td><td>"Narodziny Afrodyty — Lech emfazy stefański!" — 3 zdjęcia</td><td class="status-done">✅ transkrypcja (zdjęcie do góry nogami)</td></tr>
+<tr><td>8043</td><td>"Na scenach eksperymentalnych" — TnT + Cricot II + Bim-Bom</td><td class="status-done">✅ transkrypcja</td></tr>
+<tr><td>0094–96</td><td>"Sztuka przedstawiania — Wnioski z Tarczyńskiej" (Trybuna Ludu, obok Przybosia)</td><td class="status-done">✅ transkrypcja (częściowa, drobny druk)</td></tr>
+<tr><td>8041</td><td>Prasa włoska: Corriere della Sera, Domenico Bartoli, 26.XII.1956</td><td class="status-done">✅ OCR (IT)</td></tr>
+<tr><td>8042</td><td>Prasa francuska: France-Soir, Jean Neuvecelle</td><td class="status-done">✅ OCR (FR)</td></tr>
+</table>
+<p class="desc">Spójne fakty ze wszystkich źródeł: ul. Tarczyńska 22, V piętro, pokój ~4,5×3m, 17 krzeseł, druciano-sznurkowa scenografia. Pełna transkrypcja wymaga skanów wyższej rozdzielczości.</p>
+</section>
+
+<!-- ==================== ZDJĘCIA ARCHIWALNE ==================== -->
+<section id="zdjecia-arch">
+<h2>Zdjęcia archiwalne</h2>
+<h3>Z archiwum BN/IT (czarno-białe, lata 50.):</h3>
+<table>
+<tr><th>IMG</th><th>Opis</th></tr>
+<tr><td>7310</td><td>Portret młodego mężczyzny (Stefański?) — biała koszula, ciemna krawat</td></tr>
+<tr><td>7311</td><td>Stefański na scenie — siatka pomarańczowych sznurków (kolorowe!)</td></tr>
+<tr><td>7312</td><td>Zdjęcia kontaktowe — 7 małych zdjęć z przedstawień</td></tr>
+<tr><td>7313–14</td><td>Rekwizyty Homunculusa — ręce, kielich, Chrystusik, zapałki w miniaturowej scenie</td></tr>
+<tr><td>7315</td><td>Portret sceniczny — ciemne ubranie, dym/mgła</td></tr>
+<tr><td>0119</td><td>Hering i Fabicka z ekipą PKF — fot. Irena Małek-Jarosińska</td></tr>
+<tr><td>0120</td><td>Prószyński przy fortepianie — fot. Irena Małek-Jarosińska</td></tr>
+<tr><td>0160</td><td>Stefański przy parawanie z lalkami/rzeźbami</td></tr>
+<tr><td>0170</td><td>Kubistyczna maska/twarz — scenografia TnT</td></tr>
+<tr><td>0177</td><td>Kobieta w białej sukni z figurką</td></tr>
+</table>
+<h3>Zdjęcia późne (kolorowe, lata 90.):</h3>
+<table>
+<tr><th>IMG</th><th>Opis</th></tr>
+<tr><td>8050–54</td><td>Stefański w zielonej szacie — performansy rytualne na podwórku, koncertyna, plakat</td></tr>
+<tr><td>8055</td><td>Grafika: 3 postacie w strojach liturgicznych (drzeworyt?)</td></tr>
+</table>
+<h3>Zdjęcia z FB (w folderze images/):</h3>
+<p class="desc">29 plików w images/: portrety LES, sceny z TnT, dokumenty SB, "eden", "LIE", "TnT", sprzęt, zeznania Piaseckiego/Waltera, zrzuty ekranu.</p>
+</section>
+
+<!-- ==================== NAC ==================== -->
+<section id="nac">
+<div class="section-header">
+  <div class="section-label">Narodowe Archiwum Cyfrowe</div>
+  <h2 class="section-title">Zdjęcia z NAC</h2>
+</div>
+<p class="desc">49 zdjęć pobranych z <a href="https://audiovis.nac.gov.pl" target="_blank">audiovis.nac.gov.pl</a> — miejsca i osoby związane z LES. Folder: <a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/NAC_zdjecia/">NAC_zdjecia/</a> (77 MB). Indeks: <a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/NAC_zdjecia/INDEKS_NAC.md">INDEKS_NAC.md</a></p>
+
+<h3>Teatr Białoszewskiego / Teatr Osobny (17 zdjęć, 1961)</h3>
+<p class="desc">V Program Klasyczny, luty 1961. Sceny z przedstawień + fotografie pozowane z programu III (1956) i IV (1959). Sygn. 42-X-55, 42-X-56. <strong>Możliwy udział LES</strong> — do weryfikacji na zdjęciach.</p>
+<table>
+<tr><th>Sygnatura</th><th>Opis</th><th>NAC</th></tr>
+<tr><td>42-X-55 (1–13)</td><td>Fotografie pozowane z programu III i IV na tle dekoracji V programu</td><td><a href="https://audiovis.nac.gov.pl/obraz/81221/" target="_blank">4 zdjęcia</a></td></tr>
+<tr><td>42-X-56 (2–34)</td><td>Teatr Osobny — V Program Klasyczny, sceny</td><td><a href="https://audiovis.nac.gov.pl/obraz/81259/" target="_blank">13 zdjęć</a></td></tr>
+</table>
+
+<h3>Hotel Forum, Warszawa (13 zdjęć, 1973–82)</h3>
+<p class="desc">Wnętrza, recepcja, otoczenie Hotelu Forum przy ul. Marszałkowskiej. Sygn. 40-W-80, 40-W-115.</p>
+<table>
+<tr><th>Sygnatura</th><th>Data</th><th>Opis</th><th>NAC</th></tr>
+<tr><td>40-W-80 (1–22)</td><td>1974</td><td>Wnętrza hotelu: recepcja, fryzjer, kosmetyczka, widok z ulicy</td><td><a href="https://audiovis.nac.gov.pl/obraz/200599/" target="_blank">7 zdjęć</a></td></tr>
+<tr><td>40-W-115-1</td><td>1982</td><td>Budynki przy Puławskiej — panorama z Forum</td><td><a href="https://audiovis.nac.gov.pl/obraz/201499/" target="_blank">1 zdjęcie</a></td></tr>
+<tr><td>40-W-89-19</td><td>1974-05</td><td>Budowa Dworca Centralnego — Hotel Forum w tle</td><td><a href="https://audiovis.nac.gov.pl/obraz/202457/" target="_blank">1 zdjęcie</a></td></tr>
+<tr><td>40-W-9 (8,28)</td><td>1974-01</td><td>Panorama Warszawy z PKiN — widoczny Hotel Forum</td><td><a href="https://audiovis.nac.gov.pl/obraz/198504/" target="_blank">2 zdjęcia</a></td></tr>
+<tr><td>51-628-6</td><td>1973-74</td><td>Ulica Marszałkowska — Hotel Forum w tle</td><td><a href="https://audiovis.nac.gov.pl/obraz/166045/" target="_blank">1 zdjęcie</a></td></tr>
+</table>
+
+<h3>Klub Hybrydy (10 zdjęć, 1961–69)</h3>
+<p class="desc">Klub studencki przy ul. Mokotowskiej 48 — <strong>miejsce III Programu TnT (1957)</strong>. Zabawy, taniec, muzyka. Sygn. 51-443.</p>
+<table>
+<tr><th>Sygnatura</th><th>Data</th><th>Opis</th><th>NAC</th></tr>
+<tr><td>51-443 (53–195)</td><td>1961–69</td><td>Wnętrza klubu, zabawy studenckie, muzyka, taniec</td><td><a href="https://audiovis.nac.gov.pl/obraz/171545/" target="_blank">10 zdjęć</a></td></tr>
+</table>
+
+<h3>Kawiarnia Świtezianka (2 zdjęcia, 1954–60)</h3>
+<p class="desc">Ul. Emila Zoli w Warszawie. Sygn. 51-748.</p>
+<table>
+<tr><th>Sygnatura</th><th>Data</th><th>Opis</th><th>NAC</th></tr>
+<tr><td>51-748 (1–2)</td><td>1954–60</td><td>Ulica Emila Zoli z widokiem na kawiarnię</td><td><a href="https://audiovis.nac.gov.pl/obraz/166926/" target="_blank">2 zdjęcia</a></td></tr>
+</table>
+
+<h3>Kawiarnia Nowy Świat (5 zdjęć, 1956–66)</h3>
+<p class="desc">Kawiarnia przy Nowym Świecie 61 — Andrzejki 1966, pokaz mody 1956, kabaret "Pineska" 1957.</p>
+<table>
+<tr><th>Sygnatura</th><th>Data</th><th>Opis</th><th>NAC</th></tr>
+<tr><td>40-9-154 (4–25)</td><td>1966-11-30</td><td>Andrzejki w kawiarni Nowy Świat</td><td><a href="https://audiovis.nac.gov.pl/obraz/179177/" target="_blank">3 zdjęcia</a></td></tr>
+<tr><td>51-384-8</td><td>1956-12</td><td>Pokaz mody w kawiarni</td><td><a href="https://audiovis.nac.gov.pl/obraz/151305/" target="_blank">1 zdjęcie</a></td></tr>
+<tr><td>51-406-2</td><td>1957</td><td>Kabaret "Pineska" w kawiarni</td><td><a href="https://audiovis.nac.gov.pl/obraz/152928/" target="_blank">1 zdjęcie</a></td></tr>
+</table>
+
+<h3>Stara Prochownia + inne (4 pozycje)</h3>
+<table>
+<tr><th>Sygnatura</th><th>Data</th><th>Opis</th><th>NAC</th></tr>
+<tr><td>33-T-5993</td><td>1976</td><td>Stara Prochownia, Warszawa (nagranie)</td><td><a href="https://audiovis.nac.gov.pl/obraz/44769/" target="_blank">NAC</a></td></tr>
+<tr><td>33-T-7114</td><td>1974</td><td>Stara Prochownia, Warszawa (nagranie)</td><td><a href="https://audiovis.nac.gov.pl/obraz/46083/" target="_blank">NAC</a></td></tr>
+<tr><td>33-T-6297</td><td>1980</td><td>Stara Prochownia (nagranie)</td><td><a href="https://audiovis.nac.gov.pl/obraz/45097/" target="_blank">NAC</a></td></tr>
+<tr><td>1-D-1753</td><td>1928</td><td>Mokotowska 48 — Poselstwo Węgier (budynek Hybryd)</td><td><a href="https://audiovis.nac.gov.pl/obraz/98958/" target="_blank">3 zdjęcia</a></td></tr>
+</table>
+</section>
+
+<!-- ==================== TVP ==================== -->
+<section id="tvp">
+<h2>Archiwum TVP <span class="count">49 pozycji, 20 wybranych (żółte)</span></h2>
+<p class="desc">Na podstawie pliku "LES w archiwum TVP.doc" (687 KB, 49 wpisów). <mark>23 pozycje wybrane</mark> (20 zaznaczonych na żółto + 3 dodatkowe, 1965–1997) = priorytetowe do pozyskania. Pełna lista z opisami: <a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/TVP_WYBRANE_POZYCJE.md">TVP_WYBRANE_POZYCJE.md</a> (899 linii)</p>
+
+<h3>23 pozycje wybrane (żółte podświetlenie + 3 dodatkowe):</h3>
+<table>
+<tr><th>Rok</th><th>Tytuł</th><th>Rola LES</th><th>Czas</th><th>Nr arch.</th></tr>
+<tr style="background:rgba(201,168,76,.08)"><td>1965</td><td><strong>Salon pana Wzdęckiego</strong> (Offenbach)</td><td>reżyser + adaptacja</td><td>57:54</td><td>104866</td></tr>
+<tr style="background:rgba(201,168,76,.08)"><td>1966</td><td><strong>Niejawny zespół filmowy Sfinks</strong></td><td>reżyser</td><td>51:19</td><td>106666</td></tr>
+<tr style="background:rgba(201,168,76,.08)"><td>1969</td><td><strong>Starcze szaleństwo</strong> — komedia madrygałowa</td><td>reżyser + przekład</td><td>33:39</td><td>114510</td></tr>
+<tr style="background:rgba(201,168,76,.08)"><td>1969</td><td>Kronika Kulturalna — <strong>Rozbójnicy Offenbacha</strong></td><td>reżyser (fragment)</td><td>10:57</td><td>287587</td></tr>
+<tr style="background:rgba(201,168,76,.08)"><td>1970</td><td><strong>Panna i Nicpoń</strong> (Pergolesi)</td><td>reżyser + adaptacja</td><td>40:09</td><td>117427</td></tr>
+<tr style="background:rgba(201,168,76,.08)"><td>1971</td><td><strong>Ballada młyńskiego koła</strong></td><td>współreżyseria + scenariusz</td><td>25:15</td><td>80768</td></tr>
+<tr style="background:rgba(201,168,76,.08)"><td>1972</td><td>Kronika Kulturalna — <strong>Nowy Don Kichot</strong></td><td>reżyser (fragment)</td><td>08:40</td><td>11826</td></tr>
+<tr style="background:rgba(201,168,76,.08)"><td>1974</td><td><strong>Spotkanie z psychotroniką</strong></td><td>uczestnik-ekspert</td><td>32:03</td><td>213240</td></tr>
+<tr style="background:rgba(201,168,76,.08)"><td>1977</td><td><strong>Camerata</strong> — syntezja w sztuce</td><td>uczestnik-reżyser</td><td>28:41</td><td>115138</td></tr>
+<tr style="background:rgba(201,168,76,.08)"><td>1979</td><td><strong>Tajemnicza energia</strong></td><td>uczestnik-badacz</td><td>25:14</td><td>226884</td></tr>
+<tr style="background:rgba(201,168,76,.08)"><td>1982</td><td><strong>Swego nie znacie: Noskowski</strong></td><td>reżyser</td><td>53:03</td><td>96925</td></tr>
+<tr style="background:rgba(201,168,76,.08)"><td>1983</td><td><strong>Swego nie znacie: Paderewski</strong></td><td>reżyser</td><td>42:36</td><td>75780</td></tr>
+<tr style="background:rgba(201,168,76,.08)"><td>1985</td><td><strong>Poeta fortepianu</strong> (Sztompka)</td><td>reżyser</td><td>38:30</td><td>172908</td></tr>
+<tr style="background:rgba(201,168,76,.08)"><td>1985</td><td><strong>Chopin i George Sand</strong></td><td>reżyser</td><td>46:39</td><td>96606</td></tr>
+<tr style="background:rgba(201,168,76,.08)"><td>1986</td><td><strong>Wywiady Ireny Dziedzic: LES</strong></td><td>główny gość</td><td>28:52</td><td>170491</td></tr>
+<tr style="background:rgba(201,168,76,.08)"><td>1990</td><td><strong>Masońskie wtajemniczenie W.A.</strong></td><td>reżyser</td><td>47:19</td><td>259017</td></tr>
+<tr style="background:rgba(201,168,76,.08)"><td>1991</td><td><strong>Poznać siebie</strong> (psychotronika)</td><td>uczestnik, prezes PTP</td><td>32:52</td><td>85948</td></tr>
+<tr style="background:rgba(201,168,76,.08)"><td>1993</td><td><strong>Miron</strong> (Słowa i twarze)</td><td>główny świadek o TnT</td><td>40:00</td><td>287469</td></tr>
+<tr style="background:rgba(201,168,76,.08)"><td>1994</td><td><strong>Pytania o Polskę: Państwo i medycyna</strong></td><td>uczestnik (Athanor)</td><td>49:01</td><td>167764</td></tr>
+<tr style="background:rgba(201,168,76,.08)"><td>1995</td><td><strong>Ekspres reporterów: Próba ognia</strong></td><td>wykładowca radiestezji</td><td>08:00</td><td>98644</td></tr>
+<tr style="background:rgba(201,168,76,.08)"><td>1995</td><td><strong>Wyprawy krzyżowe</strong> (Białoszewski)</td><td>współtwórca TnT</td><td>58:56</td><td>306188</td></tr>
+<tr style="background:rgba(201,168,76,.08)"><td>1996</td><td><strong>Chimera: "Święto"</strong></td><td>pisarz, współtwórca TnT</td><td>30:36</td><td>109612</td></tr>
+<tr style="background:rgba(201,168,76,.08)"><td>1997</td><td><strong>Wróżka</strong> (Niezwykłe postacie)</td><td>pisarz</td><td>22:27</td><td>177357</td></tr>
+</table>
+<p class="desc">Najcenniejsze: <strong>"Miron" (287469)</strong> — LES jako główny świadek o TnT. <strong>"Salon Wzdęckiego" (104866)</strong> — jedyne zachowane pełne dzieło reżyserskie LES w TVP. <strong>"Sfinks" (106666)</strong> — zespół filmowy LES.</p>
+
+<h3>Statystyki:</h3>
+<div class="stats">
+  <div class="stat"><div class="num">22</div><div class="label">reżyser</div></div>
+  <div class="stat"><div class="num">13</div><div class="label">uczestnik/rozmówca</div></div>
+  <div class="stat"><div class="num">7</div><div class="label">scenarzysta/autor</div></div>
+  <div class="stat"><div class="num">3</div><div class="label">aktor</div></div>
+  <div class="stat"><div class="num">24</div><div class="label">KOMPLETNE</div></div>
+  <div class="stat"><div class="num">9</div><div class="label">niekompletne</div></div>
+</div>
+
+<details><summary>Pełna lista 33 pozycji TVP (kliknij aby rozwinąć)</summary>
+<div class="inner">
+<table>
+<tr><th>Rok</th><th>Tytuł</th><th>Rola LES</th><th>Czas</th><th>Nr arch.</th></tr>
+<tr><td>1965</td><td>Salon pana Wzdęckiego (Offenbach)</td><td>reżyser + adaptacja</td><td>57:54</td><td>104866</td></tr>
+<tr><td>1966</td><td>Kotka przemieniona w kobietę (Offenbach)</td><td>reżyser + przekład</td><td>59:53</td><td>105090</td></tr>
+<tr><td>1966</td><td>Niejawny zespół filmowy Sfinks</td><td>reżyser</td><td>51:19</td><td>106666</td></tr>
+<tr><td>1969</td><td>Starcze szaleństwo. Komedia madrygałowa</td><td>reżyser + przekład</td><td>33:39</td><td>114510</td></tr>
+<tr><td>1969</td><td>Rozbójnicy Offenbacha (Kronika Kulturalna)</td><td>reżyser (wzmianka)</td><td>—</td><td>287587</td></tr>
+<tr><td>1970</td><td>Panna i nicpoń (Pergolesi)</td><td>reżyser + adaptacja</td><td>40:09</td><td>117427</td></tr>
+<tr><td>1971</td><td>Ballada młyńskiego koła</td><td>współreżyseria + scenariusz</td><td>25:15</td><td>80768</td></tr>
+<tr><td>1972</td><td>Lekcja śpiewu</td><td>scenarzysta</td><td>27:49</td><td>82235</td></tr>
+<tr><td>1972</td><td>Kronika Kulturalna — "Nowy Don Kichot" Fredry</td><td>reżyser (wzmianka)</td><td>—</td><td>11826</td></tr>
+<tr><td>1974</td><td>Spotkanie z psychotroniką</td><td>uczestnik-ekspert</td><td>32:03</td><td>213240</td></tr>
+<tr><td>1974</td><td>Śmierć Eurydyki</td><td>konsultacja + redakcja</td><td>34:40</td><td>140106</td></tr>
+<tr><td>1975</td><td>Wiesław Ochman</td><td>scenarzysta</td><td>30:13</td><td>86581</td></tr>
+<tr><td>1975</td><td>Huron czyli Prostaczek</td><td>redakcja</td><td>67:28</td><td>174835</td></tr>
+<tr><td>1975</td><td>Kronika Warszawy — "Pimpinone" Telemanna</td><td>tłumacz</td><td>—</td><td>282345</td></tr>
+<tr><td>1977</td><td>Camerata — "syntezja w sztuce"</td><td>uczestnik</td><td>28:41</td><td>115138</td></tr>
+<tr><td>1979</td><td>Camerata odc. 78</td><td>przygotowanie programu</td><td>25:11</td><td>144077</td></tr>
+<tr><td>1979</td><td>Tajemnicza energia</td><td>uczestnik-badacz</td><td>25:14</td><td>226884</td></tr>
+<tr><td>1981</td><td>Pegaz: "Sierpień 80"</td><td>uczestnik</td><td>8:27</td><td>37368</td></tr>
+<tr><td>1982</td><td>Swego nie znacie: Noskowski</td><td>reżyser</td><td>53:03</td><td>96925</td></tr>
+<tr><td>1983</td><td>Swego nie znacie: Paderewski</td><td>reżyser</td><td>42:36</td><td>75780</td></tr>
+<tr><td>1983</td><td>Swego nie znacie: Żeleński</td><td>reżyser</td><td>40:45</td><td>138670</td></tr>
+<tr><td>1983</td><td>Swego nie znacie: Szymanowski</td><td>reżyser + aktor</td><td>43:22</td><td>172473</td></tr>
+<tr><td>1983</td><td>Swego nie znacie: Zarębski</td><td>reżyser + aktor</td><td>43:28</td><td>173138</td></tr>
+<tr><td>1983</td><td>Swego nie znacie: Karłowicz</td><td>reżyser</td><td>45:49</td><td>233934</td></tr>
+<tr><td>1983</td><td>W stronę Tristana (Wagner)</td><td>reżyser + aktor</td><td>56:13</td><td>195886</td></tr>
+<tr><td>1984</td><td>Opowieść o Borodinie</td><td>reżyser</td><td>66:27</td><td>172535</td></tr>
+<tr><td>1984</td><td>Album Chopinowski odc. 6: Mieszkanie</td><td>reżyser</td><td>25:58</td><td>188365</td></tr>
+<tr><td>1985</td><td>Chopin i George Sand (2 odc.)</td><td>reżyser</td><td>~80</td><td>96606/118281</td></tr>
+<tr><td>1985</td><td>Henryka Sztompki portret z pamięci (2 odc.)</td><td>reżyser</td><td>~57</td><td>172908/167209</td></tr>
+<tr><td>1985</td><td>Prof. Dlwiduda i jego uczniowie</td><td>autor piosenek</td><td>40:18</td><td>88873</td></tr>
+<tr><td>1986</td><td>Portret bez ramy (2 odc.)</td><td>reżyser</td><td>~117</td><td>88309/229808</td></tr>
+<tr><td>1986</td><td>Wywiady Ireny Dziedzic: LES</td><td>główny gość</td><td>28:52</td><td>170491</td></tr>
+<tr><td>1988</td><td>Muzyka Wyznania Mojżeszowego</td><td>reżyser</td><td>50:35</td><td>250066</td></tr>
+<tr><td>1990</td><td>Masońskie wtajemniczenie W.A.</td><td>reżyser</td><td>47:19</td><td>259017</td></tr>
+<tr><td>1991</td><td>Poznać siebie (Bielsko-Biała)</td><td>uczestnik</td><td>32:52</td><td>85948</td></tr>
+<tr><td>1993</td><td>Pegaz — "Słowiańskie proroctwa"</td><td>wróżbita</td><td>31:05</td><td>180714</td></tr>
+<tr><td>1993</td><td><strong>Miron</strong> (Słowa i twarze)</td><td>główny świadek o TnT</td><td>40:00</td><td>287469</td></tr>
+<tr><td>1994</td><td>Camerata 2 — wzmianka o LES</td><td>wzmianka</td><td>25:00</td><td>129611</td></tr>
+<tr><td>1994</td><td>Warszawska Jesień '94 — Daleki Wschód</td><td>uczestnik</td><td>19:31</td><td>72340</td></tr>
+<tr><td>1994</td><td>Państwo i medycyna (Pytania o Polskę)</td><td>Athanor — bioenergoterapia</td><td>49:01</td><td>167764</td></tr>
+<tr><td>1995</td><td>Wyprawy krzyżowe (Białoszewski)</td><td>— (nie LES reż.)</td><td>84/58</td><td>98623/306188</td></tr>
+<tr><td>1995</td><td>Próba ognia (Ekspres reporterów)</td><td>wykładowca radiestezji</td><td>8:00</td><td>98644</td></tr>
+<tr><td>1996</td><td>Chimera: "Święto"</td><td>pisarz, współtwórca TnT</td><td>30:36</td><td>109612</td></tr>
+<tr><td>1997</td><td>Wróżka (Niezwykłe postacie)</td><td>pisarz, wróżbiarstwo</td><td>22:27</td><td>177357</td></tr>
+<tr><td>1999</td><td>Letnia Camerata 2</td><td>uczestnik</td><td>19:51</td><td>187887</td></tr>
+</table>
+<p>Najcenniejszy zapis: <strong>nr 287469 "Miron"</strong> (1993) — LES z prywatnym archiwum nagrań dźwiękowych Białoszewskiego.</p>
+</div></details>
+</section>
+
+<!-- ==================== AUDIO ==================== -->
+<section id="audio">
+<h2>Nagrania audio <span class="count">23 pliki</span></h2>
+
+<h3>Polskie Radio Dwójka — "Alchemik słowa, tropiciel nieznanego" (2002)</h3>
+<p class="desc">5 segmentów, ~70 min, głos LES. Folder: AUDIO_PolskieRadio/</p>
+<table>
+<tr><th>#</th><th>Temat</th><th>Czas</th><th>Rozmiar</th></tr>
+<tr><td>1</td><td>Wczesna młodość, chemia, TV, mikroskop</td><td>14:14</td><td>8.1 MB</td></tr>
+<tr><td>2</td><td>Witkacy, ASP, socrealizm</td><td>13:59</td><td>8.0 MB</td></tr>
+<tr><td>3</td><td>Wiedza tajemna, parapsychologia, hipnoza</td><td>15:34</td><td>8.9 MB</td></tr>
+<tr><td>4</td><td>TnT, Białoszewski, Choiński</td><td>12:36</td><td>7.2 MB</td></tr>
+<tr><td>5</td><td>"Od magii do psychotroniki", dermooptyka</td><td>14:06</td><td>8.1 MB</td></tr>
+</table>
+
+<h3>Synchro-Theta — fragmenty z Bandcamp + YouTube</h3>
+<p class="desc">11 preview MP3 (128kbps) + 1 pełna kaseta (YT). Folder: AUDIO_SynchroTheta/</p>
+<table>
+<tr><th>Plik</th><th>Kaseta</th><th>Rozmiar</th></tr>
+<tr><td>ST-03_Przed_obliczem_Przedwiecznego_fragment.mp3</td><td>S-T nr 3</td><td>840 KB</td></tr>
+<tr><td>ST-05_Mistyczna_podroz_fragment.mp3</td><td>S-T nr 5</td><td>1.1 MB</td></tr>
+<tr><td>ST-06_Katabasis_I–V.mp3 (5 plików)</td><td>S-T nr 6</td><td>~24 MB</td></tr>
+<tr><td>ST-07_Naw_albo_Raj_I–IV.mp3 (4 pliki)</td><td>S-T nr 7</td><td>~23 MB</td></tr>
+<tr><td>YT_ST-07_Naw_albo_Raj_FULL.m4a</td><td>S-T nr 7 PEŁNA!</td><td>83 MB</td></tr>
+</table>
+
+<h3>Radio Kapitał — Białoszewski</h3>
+<p class="desc">5 plików po ~82 MB. Folder: RadioKapital_Bialoszewski/</p>
+<table>
+<tr><th>Plik</th><th>Opis</th></tr>
+<tr><td>63_Bialoszewski_plays_Mickiewicz.mp3</td><td>Białoszewski gra Mickiewicza</td></tr>
+<tr><td>64_Bialoszewski_plays_Chamowo.mp3</td><td>Białoszewski gra Chamowo</td></tr>
+<tr><td>65_Bialoszewski_Wyprawy_Krzyzowe_Osmedeusze_EMFAZY.mp3</td><td><strong>Wyprawy Krzyżowe + Osmędeusze — kontekst TnT!</strong></td></tr>
+<tr><td>67_Bialoszewski_Wiersze_Dzwiekowe.mp3</td><td>Wiersze dźwiękowe</td></tr>
+<tr><td>68_Bialoszewski_Mikrokolektyw_Zakrocki.mp3</td><td>Mikrokolektyw Zakrocki</td></tr>
+</table>
+
+<h3 class="status-todo">Do pobrania ręcznie:</h3>
+<table>
+<tr><th>Źródło</th><th>Opis</th></tr>
+<tr><td>YouTube</td><td>"Opowieść nestora / Athanor / Kurs DU" (1:10:37)</td></tr>
+<tr><td>YouTube</td><td>Kurs DU cz. 1 + 2 (27:26 + 26:10)</td></tr>
+<tr><td>YouTube</td><td>LES o katolicyzmie (4:54)</td></tr>
+<tr><td>Chomikuj</td><td>Synchro-Theta nr 2,3,4,5,7,8,9,10,13 (~350 MB)</td></tr>
+<tr><td>Chomikuj</td><td>Kurs DU cz. 1–4 (~90 MB)</td></tr>
+</table>
+</section>
+
+<!-- ==================== PUBLIKACJE I ARTYKUŁY ==================== -->
+<section id="publikacje">
+<div class="section-header">
+  <div class="section-label">Publikacje</div>
+  <div class="section-title">Artykuly i prace naukowe</div>
+  <p class="section-subtitle">68 pozycji: artykuly online, biogramy, prace naukowe dr. Lagosza i innych autorow (Bednarczuk, Wicenty, Samsel, Blonski).</p>
+</div>
+<h3>Artykuly online <span class="count">Artykuly/ — 10 plikow</span></h3>
+<table>
+<tr><th>#</th><th>Plik</th><th>Źródło</th></tr>
+<tr><td>01</td><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/Artykuly/01_film_dokumentalny_bialczynski.md">01_film_dokumentalny_bialczynski.md</a></td><td>Białczyński.pl — o filmie</td></tr>
+<tr><td>02</td><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/Artykuly/02_podcast_magia_psychotronika_lagosz.md">02_podcast_magia_psychotronika_lagosz.md</a></td><td>Podcast Stawiszyńskiego #202</td></tr>
+<tr><td>03</td><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/Artykuly/03_lubimyczytac_autor_stefanski.md">03_lubimyczytac_autor_stefanski.md</a></td><td>Lubimyczytac.pl</td></tr>
+<tr><td>04</td><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/Artykuly/04_filmpolski_filmografia.md">04_filmpolski_filmografia.md</a></td><td>FilmPolski.pl — filmografia</td></tr>
+<tr><td>05</td><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/Artykuly/05_lubimyczytac_od_magii_do_psychotroniki.md">05_lubimyczytac_od_magii_do_psychotroniki.md</a></td><td>Lubimyczytac.pl</td></tr>
+<tr><td>06</td><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/Artykuly/06_wikipedia_pl_stefanski.md">06_wikipedia_pl_stefanski.md</a></td><td>Wikipedia PL — biogram</td></tr>
+<tr><td>07</td><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/Artykuly/07_culture_pl_stefanski.md">07_culture_pl_stefanski.md</a></td><td>Culture.pl — biogram</td></tr>
+<tr><td>08</td><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/Artykuly/08_bandcamp_alicja_supernauczanie.md">08_bandcamp_alicja_supernauczanie.md</a></td><td>Bandcamp Alicja — liner notes Muzyczuka</td></tr>
+<tr><td>09</td><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/Artykuly/09_scribd_od_magii_do_psychotroniki.md">09_scribd_od_magii_do_psychotroniki.md</a></td><td>Scribd — info o książce</td></tr>
+<tr><td>10</td><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/Artykuly/10_zrzutka_pl_zbiorka.md">10_zrzutka_pl_zbiorka.md</a></td><td>Zrzutka.pl — zbiórka na film</td></tr>
+<tr style="background:rgba(201,168,76,.06)"><td>11</td><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/Artykuly/11_lagosz_2025_zapalki_IPN.md">11_lagosz_2025_zapalki_IPN.md</a></td><td><strong>Łagosz 2025 — TnT w fotoplastykonie SB, akcja "Zapałki"</strong> (IPN, pełny tekst)</td></tr>
+<tr style="background:rgba(201,168,76,.06)"><td>12</td><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/Artykuly/12_wicenty_hlebowicz_2023_uzdrowiciele.md">12_wicenty_hlebowicz_2023_uzdrowiciele.md</a></td><td><strong>Wicenty/Hlebowicz 2023 — Uzdrowiciele jako zjawisko społeczne</strong> (Kultura i Społeczeństwo, pełny tekst)</td></tr>
+<tr style="background:rgba(201,168,76,.06)"><td>13</td><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/Artykuly/13_samsel_2022_bialoszewski_hestia.md">13_samsel_2022_bialoszewski_hestia.md</a></td><td>Samsel 2022 — Białoszewski w służbie Hestii, TnT wg Arystotelesa (Teologia Polityczna)</td></tr>
+<tr style="background:rgba(201,168,76,.06)"><td>14</td><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/Artykuly/14_bednarczuk_2025_health_esoteric.md">14_bednarczuk_2025_health_esoteric.md</a></td><td>Bednarczuk 2025 — Health care, esoteric practices, socialist governmentality (SAGE, paywall)</td></tr>
+<tr style="background:rgba(201,168,76,.06)"><td>15</td><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/Artykuly/15_hlebowicz_wicenty_2023_prl_magia.md">15_hlebowicz_wicenty_2023_prl_magia.md</a></td><td>Hlebowicz/Wicenty 2023 — PRL magią podszyty (Rzeczpospolita Plus Minus)</td></tr>
+<tr style="background:rgba(201,168,76,.06)"><td>16</td><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/Artykuly/16_topografie_uw_tarczynska.md">16_topografie_uw_tarczynska.md</a></td><td>Topo-Grafie UW — Stefański i Tarczyńska (projekt badawczy UW, 4 podstrony)</td></tr>
+<tr style="background:rgba(201,168,76,.06)"><td>17</td><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/Artykuly/17_blonski_1956_teatr_w_pokoju.md">17_blonski_1956_teatr_w_pokoju.md</a></td><td><strong>Błoński 1956 — "Teatr w pokoju na Tarczyńskiej"</strong> (Przekrój, pełny tekst)</td></tr>
+</table>
+<p class="desc">Podświetlone: nowe artykuły z 2026-04-05. Pozycje 11-12, 17 z pełnym tekstem; 13-16 metadane/streszczenia (paywall/blokada).</p>
+<h3>Źródła online (linki):</h3>
+<p class="desc">
+FilmPolski.pl/fp/index.php?osoba=113794 ·
+Discogs: artist/3497624 ·
+Indeks PF: indekspf.wordpress.com/2017/10/16/athanor ·
+Culture.pl/pl/tworca/lech-emfazy-stefanski ·
+Encyklopedia Teatru: encyklopediateatru.pl/teatry-i-zespoly/1263 ·
+Topo-Grafie UW: topo-grafie.uw.edu.pl/miron/tarczynska ·
+<mark>Ośrodek KARTA — fot. Irena Jarosińska z TnT</mark>: foto.karta.org.pl ·
+<mark>Slavonica Vol. 29 (2024)</mark>: "Białoszewski, Stefański, and the Paranormal" — tandfonline.com ·
+Katalog wystawy: "Teatr na Tarczyńskiej, 1955-1958: Galeria Studio" — Google Books
+</p>
+
+<div class="section-divider"></div>
+
+<h3 id="academia">Academia.edu — dr Łagosz + inne <span class="count">51 prac Łagosza, 6 PDFów pobranych (5 Łagosz + 1 Bednarczuk)</span></h3>
+<p class="desc">Profil: jagiellonian.academia.edu/ZbigniewŁagosz. PDFy w: <a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/Academia/PDFs/">Academia/PDFs/</a>. 2 artykuły „duchy" — figurują na profilu ale nie zostały opublikowane w podanych numerach Przeglądu Religioznawczego.</p>
+<h3>Kluczowe artykuły (bezpośrednio o Stefańskim):</h3>
+<table>
+<tr><th>Tytuł</th><th>ID</th><th>PDF?</th></tr>
+<tr><td>Teatr na Tarczyńskiej — akcja "Zapałki" (2025)</td><td>145551499</td><td class="status-done">TAK</td></tr>
+<tr><td>Komunistyczny aparat represji — metody (2023)</td><td>98942900</td><td class="status-done">TAK</td></tr>
+<tr><td><del>PTP w dokumentach aparatu represji (PR 2022/3)</del></td><td>91282637</td><td class="status-todo">❌ NIE ISTNIEJE — brak w spisie treści PR 3/285</td></tr>
+<tr><td><del>Droga lewej ręki Stefańskiego (PR 2021/4)</del></td><td>82009429</td><td class="status-todo">❌ NIE ISTNIEJE — brak w spisie treści PR 4/282</td></tr>
+<tr style="background:rgba(201,168,76,.06)"><td><strong>M. Bednarczuk — Białoszewski, Stefański, and the Paranormal (Slavonica 2024)</strong></td><td>—</td><td class="status-done">TAK — <a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/Academia/PDFs/Bednarczuk_Bialoszewski_Stefanski_Paranormal_Slavonica_2024.pdf">PDF (489 KB)</a></td></tr>
+<tr><td>Ezoterycy na służbie — Stefański i SB (2019)</td><td>51080768</td><td class="status-done">TAK</td></tr>
+<tr><td>Darker Side — Left-Hand Path</td><td>70898009</td><td class="status-done">TAK</td></tr>
+<tr><td>Aparat represji vs Robert Walter Memphis</td><td>31730901</td><td class="status-done">TAK</td></tr>
+<tr><td>Aparat represji vs ezoterycy — zarys</td><td>31613218</td><td class="status-done">TAK</td></tr>
+</table>
+</section>
+
+<!-- ==================== TEKSTY DRAMATYCZNE TnT ==================== -->
+<section id="dramaty-tnt">
+<h2>Teksty dramatyczne TnT <span class="count">Białoszewski / Stefański — do pozyskania</span></h2>
+<p class="desc">Sztuki wystawiane w Teatrze na Tarczyńskiej (1955–58). LES był współtwórcą, reżyserem i aktorem. Teksty napisane przez Białoszewskiego, ale LES był integralną częścią ich powstania i wykonania.</p>
+
+<h3>II Program TnT — prem. 17.II.1956</h3>
+<table>
+<tr><th>Tytuł</th><th>Autor</th><th>Publikacja</th><th>Tekst</th></tr>
+<tr><td><strong>Wyprawy krzyżowe</strong></td><td>Miron Białoszewski</td><td>Dialog nr 8/1956, s. 43–50</td><td class="status-partial">Dialog zdigitalizowany w <a href="https://pbc.gda.pl/dlibra/publication/131307" target="_blank">PBC Gdańsk</a> (tylko sieć lokalna UG)</td></tr>
+<tr><td><strong>Lepy</strong></td><td>Miron Białoszewski</td><td>PIW "Teatr Osobny" 1971</td><td class="status-todo">❌ brak online — tylko w książce</td></tr>
+<tr><td><strong>Szara msza</strong></td><td>Miron Białoszewski</td><td>PIW "Teatr Osobny" 1971</td><td class="status-todo">❌ brak online — tylko w książce</td></tr>
+</table>
+
+<h3>Gdzie pozyskać pełne teksty:</h3>
+<p class="desc">
+<strong>PIW "Utwory zebrane" tom 2: Teatr Osobny 1955–1963</strong> (2015, ~40 zł papier) — zawiera wszystkie sztuki TnT.<br>
+Ebook niedostępny (Legimi/Empik — „niedostępna"). Prawa autorskie Białoszewskiego do 2053.<br>
+Dialog nr 8/1956 — PBC Gdańsk ID 131307, dostęp tylko sieć lokalna UG.<br>
+<strong>Nagranie audio:</strong> <a href="https://radiokapital.pl/shows/gnostic-methods/65-bialoszewski-plays-wyprawy-krzyzowe-osmedeusze/" target="_blank">Radio Kapitał #65 — Białoszewski plays Wyprawy krzyżowe &amp; Osmędeusze</a>
+</p>
+</section>
+
+<!-- ==================== PO PROSTU 1949 ==================== -->
+<section id="po-prostu">
+<h2>"Malarstwo jest dla wszystkich" <span class="count">cykl w "Po Prostu" 1949 — 7 z 8 odcinków</span></h2>
+<p class="desc">Cykl artykułów LES o malarstwie współczesnym, publikowany w tygodniku studenckim „Po prostu : studenckie czasopismo społeczno-literackie" (nr 8–14/1949, 6 III – 8 V 1949). Ósmy odcinek — o „drogach dalszego rozwoju malarstwa współczesnego" — <strong>nie został opublikowany</strong>, bo kolidował z doktryną realizmu socjalistycznego. W 1950 LES opublikował jeszcze 3 teksty o sztuce z malarzem Hilarym Krzysztofiaklem (nr 7, 13, 34/1950).</p>
+<p class="desc">Źródło: <a href="https://alternative-spirituality-in-art.ihs.uw.edu.pl/aktualnosci/aby-zobaczyc-swiat-trzeba-patrzec-wszystkimi-oczyma-kwerenda-w-po-prostu/" target="_blank">Kwerenda w „Po Prostu" — IHS UW, projekt Alternative Spirituality in Art</a></p>
+
+<table>
+<tr><th>Odc.</th><th>Nr pisma</th><th>Data</th><th>PDF</th></tr>
+<tr><td>1</td><td>Nr 8</td><td>6 III 1949</td><td class="status-todo">❌ nie zdigitalizowany</td></tr>
+<tr><td>2</td><td>Nr 9</td><td>13 III 1949</td><td class="status-todo">❌ nie zdigitalizowany</td></tr>
+<tr><td>3</td><td>Nr 10</td><td>20 III 1949</td><td class="status-todo">❌ nie zdigitalizowany</td></tr>
+<tr><td>4</td><td>Nr 11</td><td>27 III 1949</td><td class="status-todo">❌ nie zdigitalizowany</td></tr>
+<tr><td>5</td><td>Nr 12</td><td>III/IV 1949</td><td class="status-todo">❌ nie zdigitalizowany</td></tr>
+<tr style="background:rgba(201,168,76,.06)"><td>6</td><td>Nr 13</td><td>1 V 1949</td><td class="status-done">✅ <a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/Po_Prostu_1949/Nr_13_1949_05_01.pdf">PDF (11.5 MB)</a> · <a href="https://pbc.gda.pl/dlibra/publication/100244/edition/90358" target="_blank">PBC</a></td></tr>
+<tr style="background:rgba(201,168,76,.06)"><td>7</td><td>Nr 14</td><td>8 V 1949</td><td class="status-done">✅ <a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/Po_Prostu_1949/Nr_14_1949_05_08.pdf">PDF (9.1 MB)</a> · <a href="https://pbc.gda.pl/dlibra/publication/100245/edition/90359" target="_blank">PBC</a></td></tr>
+<tr><td>8</td><td>—</td><td>—</td><td class="status-todo">❌ cenzura — nigdy nie opublikowany (socrealizm)</td></tr>
+</table>
+
+<p class="desc"><strong>Brakujące numery 8–12:</strong> digitalizacja PBC Gdańsk zaczyna się od nr 13. Fizyczne egzemplarze w: CINIBA (UŚ Katowice — komplet 1947–1957), Biblioteka Narodowa, BU Gdańsk. Zespół IHS UW (Alternative Spirituality in Art) robił kwerendę w tych numerach — kontakt przez stronę projektu.</p>
+</section>
+
+<!-- ==================== WIDEO z MEGA ==================== -->
+<section id="wideo-mega">
+<div class="section-header">
+  <div class="section-label">Kolekcja filmowa</div>
+  <h2 class="section-title">Materiały wideo z MEGA</h2>
+</div>
+<p class="desc">10 materiałów wideo pozyskanych z konta MEGA. Filmy uploadowane na YouTube jako niepubliczne — dostęp przez linki poniżej. <mark>5 filmów oczekuje na upload (limit YT)</mark>.</p>
+
+<h3>✅ Dostępne na YouTube (niepubliczne):</h3>
+<table>
+<tr><th>Tytuł</th><th>Opis / kontekst</th><th>Link YT</th><th>Źródło MEGA</th></tr>
+<tr><td><strong>Hotel Forum – lata 70.</strong></td><td>Archiwalne nagranie z Hotelu Forum, lata 70.</td><td><a href="https://youtu.be/8xW4HJo-xqU" target="_blank">▶ YouTube</a></td><td>19 MB</td></tr>
+<tr><td><strong>Polska Kronika Filmowa – 23.06.1990</strong></td><td>PKF z 23 czerwca 1990 — fragment dot. LES</td><td><a href="https://youtu.be/JLbcEGi6dRw" target="_blank">▶ YouTube</a></td><td>28 MB</td></tr>
+<tr><td><strong>Kaszpirowski – seans warszawski II</strong></td><td>Drugi seans warszawski Kaszpirowskiego. Kontekst psychotroniki w Polsce.</td><td><a href="https://youtu.be/YONWwowHnUU" target="_blank">▶ YouTube</a></td><td>154 MB</td></tr>
+<tr><td><strong>Ciemny Odcień Nirwany — Satanizm 1/2</strong></td><td>Film dokumentalny — satanizm w Polsce</td><td><a href="https://www.youtube.com/watch?v=gbNUFw6Rrxo" target="_blank">▶ YouTube</a></td><td>24 MB</td></tr>
+<tr><td><strong>Ciemny Odcień Nirwany — Satanizm 2/2</strong></td><td>Film dokumentalny — satanizm w Polsce (część 2)</td><td><a href="https://www.youtube.com/watch?v=ZfHjLwhaNWY" target="_blank">▶ YouTube</a></td><td>17 MB</td></tr>
+</table>
+
+<h3>⏳ Oczekujące na upload (limit YT — następna partia):</h3>
+<table>
+<tr><th>Tytuł</th><th>Rozmiar</th><th>Status</th></tr>
+<tr><td><strong>Pare osób – ok. 1:35</strong></td><td>990 MB</td><td>timeout — do ponowienia</td></tr>
+<tr><td><strong>Humunkulus</strong> (pełny materiał)</td><td>4.1 GB</td><td>limit YT</td></tr>
+<tr><td><strong>Homunkulus – cz. 1</strong></td><td>813 MB</td><td>limit YT</td></tr>
+<tr><td><strong>Siedem życzeń – odc. 5</strong> (LES)</td><td>664 MB</td><td>limit YT</td></tr>
+<tr><td><strong>PKF nr 1/1992 – Co będzie jutro</strong></td><td>108 MB</td><td>limit YT</td></tr>
+</table>
+</section>
+
+<!-- ==================== YOUTUBE ==================== -->
+<section id="youtube">
+<h2>YouTube <span class="count">29 filmów, 3 transkrypcje</span></h2>
+<p class="desc">Plik: <a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/YouTube/wyniki_youtube.md">YouTube/wyniki_youtube.md</a> (4 zapytania, 29 unikalnych filmów).</p>
+<h3>Transkrypcje (auto PL):</h3>
+<table>
+<tr><th>Plik</th><th>Podcast</th><th>Rozmiar</th></tr>
+<tr><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/YouTube/transkrypcja_podcast_202.md">transkrypcja_podcast_202.md</a></td><td>#202: Magia, psychotronika i służby specjalne</td><td>45k znaków</td></tr>
+<tr><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/YouTube/transkrypcja_podcast_076.md">transkrypcja_podcast_076.md</a></td><td>#76: Masoni, jasnowidze, magowie i SB w PRL</td><td>52k znaków</td></tr>
+<tr><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/YouTube/transkrypcja_podcast_077.md">transkrypcja_podcast_077.md</a></td><td>#77: Magia, psychotronika, okultyzm w PRL cz. 2</td><td>44k znaków</td></tr>
+</table>
+</section>
+
+<!-- ==================== FACEBOOK ==================== -->
+<section id="facebook">
+<h2>Facebook <span class="count">47 postów + komentarze</span></h2>
+<p class="desc">Fanpage: facebook.com/profile.php?id=100083371857729. Status: KOMPLETNE (posty + komentarze).</p>
+<table>
+<tr><th>Plik</th><th>Opis</th></tr>
+<tr><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/Facebook/posty_fanpage.md">Facebook/posty_fanpage.md</a></td><td>47 postów (starsza wersja)</td></tr>
+<tr><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/Facebook/posty_business_suite.md">Facebook/posty_business_suite.md</a></td><td>47 postów z Meta Business Suite (posty 20-47 skrócone)</td></tr>
+<tr><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/Facebook/komentarze_fanpage.md">Facebook/komentarze_fanpage.md</a></td><td>Pełne komentarze ze wszystkich 47 postów</td></tr>
+<tr><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/Facebook/facebook_posty_emfazy.md">Facebook/facebook_posty_emfazy.md</a></td><td>Posty (kolejna wersja)</td></tr>
+</table>
+<h3>Grupa FB — czat zespołu:</h3>
+<table>
+<tr><th>Plik</th><th>Opis</th></tr>
+<tr><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/FB_grupa_materialy/czat_emfazy_clean.md">FB_grupa_materialy/czat_emfazy_clean.md</a></td><td>Wyczyszczony czat grupy EMFAZY</td></tr>
+<tr><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/FB_grupa_materialy/czat_emfazy_podsumowanie.md">FB_grupa_materialy/czat_emfazy_podsumowanie.md</a></td><td>Podsumowanie czatu</td></tr>
+</table>
+</section>
+
+<!-- ==================== CIECHAN ==================== -->
+<section id="ciechan">
+<h2>Praca magisterska Ciechan <span class="count">NEW — 2026-04-05</span></h2>
+<p class="desc">Malwina Ciechan, <em>Od pokoju do Teatru. Lech Emfazy Stefański w Teatrze na Tarczyńskiej</em>, AT im. Zelwerowicza, promotor prof. Lech Śliwonik, 2009. 81 stron. Źródło: Google Drive → ZIP. Znacznik: <strong>[MC]</strong></p>
+
+<div class="stats">
+  <div class="stat"><div class="num">81</div><div class="label">stron pracy</div></div>
+  <div class="stat"><div class="num">9</div><div class="label">archiwów wymienionych</div></div>
+  <div class="stat"><div class="num">8</div><div class="label">sztuk LES na TnT</div></div>
+  <div class="stat"><div class="num">4</div><div class="label">wywiady Ciechan</div></div>
+</div>
+
+<h3>Kluczowe odkrycia:</h3>
+<table>
+<tr><th>Kategoria</th><th>Ustalenie</th></tr>
+<tr><td>Biografia</td><td>Jedynak. Rodzice: <strong>Leonia ze Sztarków</strong> (ps. "Łonia") + <strong>Zygmunt Stefański</strong>. Wychowywany przez dziadków.</td></tr>
+<tr><td>Przed TnT</td><td><strong>Teatr Cynobrowych Snów</strong> (IV.1946, z Krzysztofiakiem) — lalkowa opera <em>Doktor Dolittle</em>. ASP u Rafałowskiego (1948–49).</td></tr>
+<tr><td>Inspiracja TnT</td><td>Reportaż Boyé z "Wiadomości Literackich" (1926) o paryskim teatrze "De l'Art et Action".</td></tr>
+<tr><td>Rola LES</td><td><mark>POMYSŁODAWCA TnT</mark> — dostarczył mieszkanie, pieniądze (tantiemy), koncept (inspiracja Boyé), pierwszą scenę.</td></tr>
+<tr><td>8 sztuk LES</td><td>Homunculus, Narodziny Afrodyty, Szminka, Śledzie śledzie!, Legenda o sobie, Sfinksówna, Hipoteza foxtrotta, Wyrzuty skojarzenia.</td></tr>
+<tr><td>PKF</td><td><mark>7 min niemego surowego materiału</mark> w archiwum WFDiF, marzec 1956. Filmowali 4 godz., zmontowali 30 sek. NIGDY nie wyemitowany.</td></tr>
+<tr><td>Stowarzyszenie</td><td>13.IV.1956 — wniosek rejestracyjny. Sokorski: 20 000 zł.</td></tr>
+<tr><td>Hybrydy</td><td>III program od końca IV.1957. <strong>~8000 widzów.</strong> Kontrakt: 80/20 przychodu.</td></tr>
+<tr><td>Konwencja Tożsamości</td><td>Ciechan datuje maszynopis na <strong>jesień 1957</strong> (nie 1954). Kluczowa definicja: "Ryba na rowerze to obraz surrealistyczny. Obraz w konwencji tożsamości, to ryba posiadająca koła."</td></tr>
+<tr><td>KOREKTA: Meskalina</td><td><mark>NIE była produkcją TnT.</mark> Napisana 1958, prapremiera: Mironalia V.2000.</td></tr>
+<tr><td>Post-TnT</td><td>Dom dziecka Lucień + Środborów, adopcja Stefana Iwanka, PWST (1961–67), Mandragora Wrocław (24.I.1964), kariera prowincjonalna.</td></tr>
+<tr><td>Mironalia</td><td>1999: <em>Korbones</em>; V.2000: <em>Meskalina</em>; 20.V.2001: ostatni <em>Homunculus</em>; 2002: <em>Korbones</em>.</td></tr>
+</table>
+
+<h3>Źródła archiwalne wymienione przez Ciechan:</h3>
+<table>
+<tr><th>#</th><th>Archiwum</th><th>Zawartość</th></tr>
+<tr><td>1</td><td>Prywatne archiwum LES</td><td>"Prawie w całości przekazane autorce" — maszynopisy WSZYSTKICH sztuk, egz. reżyserskie, korespondencja</td></tr>
+<tr><td>2</td><td>Zbiory Marii Fabickiej</td><td><em>Malutki Rzym</em>, <em>Model jest bestia</em></td></tr>
+<tr><td>3</td><td>Korespondencja Prószyńskiego</td><td>Listy kompozytora</td></tr>
+<tr><td>4</td><td>Instytut Teatralny im. Raszewskiego</td><td>Teczka TnT: operomontaże, partytury, maszynopisy, scenografie</td></tr>
+<tr><td>5</td><td>Muzeum Literatury im. Mickiewicza</td><td>Dział foniczny: zeznanie LES (4.X.1988), nagranie <em>Wypraw</em> (1956), wideo <em>Adepta</em> (1990)</td></tr>
+<tr><td>6</td><td>ZLP</td><td>Teczki osobowe Stefańskiego i Czachorowskiego</td></tr>
+<tr><td>7</td><td>ZAiKS</td><td>Dokumentacja autorska</td></tr>
+<tr><td>8</td><td><strong>Archiwum WFDiF</strong></td><td><mark>7 min PKF — jedyny materiał filmowy z TnT!</mark></td></tr>
+<tr><td>9</td><td>Akademia Teatralna</td><td>Teczka studencka LES</td></tr>
+</table>
+
+<h3>Pliki lokalne:</h3>
+<table>
+<tr><th>Plik</th><th>Opis</th></tr>
+<tr><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/Ciechan_praca_magisterska/">Ciechan_praca_magisterska/Od pokoju do teatru part 1a_recognized.pdf</a></td><td>40 stron, 30.8 MB</td></tr>
+<tr><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/Ciechan_praca_magisterska/">Ciechan_praca_magisterska/Od pokoju part 2_recognized.pdf</a></td><td>41 stron, 32.8 MB</td></tr>
+<tr><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/Ciechan_praca_magisterska/ANALIZA_CIECHAN.md">Ciechan_praca_magisterska/ANALIZA_CIECHAN.md</a></td><td><strong>Dogłębna analiza faktograficzna (~800 linii, 12 rozdziałów)</strong>: biografia, 8 sztuk TnT (tabela porównawcza), estetyka i manifesty, korekty błędów, mapa osób, źródła archiwalne, wnioski filmowe</td></tr>
+</table>
+</section>
+
+<!-- ==================== GOOGLE DRIVE ==================== -->
+<section id="googledrive">
+<h2>Google Drive <span class="count">25 dokumentów — GoogleDrive/</span></h2>
+<table>
+<tr><th>#</th><th>Plik</th><th>Opis</th></tr>
+<tr><td>01</td><td>01_LES_spis_tworczosci_teatralnej.md</td><td>Spis twórczości teatralnej</td></tr>
+<tr><td>02</td><td>02_EMFAZY_shooting_script_2024.md</td><td>Shooting script 2024</td></tr>
+<tr><td>03</td><td>03_EMFAZY_struktura_nonlinear_90min.md</td><td>Struktura non-linear 90 min</td></tr>
+<tr><td>04</td><td>04_EMFAZY_trailer_notki.md</td><td>Trailer + notki</td></tr>
+<tr><td>05</td><td>05_HOOK_CONFLICT_struktura.md</td><td>Struktura dramaturgiczna</td></tr>
+<tr><td>06</td><td>06_Emfazy_opis_filmu_JLP.md</td><td>Opis filmu (JLP)</td></tr>
+<tr><td>07</td><td>07_LES_w_Polskim_Radio_JAN.md</td><td>LES w Polskim Radio — notatki</td></tr>
+<tr><td>08</td><td>08_les_scenario_notes.md</td><td>Scenario notes + linki</td></tr>
+<tr><td>10</td><td>10_LES_lista_do_treatmentu.md</td><td>Lista do treatmentu (chronologia)</td></tr>
+<tr><td>11</td><td>11_LES_DOK_v1_treatment.md</td><td>Treatment v.1</td></tr>
+<tr><td>12</td><td>12_TREATMENT1.md</td><td>Treatment rozbudowany</td></tr>
+<tr><td>13</td><td>13_LES_PRZEKROJ.md</td><td>LES Przekrój (artykuł/wywiad)</td></tr>
+<tr><td>14</td><td>14_LES_scenariusz_filmu_dok.md</td><td>Scenariusz filmu dok (wczesny)</td></tr>
+<tr><td>15</td><td>15_SCRIPTMENT_EMFAZY_JLP.md</td><td>Scriptment (JLP)</td></tr>
+<tr><td>16</td><td>16_EMFAZY_JLP_scriptment_v2.md</td><td>Scriptment v2 (JLP)</td></tr>
+<tr><td>17</td><td>17_LES_zebranie_materialow.md</td><td>Zebranie materiałów</td></tr>
+<tr><td>18</td><td>18_Gondowicz_LES.md</td><td>Gondowicz o LES</td></tr>
+<tr><td>19</td><td>19_LES_skrotowo_genialne_dziecko.md</td><td>LES skrótowo — genialne dziecko</td></tr>
+<tr><td>20</td><td>20_LES_nowe_sceny.md</td><td>Nowe sceny</td></tr>
+<tr><td>21</td><td>21_LES_magia_psycho_lista.md</td><td>Magia / psycho — lista</td></tr>
+<tr><td>22</td><td>22_LES_pelagia_notka.md</td><td>Pelagia — notka</td></tr>
+<tr><td>23</td><td>23_LES_kreatywny_projekt_dokumentalny.md</td><td>Kreatywny projekt dokumentalny</td></tr>
+<tr><td>24</td><td>24_LES_dalej.md</td><td>LES — dalej</td></tr>
+<tr><td>25</td><td>25_LES_wg_autonarracji.md</td><td>LES wg autonarracji</td></tr>
+</table>
+<p class="desc">Duże pliki na Drive (do pobrania ręcznie): TREATMENT_v.3 visuals (~14 MB), LES-claude1 (~219 KB), Psychotronics pismo pol. (~204 KB).</p>
+</section>
+
+<!-- ==================== GMAIL ==================== -->
+<section id="gmail">
+<h2>Gmail</h2>
+<p class="desc">Załączniki filmowe z korespondencji:</p>
+<table>
+<tr><th>Plik</th><th>Opis</th></tr>
+<tr><td>Emfazy film - wersja 2.pdf</td><td>52 KB, od IWW Warszawa, 5.01.2023</td></tr>
+<tr><td>LES roboczy-2.pdf</td><td>Do Czerniak i producentów, 2023-2024</td></tr>
+<tr><td>LES work-in-progress-1.pdf</td><td>Do Makowskiego, 04.2024</td></tr>
+<tr><td>Zgłoszenie Doc Development</td><td>fundfilm.pl, 5.06.2023</td></tr>
+</table>
+<p class="desc">Czat z dr. Łagoszem: czat_Lagosz_materialy/czat_lagosz_clean.md</p>
+</section>
+
+<!-- ==================== FILM PARKING ==================== -->
+<section id="film-parking">
+<h2>Materiały filmowe / narracja <span class="count">parking</span></h2>
+<p class="desc">Odłożone — priorytetem są ŹRÓDŁA. Pliki dotyczące formy scenariusza, szukania narracji, struktury montażowej.</p>
+<p class="desc">Plik indeksu: MATERIALY_FILMOWE_NARRACJA_parking.md</p>
+<p class="desc">Inne pliki parkingowe: MAPA_MATERIALOW.md, INWENTARYZACJA_WSZYSTKICH_MATERIALOW.md</p>
+</section>
+
+<!-- ==================== NAGRANIA AUDIO ==================== -->
+<section id="nagrania-audio">
+<h2>Nagrania audio <span class="count">7 plików z Mega.nz (101 MB) + 4 filmy YouTube (235 MB)</span></h2>
+
+<h3>Z Mega.nz — folder "LES nagrania" (pobrane 2026-04-05):</h3>
+<table>
+<tr><th>Plik</th><th>Czas</th><th>Rozmiar</th><th>Treść</th><th>Transkrypcja</th></tr>
+<tr style="background:rgba(201,168,76,.08)"><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/LES_nagrania/Jan_Gondowicz/"><strong>Jan Gondowicz o LES 1.m4a</strong></a></td><td>~45 min</td><td>40.8 MB</td><td>Gondowicz o TnT, Białoszewski, dzieciństwo na Tarczyńskiej, obrazy Lebensteina</td><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/transkrypcje_audio/Jan_Gondowicz_o_LES_1.txt">✅ gotowa (2164 linii)</a></td></tr>
+<tr style="background:rgba(201,168,76,.08)"><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/LES_nagrania/Jan_Gondowicz/"><strong>Jan Gondowicz o LES 2.m4a</strong></a></td><td>~20 min</td><td>16 MB</td><td>Gondowicz cd. — Komar nie był współautorem "Od magii do psychotroniki"</td><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/transkrypcje_audio/Jan_Gondowicz_o_LES_2.txt">✅ gotowa</a></td></tr>
+<tr><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/LES_nagrania/">Les ani ani opowiadam.m4a</a></td><td>51:46</td><td>25.9 MB</td><td><strong>GŁÓWNE nagranie:</strong> pełna historia LES — od 1939 przez TnT, Biały Pył (1. serial TV!), psychotronikę, ATHANOR, śmierć 21.12.2010</td><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/transkrypcje_audio/Les_ani_ani_opowiadam.txt">✅ gotowa</a></td></tr>
+<tr><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/LES_nagrania/">Les ani 1.m4a</a></td><td>23:30</td><td>11.7 MB</td><td>Teleranek "Zlot Czarownic" 13.XII.1981, archiwa TVP/TVN, Kaszpirowski</td><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/transkrypcje_audio/Les_ani_1.txt">✅ gotowa</a></td></tr>
+<tr><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/LES_nagrania/">Waniek o LES i in.m4a</a></td><td>08:28</td><td>4.3 MB</td><td>ATHANOR Grecja 1992 (500 osób), RKP, Gondowicz, Michał Koma, Jacek Gruca, Anna Bernat</td><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/transkrypcje_audio/Waniek_o_LES_i_in.txt">✅ gotowa</a></td></tr>
+<tr><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/LES_nagrania/">Les cd ani.m4a</a></td><td>03:37</td><td>6.2 MB</td><td>Kaszpirowski, mind control, satanizm — program TVN z Bogną Stefańską (reż. Wokenheim)</td><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/transkrypcje_audio/Les_cd_ani.txt">✅ gotowa</a></td></tr>
+<tr><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/LES_nagrania/">Les maria tel.m4a</a></td><td>02:04</td><td>1 MB</td><td>Telefon — ktoś kto "się eksteriorizował", najbliższy asystent LES</td><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/transkrypcje_audio/Les_maria_tel.txt">✅ gotowa</a></td></tr>
+</table>
+
+<h3>Analiza zbiorcza:</h3>
+<table>
+<tr><th>Plik</th><th>Opis</th></tr>
+<tr><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/DANE_Z_NAGRAN.md"><strong>DANE_Z_NAGRAN.md</strong></a></td><td>~610 linii: chronologia, 50+ osób, 10 tematów, 35+ cytatów, korekty + nowe fakty [NAG] [NAG-G1]</td></tr>
+<tr><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/transkrypcje_audio/">transkrypcje_audio/*.txt</a></td><td>7 transkrypcji (faster-whisper, model "small", język PL) — KOMPLET</td></tr>
+</table>
+
+<h3>Kluczowe odkrycia z nagrań [NAG] [NAG-G1]:</h3>
+<table>
+<tr><th>Fakt</th><th>Źródło</th></tr>
+<tr><td><mark>"Biały Pył" = pierwszy polski serial TV</mark> (1958, emisja na żywo!)</td><td>Les_ani_ani_opowiadam [11:34]</td></tr>
+<tr><td>TnT sfinansowany z tantiem za "Alchemików" (1955)</td><td>Les_ani_ani_opowiadam [06:09]</td></tr>
+<tr><td>Komar NIE był współautorem "Od magii do psychotroniki" — dodany przez wydawcę</td><td>Jan_Gondowicz_o_LES_2</td></tr>
+<tr><td>Choński — "pre-psychodelia": grzyby halucynogenne już w latach 50.</td><td>Les_ani_ani_opowiadam [14:06]</td></tr>
+<tr><td>24 oddziały PTP, ~100 000 uczestników kursów DU</td><td>Les_ani_ani_opowiadam [30:22]</td></tr>
+<tr><td>LES w "7 Życzeń" (odc. 5) — grał hipnotyzera z telewizora (1984)</td><td>Les_ani_ani_opowiadam [31:54]</td></tr>
+<tr><td>Monodram o Czesławie Czyńskim w Starej Prochowni (1988)</td><td>Les_ani_ani_opowiadam [33:44]</td></tr>
+<tr><td>ATHANOR: wyprawa 500 osób do Grecji (1992) — eksperyment psychometryczny</td><td>Waniek_o_LES [00:00]</td></tr>
+<tr><td>Śmierć LES: 21.XII.2010, przesilenie zimowe + pełnia + zaćmienie</td><td>Les_ani_ani_opowiadam [44:00]</td></tr>
+<tr><td>Gondowicz: dzieciństwo na Tarczyńskiej, matka grała na pianinie do spektakli</td><td>Waniek_o_LES [05:58]</td></tr>
+<tr style="background:rgba(201,168,76,.08)"><td><mark>Wacław Cholewiński — nieznany opiekun LES</mark> w ostatnich latach</td><td>Jan_Gondowicz_o_LES_1 [NAG-G1]</td></tr>
+<tr style="background:rgba(201,168,76,.08)"><td><mark>LES posiadał min. 8 pasteli Witkacego</mark> — przepadły</td><td>Jan_Gondowicz_o_LES_1 [NAG-G1]</td></tr>
+<tr style="background:rgba(201,168,76,.08)"><td>Helena Adamska trafiła na Tarczyńską przez matkę Gondowicza z Turczynku</td><td>Jan_Gondowicz_o_LES_1 [NAG-G1]</td></tr>
+<tr style="background:rgba(201,168,76,.08)"><td>Eksperymenty z pejotlem już ok. 1967 (nie lata 90.)</td><td>Jan_Gondowicz_o_LES_1 [NAG-G1]</td></tr>
+<tr style="background:rgba(201,168,76,.08)"><td>Milena Ciechan = córka Anny Bernat</td><td>Jan_Gondowicz_o_LES_1 [NAG-G1]</td></tr>
+<tr style="background:rgba(201,168,76,.08)"><td>Gramofon jako narzędzie optyczne — roto-reliefy, cienie masek</td><td>Jan_Gondowicz_o_LES_1 [NAG-G1]</td></tr>
+<tr style="background:rgba(201,168,76,.08)"><td>"Alchemicy" jako tekst zaszyfrowany (klucz nieznany)</td><td>Jan_Gondowicz_o_LES_1 [NAG-G1]</td></tr>
+</table>
+</section>
+
+<!-- ==================== DO ZDOBYCIA ==================== -->
+<section id="do-zdobycia">
+<h2>Do zdobycia</h2>
+
+<h3 class="status-todo">Priorytet WYSOKI:</h3>
+<table>
+<tr><th>Materiał</th><th>Status</th></tr>
+<tr><td>PKF — 7 min surowy materiał z TnT</td><td><span class="status-partial">ZLOKALIZOWANY w WFDiF [MC].</span> <strong>Draft maila gotowy → <a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/MAIL_FINA_DRAFT.md">MAIL_FINA_DRAFT.md</a></strong> (wariant A: FINA, wariant B: WFDiF)</td></tr>
+<tr><td>TVP — kopie priorytetowych nagrań</td><td><span class="status-partial">23 pozycje wybrane</span> → <a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/TVP_WYBRANE_POZYCJE.md">TVP_WYBRANE_POZYCJE.md</a>. Do zamówienia kopii w TVP.</td></tr>
+<tr><td>Bernat — rozmowa (audio)</td><td>Do zlokalizowania na dyskach (Jan)</td></tr>
+</table>
+
+<h3 class="status-partial">Priorytet ŚREDNI:</h3>
+<table>
+<tr><th>Materiał</th><th>Status</th></tr>
+<tr><td>Chomikuj — Synchro-Theta + Kurs DU (~440 MB)</td><td>Do pobrania ręcznie</td></tr>
+<tr><td>Książki LES: Alchemicy, Biały pył, Lewitujący z Oćmawy</td><td>Do zeskanowania</td></tr>
+<tr><td>Trzecie Oko (~kilkanaście numerów)</td><td>Do zeskanowania — artykuły LES 1984–88</td></tr>
+<tr><td>Białoszewski: Tajny dziennik (fragmenty o LES)</td><td>Do wypisu</td></tr>
+<tr><td>Wywiad Białoszewski-Stefański (IMG 0150–51)</td><td>Potrzebny lepszy skan</td></tr>
+</table>
+
+<h3>Kontakt FINA / WFDiF (PKF footage):</h3>
+<table>
+<tr><th>Dział</th><th>Email</th><th>Telefon</th></tr>
+<tr><td>Archiwum FINA (Chełmska)</td><td>dokument@fina.gov.pl</td><td>+48 22 840 80 95</td></tr>
+<tr><td>Licencje FINA</td><td>licencje@fina.gov.pl</td><td>+48 22 182 48 75</td></tr>
+<tr><td>Szefowa archiwum: Krystyna Worek</td><td>krystyna.worek@fina.gov.pl</td><td>+48 22 182 47 43</td></tr>
+<tr><td>WFDiF (prawa autorskie PKF)</td><td>archiwum@wfdif.com</td><td>+48 22 559 32 52</td></tr>
+</table>
+<p class="desc">Czytelnia FINA: pn–czw 9:00–15:30, ul. Chełmska, Warszawa. Materiał to PKF npoz (nieużyty pozytyw) z marca 1956.</p>
+</section>
+
+<!-- ==================== MATERIAŁY DODATKOWE ==================== -->
+<section id="dodatkowe">
+<h2>Materiały dodatkowe</h2>
+
+<h3>Indeksy i inwentarze:</h3>
+<table>
+<tr><th>Plik</th><th>Opis</th></tr>
+<tr><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/BN_archiwum/INDEKS_WSZYSTKICH_ZBIOROW.md">BN_archiwum/INDEKS_WSZYSTKICH_ZBIOROW.md</a></td><td>Główny indeks wszystkich 5 zbiorów BN/IT (232 linie)</td></tr>
+<tr><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/BN_archiwum/INDEKS_BN_maszynopisy.md">BN_archiwum/INDEKS_BN_maszynopisy.md</a></td><td>Indeks maszynopisów BN (71 linii)</td></tr>
+<tr><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/BN_archiwum/INWENTARZ_PRASY_TnT.md">BN_archiwum/INWENTARZ_PRASY_TnT.md</a></td><td>Inwentarz prasy o TnT (97 linii)</td></tr>
+<tr><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/Zrodla.md">Zrodla.md</a></td><td>Bibliografia i źródła</td></tr>
+<tr><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/Academia/lista_publikacji_lagosz.md">Academia/lista_publikacji_lagosz.md</a></td><td>Pełna lista publikacji dr. Łagosza</td></tr>
+</table>
+
+<h3>Materiały z czatu grupy FB:</h3>
+<table>
+<tr><th>Folder</th><th>Opis</th><th>Rozmiar</th></tr>
+<tr><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/FB_grupa_materialy/artykuly_publikacje/">FB_grupa_materialy/artykuly_publikacje/</a></td><td>Artykuły i publikacje wyodrębnione z czatu</td><td>17 MB</td></tr>
+<tr><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/FB_grupa_materialy/dokumenty_archiwalne/">FB_grupa_materialy/dokumenty_archiwalne/</a></td><td>Dokumenty archiwalne z czatu</td><td>14 MB</td></tr>
+<tr><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/FB_grupa_materialy/dokumenty_filmowe/">FB_grupa_materialy/dokumenty_filmowe/</a></td><td>Dokumenty filmowe z czatu</td><td>256 KB</td></tr>
+<tr><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/FB_grupa_materialy/ksiazki/">FB_grupa_materialy/ksiazki/</a></td><td>Książki udostępnione w czacie</td><td>3.3 MB</td></tr>
+<tr><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/FB_grupa_materialy/multimedia_z_czatu/">FB_grupa_materialy/multimedia_z_czatu/</a></td><td>Multimedia (zdjęcia, grafiki) z czatu</td><td>28 MB</td></tr>
+</table>
+
+<h3>Materiały z czatu z dr. Łagoszem:</h3>
+<table>
+<tr><th>Folder</th><th>Opis</th><th>Rozmiar</th></tr>
+<tr><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/czat_Lagosz_materialy/dokumenty/">czat_Lagosz_materialy/dokumenty/</a></td><td>Dokumenty z czatu</td><td>84 KB</td></tr>
+<tr><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/czat_Lagosz_materialy/pdf/">czat_Lagosz_materialy/pdf/</a></td><td>PDFy udostępnione przez Łagosza</td><td>12 MB</td></tr>
+<tr><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/czat_Lagosz_materialy/zdjecia/">czat_Lagosz_materialy/zdjecia/</a></td><td>Zdjęcia z czatu</td><td>3.9 MB</td></tr>
+</table>
+
+<h3>Nowe materiały z Google Drive:</h3>
+<table>
+<tr><th>Plik</th><th>Opis</th></tr>
+<tr><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/GDrive_ZIP_nowe/">GDrive_ZIP_nowe/LES Kalendarium.docx</a></td><td>Kalendarium LES (16 KB)</td></tr>
+<tr><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/GDrive_ZIP_nowe/">GDrive_ZIP_nowe/LES zrodla.docx</a></td><td>Źródła LES (11 KB)</td></tr>
+<tr><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/GDrive_ZIP_nowe/">GDrive_ZIP_nowe/Uzdrowiciele_jako_zjawisko_spoleczne_w_P.pdf</a></td><td>Wicenty/Hlebowicz — artykuł naukowy (135 KB)</td></tr>
+<tr><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/GDrive_ZIP_nowe/">GDrive_ZIP_nowe/IMG_4557.jpg</a></td><td>Zdjęcie (4.7 MB)</td></tr>
+</table>
+
+<h3>Wizualizacje:</h3>
+<table>
+<tr><th>Plik</th><th>Opis</th></tr>
+<tr><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/emfazy_timeline_3d.html">emfazy_timeline_3d.html</a></td><td>Interaktywna oś czasu 3D (38 KB)</td></tr>
+</table>
+</section>
+
+<!-- ==================== ZESPÓŁ ==================== -->
+<section id="zespol">
+<h2>Zespół</h2>
+<div class="cards">
+  <div class="card"><h4>Jan Lubicz Przyłuski</h4><div class="meta">reżyser</div><p>Reżyser filmu dokumentalnego. Zbieranie materiałów, archiwum, narracja.</p></div>
+  <div class="card"><h4>dr Zbigniew Łagosz</h4><div class="meta">konsultant naukowy (UJ)</div><p>51 publikacji na academia.edu. Kluczowe artykuły o LES i SB.</p></div>
+  <div class="card"><h4>Olga Drenda</h4><div class="meta">współpraca</div><p>Autorka, badaczka kultury popularnej PRL.</p></div>
+  <div class="card"><h4>Bartek Misiuna</h4><div class="meta">współpraca</div><p>Współpraca przy projekcie filmowym.</p></div>
+  <div class="card"><h4>Tomasz Stawiszyński</h4><div class="meta">podcaster</div><p>Autor podcastów #76, #77, #202 o psychotronice i SB.</p></div>
+</div>
+</section>
+
+</div><!-- .main-content -->
+</main>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// Simple search
+function doSearch(q) {
+  q = q.toLowerCase().trim();
+  document.querySelectorAll('tr, .card, details').forEach(el => {
+    if (!q) { el.style.display = ''; return; }
+    const text = el.textContent.toLowerCase();
+    el.style.display = text.includes(q) ? '' : 'none';
+  });
+}
+// Active nav on scroll
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.sidebar nav a[href^="#"]');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) current = s.id; });
+  navLinks.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+});
+// Local file links — open in Finder or default app
+const OPENER = '';
+function showToast(msg, type) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.style.background = type === 'err' ? '#c44' : 'var(--gold)';
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+document.addEventListener('click', e => {
+  const link = e.target.closest('a.local');
+  if (!link) return;
+  e.preventDefault();
+  const path = link.dataset.path;
+  const name = path.split('/').pop();
+  const isFile = name.includes('.');
+  const endpoint = isFile ? '/open-file' : '/open';
+  fetch(OPENER + endpoint + '?path=' + encodeURIComponent(path))
+    .then(r => {
+      if (r.ok) showToast((isFile ? 'Otwieram: ' : 'Finder: ') + name);
+      else showToast('Nie znaleziono: ' + name, 'err');
+    })
+    .catch(() => {
+      // opener server not running — fallback to copy
+      navigator.clipboard.writeText(path).then(() => {
+        showToast('Skopiowano (uruchom opener): ' + name, 'err');
+      });
+    });
+});
+</script>
+
+<!-- ==================== DODATKI: OPRACOWANIA ==================== -->
+<section id="dodatki">
+<h2>Dodatki — opracowania projektu filmowego <span class="count">16 dokumentów roboczych</span></h2>
+<p class="desc">Dokumenty robocze z folderu <a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/">EMFAZY/</a> — pomysły na strukturę dramatyczną, scriptmenty, treatmenty, notatki do scenariusza. Uporządkowane wg etapu rozwoju.</p>
+
+<h3>Scenariusz i scriptmenty</h3>
+<table>
+<tr><th>Plik</th><th>Opis</th><th>Rozmiar</th></tr>
+<tr style="background:rgba(201,168,76,.06)"><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/GoogleDrive/16_EMFAZY_JLP_scriptment_v2.md">SCRIPTMENT v2 (JLP)</a></td><td>Najnowszy scriptment — pełna narracja z dialogami i scenami</td><td>54 KB</td></tr>
+<tr style="background:rgba(201,168,76,.06)"><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/GoogleDrive/15_SCRIPTMENT_EMFAZY_JLP.md">SCRIPTMENT v1 (JLP)</a></td><td>Pierwsza wersja scriptmentu</td><td>52 KB</td></tr>
+<tr><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/GoogleDrive/14_LES_scenariusz_filmu_dok.md">Scenariusz filmu dok.</a></td><td>Wczesna wersja scenariusza</td><td>4.6 KB</td></tr>
+<tr><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/GoogleDrive/08_les_scenario_notes.md">Notatki do scenariusza</a></td><td>Luźne pomysły i rozwój</td><td>6 KB</td></tr>
+</table>
+
+<h3>Treatmenty i struktura dramatyczna</h3>
+<table>
+<tr><th>Plik</th><th>Opis</th><th>Rozmiar</th></tr>
+<tr style="background:rgba(201,168,76,.06)"><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/GoogleDrive/12_TREATMENT1.md">TREATMENT v1</a></td><td>Pełny treatment dokumentu</td><td>49 KB</td></tr>
+<tr><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/GoogleDrive/11_LES_DOK_v1_treatment.md">Treatment dok. v1</a></td><td>Wcześniejszy treatment</td><td>15 KB</td></tr>
+<tr style="background:rgba(201,168,76,.06)"><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/GoogleDrive/05_HOOK_CONFLICT_struktura.md">HOOK / CONFLICT — struktura</a></td><td>Analiza dramaturgiczna: hook, konflikt, napięcie</td><td>16 KB</td></tr>
+<tr style="background:rgba(201,168,76,.06)"><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/GoogleDrive/03_EMFAZY_struktura_nonlinear_90min.md">Struktura nonlinearna 90 min</a></td><td>Szczegółowy rozkład nielinearny z timecode'ami</td><td>48 KB</td></tr>
+<tr><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/GoogleDrive/02_EMFAZY_shooting_script_2024.md">Shooting script 2024</a></td><td>Skrypt do zdjęć</td><td>22 KB</td></tr>
+</table>
+
+<h3>Listy, notatki, materiały pomocnicze</h3>
+<table>
+<tr><th>Plik</th><th>Opis</th><th>Rozmiar</th></tr>
+<tr><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/GoogleDrive/13_LES_PRZEKROJ.md">LES — przekrój</a></td><td>Przegląd postaci i wątków</td><td>24 KB</td></tr>
+<tr><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/GoogleDrive/10_LES_lista_do_treatmentu.md">Lista do treatmentu</a></td><td>Checklist przed treatmentem</td><td>2.1 KB</td></tr>
+<tr><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/GoogleDrive/20_LES_nowe_sceny.md">Nowe sceny</a></td><td>Pomysły na nowe ujęcia</td><td>2.2 KB</td></tr>
+<tr><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/GoogleDrive/21_LES_magia_psycho_lista.md">Magia i psychotronika — lista</a></td><td>Lista wątków magicznych/psychotronicznych</td><td>1.7 KB</td></tr>
+<tr><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/GoogleDrive/19_LES_skrotowo_genialne_dziecko.md">Skrótowo — genialne dziecko</a></td><td>Skrót wersji narracyjnej</td><td>1.7 KB</td></tr>
+<tr><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/GoogleDrive/22_LES_pelagia_notka.md">Pelagia — notka</a></td><td>Notatka o postaci Pelagii</td><td>3.7 KB</td></tr>
+<tr><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/GoogleDrive/23_LES_kreatywny_projekt_dokumentalny.md">Kreatywny projekt dokumentalny</a></td><td>Koncepcja formy dokumentu kreatywnego</td><td>3.1 KB</td></tr>
+</table>
+
+<h3>Kontekst i analizy</h3>
+<table>
+<tr><th>Plik</th><th>Opis</th><th>Rozmiar</th></tr>
+<tr style="background:rgba(201,168,76,.06)"><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/CHRONOLOGIA_ZRODLOWA_LES.md">CHRONOLOGIA ŹRÓDŁOWA</a></td><td>Kompletna chronologia z oznaczeniami źródeł (48 KB, 610+ linii)</td><td>48 KB</td></tr>
+<tr><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/DANE_Z_NAGRAN.md">DANE Z NAGRAŃ</a></td><td>Analiza 7 nagrań audio: 50+ osób, 10 tematów, 35+ cytatów</td><td>60 KB</td></tr>
+<tr><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/Ciechan_praca_magisterska/ANALIZA_CIECHAN.md">Analiza pracy mgr Ciechan</a></td><td>Dogłębna analiza pracy magisterskiej o TnT</td><td>32 KB</td></tr>
+<tr><td><a class="local" data-path="/Users/user/Desktop/CLAUDE CODE/EMFAZY/TVP_WYBRANE_POZYCJE.md">TVP — wybrane pozycje</a></td><td>Archiwum TVP: produkcje z udziałem LES</td><td>52 KB</td></tr>
+</table>
+</section>
+
+</body>
+</html>
