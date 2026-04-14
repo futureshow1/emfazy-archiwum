@@ -133,7 +133,7 @@ Ostatnia aktualizacja: 2026-04-05
 
 ### Program TV o satanizmie
 
-- **Brak daty (lata 90.?)** — Program TVN reżyserowany przez **Wojciecha Wokenheima**. "Sonda uliczna": Darek z Kasianką i Bogną Stefańską chodzili po Warszawie i pytali ludzi kupujących pietruszkę "co myślą o Biblii Szatana i Lavaya". LES wypowiadał się o satanizmie, ale "wcale nie przedstawiał się jako satanista". Był też "młody metal" (metalowiec), który przedstawił się jako satanista. Strzępy programu dostępne, ale Wokenheim twierdzi, że materiał "nie do dostania z TVN". [NAG: Les_cd_ani, 02:21–03:36]
+- **Brak daty (lata 90.?)** — Program TVN reżyserowany przez **Wojciecha Bokenheima**. "Sonda uliczna": Darek z Kasianką i Bogną Stefańską chodzili po Warszawie i pytali ludzi kupujących pietruszkę "co myślą o Biblii Szatana i Lavaya". LES wypowiadał się o satanizmie, ale "wcale nie przedstawiał się jako satanista". Był też "młody metal" (metalowiec), który przedstawił się jako satanista. Strzępy programu dostępne, ale Bokenheim twierdzi, że materiał "nie do dostania z TVN". [NAG: Les_cd_ani, 02:21–03:36]
 
 ### Śmierć i okoliczności
 
@@ -218,7 +218,7 @@ Ostatnia aktualizacja: 2026-04-05
 
 | Osoba | Relacja | Źródło |
 |-------|---------|--------|
-| **Wojciech Wokenheim** | Reżyser programu TVN o satanizmie z udziałem LES/Bogny. | Les_cd_ani |
+| **Wojciech Bokenheim** | Reżyser programu TVN o satanizmie z udziałem LES/Bogny. | Les_cd_ani |
 | **Michał Komar** | Pisarz. Współautor "Od magii do psychotroniki" — ale wg Gondowicza **dopisany przez wydawcę**, bo "wydawca powiedział, że bez Komara nie wyda książki". Cała treść napisana przez LES. | Jan_Gondowicz |
 | **Darek** | Współpracownik Jana (?). Chodził z Kasianką i Bogną Stefańską po Warszawie w programie TVN. | Les_cd_ani |
 | **Kasianka** | Znajoma Darka i Bogny. | Les_cd_ani |
@@ -413,7 +413,7 @@ Ostatnia aktualizacja: 2026-04-05
 
 6. **Najbliższy asystent LES "się eksterioryzował"** — Maria zna go, nie pamięta nazwiska. [NAG: Les_maria_tel]
 
-7. **Program TVN o satanizmie** — reż. Wojciech Wokenheim, udział Bogny Stefańskiej i Darka z Kasianką. LES mówi o satanizmie, ale "nie przedstawia się jako satanista". [NAG: Les_cd_ani]
+7. **Program TVN o satanizmie** — reż. Wojciech Bokenheim, udział Bogny Stefańskiej i Darka z Kasianką. LES mówi o satanizmie, ale "nie przedstawia się jako satanista". [NAG: Les_cd_ani]
 
 8. **Gondowicz o Białoszewskim — depresja** — Miron po rozstaniu z Heringiem: leżał, pił "czajunkę" (paczka herbaty na kubek), żył proszkami z krzyżykiem, mocz w butelkach po mleku (12 butelek w rzędzie). Kompletna prostracja. [NAG: Jan_Gondowicz, 05:50–10:21]
 
