@@ -1,6 +1,14 @@
 # HIPOTEZA PODRÓŻA — sztuka jednoaktówka (1956–57)
 
 **Źródło:** IMG_7754–7759 (ZIP 3, Biblioteka Narodowa)
+
+**Oryginalne skany:**
+- [IMG_7754.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/03_BN_maszynopisy_62/iCloud%20Photos/IMG_7754.JPG)
+- [IMG_7755.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/03_BN_maszynopisy_62/iCloud%20Photos/IMG_7755.JPG)
+- [IMG_7756.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/03_BN_maszynopisy_62/iCloud%20Photos/IMG_7756.JPG)
+- [IMG_7757.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/03_BN_maszynopisy_62/iCloud%20Photos/IMG_7757.JPG)
+- [IMG_7758.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/03_BN_maszynopisy_62/iCloud%20Photos/IMG_7758.JPG)
+- [IMG_7759.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/03_BN_maszynopisy_62/iCloud%20Photos/IMG_7759.JPG)
 **Autor:** Lech Emfazy Stefański
 
 ---

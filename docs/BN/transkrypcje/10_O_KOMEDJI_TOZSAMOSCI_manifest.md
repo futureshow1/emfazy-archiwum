@@ -1,6 +1,12 @@
 # O KONWENCJI TOŻSAMOŚCI — manifest teoretyczny
 
 **Źródło:** IMG_0140–0141 (ZIP 4, Instytut Teatralny, pliki HEIC skonwertowane do JPG)
+
+**Oryginalne skany:**
+- [IMG_0140.HEIC](https://emfazy-178-104-197-58.nip.io/BN_archiwum/04_IT_i_inne_121/iCloud%20Photos/IMG_0140.HEIC)
+- [IMG_0141.HEIC](https://emfazy-178-104-197-58.nip.io/BN_archiwum/04_IT_i_inne_121/iCloud%20Photos/IMG_0141.HEIC)
+
+> ⚠️ Pliki .HEIC są w formacie Apple — w przeglądarce mogą wymagać pobrania (Safari/macOS otwiera natywnie).
 **Autorzy:** Lech Emfazy Stefański i Bogusław Choiński
 **Gatunek:** Manifest / tekst programowy
 **Data:** brak daty (prawdopodobnie 1957–1958, po rozejściu z Białoszewskim)

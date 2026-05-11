@@ -1,6 +1,27 @@
 # OSMĘDEUSZE / WIWISEKCJA — monodram (1955)
 
 **Źródło:** IMG_7272–7290 (ZIP 1, Instytut Teatralny)
+
+**Oryginalne skany:**
+- [IMG_7272.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/01_archiwum_teatralne_68/iCloud%20Photos/IMG_7272.JPG)
+- [IMG_7273.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/01_archiwum_teatralne_68/iCloud%20Photos/IMG_7273.JPG)
+- [IMG_7274.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/01_archiwum_teatralne_68/iCloud%20Photos/IMG_7274.JPEG)
+- [IMG_7275.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/01_archiwum_teatralne_68/iCloud%20Photos/IMG_7275.JPEG)
+- [IMG_7276.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/01_archiwum_teatralne_68/iCloud%20Photos/IMG_7276.JPEG)
+- [IMG_7277.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/01_archiwum_teatralne_68/iCloud%20Photos/IMG_7277.JPEG)
+- [IMG_7278.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/01_archiwum_teatralne_68/iCloud%20Photos/IMG_7278.JPEG)
+- [IMG_7279.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/01_archiwum_teatralne_68/iCloud%20Photos/IMG_7279.JPEG)
+- [IMG_7280.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/01_archiwum_teatralne_68/iCloud%20Photos/IMG_7280.JPEG)
+- [IMG_7281.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/01_archiwum_teatralne_68/iCloud%20Photos/IMG_7281.JPEG)
+- [IMG_7282.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/01_archiwum_teatralne_68/iCloud%20Photos/IMG_7282.JPEG)
+- [IMG_7283.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/01_archiwum_teatralne_68/iCloud%20Photos/IMG_7283.JPEG)
+- [IMG_7284.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/01_archiwum_teatralne_68/iCloud%20Photos/IMG_7284.JPG)
+- [IMG_7285.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/01_archiwum_teatralne_68/iCloud%20Photos/IMG_7285.JPG)
+- [IMG_7286.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/01_archiwum_teatralne_68/iCloud%20Photos/IMG_7286.JPG)
+- [IMG_7287.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/01_archiwum_teatralne_68/iCloud%20Photos/IMG_7287.JPG)
+- [IMG_7288.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/01_archiwum_teatralne_68/iCloud%20Photos/IMG_7288.JPG)
+- [IMG_7289.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/01_archiwum_teatralne_68/iCloud%20Photos/IMG_7289.JPG)
+- [IMG_7290.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/01_archiwum_teatralne_68/iCloud%20Photos/IMG_7290.JPG)
 **Autorzy:** Okładka "Osmędeusze" — Lech Emfazy Stefański; Tekst "Wiwisekcja" — Miron Białoszewski
 **Gatunek:** monodram — dialog palców
 **Data:** Warszawa 1955

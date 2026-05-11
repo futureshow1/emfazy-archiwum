@@ -1,6 +1,9 @@
 # PROMETEUSZ — monodram (1953)
 
 **Źródło:** IMG_7316 (ZIP 1, Instytut Teatralny)
+
+**Oryginalne skany:**
+- [IMG_7316.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/01_archiwum_teatralne_68/iCloud%20Photos/IMG_7316.JPG)
 **Uwaga:** Zachowana tylko strona tytułowa, tekst maszynopisu nie został odnaleziony.
 
 ---

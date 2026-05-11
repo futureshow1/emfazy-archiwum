@@ -1,6 +1,19 @@
 # INSTRUKCJA DLA WTAJEMNICZONYCH (1993)
 
 **Źródło:** IMG_8060–8079 (ZIP 5, Instytut Teatralny)
+
+**Oryginalne skany:**
+- [IMG_8060.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/05_IT_i_inne_49/iCloud%20Photos/IMG_8060.JPG)
+- [IMG_8061.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/05_IT_i_inne_49/iCloud%20Photos/IMG_8061.JPG)
+- [IMG_8062.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/05_IT_i_inne_49/iCloud%20Photos/IMG_8062.JPG)
+- [IMG_8063.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/05_IT_i_inne_49/iCloud%20Photos/IMG_8063.JPG)
+- [IMG_8064.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/05_IT_i_inne_49/iCloud%20Photos/IMG_8064.JPG)
+- [IMG_8065.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/05_IT_i_inne_49/iCloud%20Photos/IMG_8065.JPG)
+- [IMG_8066.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/05_IT_i_inne_49/iCloud%20Photos/IMG_8066.JPG)
+- [IMG_8067.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/05_IT_i_inne_49/iCloud%20Photos/IMG_8067.JPG)
+- [IMG_8069.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/05_IT_i_inne_49/iCloud%20Photos/IMG_8069.JPG)
+- [IMG_8073.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/05_IT_i_inne_49/iCloud%20Photos/IMG_8073.JPG)
+- [IMG_8076.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/05_IT_i_inne_49/iCloud%20Photos/IMG_8076.JPG)
 **Autor:** Lech Emfazy Stefański
 **Gatunek:** Tekst ezoteryczno-teatralny — poetycka instrukcja rytualna
 **Data:** Warszawa 1993

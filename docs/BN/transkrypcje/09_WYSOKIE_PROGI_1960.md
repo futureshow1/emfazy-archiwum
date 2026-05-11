@@ -1,6 +1,34 @@
 # WYSOKIE PROGI (1960) — rodło ogólitemne w komedji tożsamości
 
 **Źródło:** IMG_0067–0093 (ZIP 4, Instytut Teatralny, pliki HEIC skonwertowane do JPG)
+
+**Oryginalne skany:**
+- [IMG_0067.HEIC](https://emfazy-178-104-197-58.nip.io/BN_archiwum/04_IT_i_inne_121/iCloud%20Photos/IMG_0067.HEIC)
+- [IMG_0068.HEIC](https://emfazy-178-104-197-58.nip.io/BN_archiwum/04_IT_i_inne_121/iCloud%20Photos/IMG_0068.HEIC)
+- [IMG_0069.HEIC](https://emfazy-178-104-197-58.nip.io/BN_archiwum/04_IT_i_inne_121/iCloud%20Photos/IMG_0069.HEIC)
+- [IMG_0070.HEIC](https://emfazy-178-104-197-58.nip.io/BN_archiwum/04_IT_i_inne_121/iCloud%20Photos/IMG_0070.HEIC)
+- [IMG_0071.HEIC](https://emfazy-178-104-197-58.nip.io/BN_archiwum/04_IT_i_inne_121/iCloud%20Photos/IMG_0071.HEIC)
+- [IMG_0072.HEIC](https://emfazy-178-104-197-58.nip.io/BN_archiwum/04_IT_i_inne_121/iCloud%20Photos/IMG_0072.HEIC)
+- [IMG_0073.HEIC](https://emfazy-178-104-197-58.nip.io/BN_archiwum/04_IT_i_inne_121/iCloud%20Photos/IMG_0073.HEIC)
+- [IMG_0074.HEIC](https://emfazy-178-104-197-58.nip.io/BN_archiwum/04_IT_i_inne_121/iCloud%20Photos/IMG_0074.HEIC)
+- [IMG_0077.HEIC](https://emfazy-178-104-197-58.nip.io/BN_archiwum/04_IT_i_inne_121/iCloud%20Photos/IMG_0077.HEIC)
+- [IMG_0078.HEIC](https://emfazy-178-104-197-58.nip.io/BN_archiwum/04_IT_i_inne_121/iCloud%20Photos/IMG_0078.HEIC)
+- [IMG_0080.HEIC](https://emfazy-178-104-197-58.nip.io/BN_archiwum/04_IT_i_inne_121/iCloud%20Photos/IMG_0080.HEIC)
+- [IMG_0081.HEIC](https://emfazy-178-104-197-58.nip.io/BN_archiwum/04_IT_i_inne_121/iCloud%20Photos/IMG_0081.HEIC)
+- [IMG_0082.HEIC](https://emfazy-178-104-197-58.nip.io/BN_archiwum/04_IT_i_inne_121/iCloud%20Photos/IMG_0082.HEIC)
+- [IMG_0083.HEIC](https://emfazy-178-104-197-58.nip.io/BN_archiwum/04_IT_i_inne_121/iCloud%20Photos/IMG_0083.HEIC)
+- [IMG_0084.HEIC](https://emfazy-178-104-197-58.nip.io/BN_archiwum/04_IT_i_inne_121/iCloud%20Photos/IMG_0084.HEIC)
+- [IMG_0085.HEIC](https://emfazy-178-104-197-58.nip.io/BN_archiwum/04_IT_i_inne_121/iCloud%20Photos/IMG_0085.HEIC)
+- [IMG_0086.HEIC](https://emfazy-178-104-197-58.nip.io/BN_archiwum/04_IT_i_inne_121/iCloud%20Photos/IMG_0086.HEIC)
+- [IMG_0087.HEIC](https://emfazy-178-104-197-58.nip.io/BN_archiwum/04_IT_i_inne_121/iCloud%20Photos/IMG_0087.HEIC)
+- [IMG_0088.HEIC](https://emfazy-178-104-197-58.nip.io/BN_archiwum/04_IT_i_inne_121/iCloud%20Photos/IMG_0088.HEIC)
+- [IMG_0089.HEIC](https://emfazy-178-104-197-58.nip.io/BN_archiwum/04_IT_i_inne_121/iCloud%20Photos/IMG_0089.HEIC)
+- [IMG_0090.HEIC](https://emfazy-178-104-197-58.nip.io/BN_archiwum/04_IT_i_inne_121/iCloud%20Photos/IMG_0090.HEIC)
+- [IMG_0091.HEIC](https://emfazy-178-104-197-58.nip.io/BN_archiwum/04_IT_i_inne_121/iCloud%20Photos/IMG_0091.HEIC)
+- [IMG_0092.HEIC](https://emfazy-178-104-197-58.nip.io/BN_archiwum/04_IT_i_inne_121/iCloud%20Photos/IMG_0092.HEIC)
+- [IMG_0093.HEIC](https://emfazy-178-104-197-58.nip.io/BN_archiwum/04_IT_i_inne_121/iCloud%20Photos/IMG_0093.HEIC)
+
+> ⚠️ Pliki .HEIC są w formacie Apple — w przeglądarce mogą wymagać pobrania (Safari/macOS otwiera natywnie).
 **Autor:** Lech Emfazy Stefański
 **Gatunek:** Tekst mówiony + scenariusz obrzędu + liturgia + nuty
 **Data:** Teatr na Tarczyńskiej, Warszawa 1960

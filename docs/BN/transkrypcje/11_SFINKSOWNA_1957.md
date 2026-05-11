@@ -1,6 +1,15 @@
 # SFINKSÓWNA (1957)
 
 **Źródło:** IMG_7304–7309 (ZIP 1, Instytut Teatralny)
+
+**Oryginalne skany:**
+- [IMG_7291.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/01_archiwum_teatralne_68/iCloud%20Photos/IMG_7291.JPG)
+- [IMG_7304.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/01_archiwum_teatralne_68/iCloud%20Photos/IMG_7304.JPG)
+- [IMG_7305.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/01_archiwum_teatralne_68/iCloud%20Photos/IMG_7305.JPG)
+- [IMG_7306.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/01_archiwum_teatralne_68/iCloud%20Photos/IMG_7306.JPG)
+- [IMG_7307.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/01_archiwum_teatralne_68/iCloud%20Photos/IMG_7307.JPG)
+- [IMG_7308.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/01_archiwum_teatralne_68/iCloud%20Photos/IMG_7308.JPEG)
+- [IMG_7309.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/01_archiwum_teatralne_68/iCloud%20Photos/IMG_7309.JPG)
 **Autor:** Lech Emfazy Stefański
 **Postacie:** KIERALNA, MĘŻCZYZNA, NIEWIASTA, HISTLUGA/HISTOLUGA, REFLEKCJI (?)
 **Gatunek:** Sztuka dramatyczna

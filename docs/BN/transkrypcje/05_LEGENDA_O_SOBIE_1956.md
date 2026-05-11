@@ -1,6 +1,26 @@
 # LEGENDA O SOBIE — monodram (1956)
 
 **Źródło:** IMG_7760–7794 (ZIP 3, Biblioteka Narodowa)
+
+**Oryginalne skany:**
+- [IMG_7760.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/03_BN_maszynopisy_62/iCloud%20Photos/IMG_7760.JPG)
+- [IMG_7761.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/03_BN_maszynopisy_62/iCloud%20Photos/IMG_7761.JPG)
+- [IMG_7764.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/03_BN_maszynopisy_62/iCloud%20Photos/IMG_7764.JPG)
+- [IMG_7765.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/03_BN_maszynopisy_62/iCloud%20Photos/IMG_7765.JPG)
+- [IMG_7766.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/03_BN_maszynopisy_62/iCloud%20Photos/IMG_7766.JPG)
+- [IMG_7769.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/03_BN_maszynopisy_62/iCloud%20Photos/IMG_7769.JPG)
+- [IMG_7771.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/03_BN_maszynopisy_62/iCloud%20Photos/IMG_7771.JPG)
+- [IMG_7773.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/03_BN_maszynopisy_62/iCloud%20Photos/IMG_7773.JPG)
+- [IMG_7775.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/03_BN_maszynopisy_62/iCloud%20Photos/IMG_7775.JPG)
+- [IMG_7777.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/03_BN_maszynopisy_62/iCloud%20Photos/IMG_7777.JPG)
+- [IMG_7779.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/03_BN_maszynopisy_62/iCloud%20Photos/IMG_7779.JPG)
+- [IMG_7781.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/03_BN_maszynopisy_62/iCloud%20Photos/IMG_7781.JPG)
+- [IMG_7783.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/03_BN_maszynopisy_62/iCloud%20Photos/IMG_7783.JPG)
+- [IMG_7785.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/03_BN_maszynopisy_62/iCloud%20Photos/IMG_7785.JPG)
+- [IMG_7787.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/03_BN_maszynopisy_62/iCloud%20Photos/IMG_7787.JPG)
+- [IMG_7789.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/03_BN_maszynopisy_62/iCloud%20Photos/IMG_7789.JPG)
+- [IMG_7791.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/03_BN_maszynopisy_62/iCloud%20Photos/IMG_7791.JPG)
+- [IMG_7794.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/03_BN_maszynopisy_62/iCloud%20Photos/IMG_7794.JPG)
 **Autor:** Lech Emfazy Stefański
 **Data:** Warszawa, 10.7.1956
 **Gatunek:** monodram

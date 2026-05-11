@@ -1,6 +1,9 @@
 # RODZINA LUDZKA. OFIARY
 
 **Źródło:** IMG_7249 (ZIP 1, Instytut Teatralny)
+
+**Oryginalne skany:**
+- [IMG_7249.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/01_archiwum_teatralne_68/iCloud%20Photos/IMG_7249.JPG)
 **Gatunek:** Tekst liturgiczno-obrzędowy
 
 ---

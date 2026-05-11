@@ -1,6 +1,11 @@
 # JEZUS I MARIA — tekst dramatyczny (b.d.)
 
 **Źródło:** IMG_8056–8058 (ZIP 5, Instytut Teatralny)
+
+**Oryginalne skany:**
+- [IMG_8056.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/05_IT_i_inne_49/iCloud%20Photos/IMG_8056.JPG)
+- [IMG_8057.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/05_IT_i_inne_49/iCloud%20Photos/IMG_8057.JPG)
+- [IMG_8058.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/05_IT_i_inne_49/iCloud%20Photos/IMG_8058.JPG)
 **Autor:** Lech Emfazy Stefański (przypisanie na podst. kontekstu archiwalnego)
 **Gatunek:** Tekst dramatyczny — dialog Jezusa (dziecka) z Matką Boską
 **Data:** brak daty (prawdopodobnie lata 80.–90., kontekst ezoteryczno-alchemiczny)

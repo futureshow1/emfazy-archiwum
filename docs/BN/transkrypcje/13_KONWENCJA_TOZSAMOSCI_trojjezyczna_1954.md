@@ -1,6 +1,16 @@
 # KONWENCJA TOŻSAMOŚCI — manifest trójjęzyczny (1954)
 
 **Źródło:** IMG_0143–0148 (ZIP 4, Instytut Teatralny, pliki HEIC skonwertowane do JPG)
+
+**Oryginalne skany:**
+- [IMG_0143.HEIC](https://emfazy-178-104-197-58.nip.io/BN_archiwum/04_IT_i_inne_121/iCloud%20Photos/IMG_0143.HEIC)
+- [IMG_0144.HEIC](https://emfazy-178-104-197-58.nip.io/BN_archiwum/04_IT_i_inne_121/iCloud%20Photos/IMG_0144.HEIC)
+- [IMG_0145.HEIC](https://emfazy-178-104-197-58.nip.io/BN_archiwum/04_IT_i_inne_121/iCloud%20Photos/IMG_0145.HEIC)
+- [IMG_0146.HEIC](https://emfazy-178-104-197-58.nip.io/BN_archiwum/04_IT_i_inne_121/iCloud%20Photos/IMG_0146.HEIC)
+- [IMG_0147.HEIC](https://emfazy-178-104-197-58.nip.io/BN_archiwum/04_IT_i_inne_121/iCloud%20Photos/IMG_0147.HEIC)
+- [IMG_0148.HEIC](https://emfazy-178-104-197-58.nip.io/BN_archiwum/04_IT_i_inne_121/iCloud%20Photos/IMG_0148.HEIC)
+
+> ⚠️ Pliki .HEIC są w formacie Apple — w przeglądarce mogą wymagać pobrania (Safari/macOS otwiera natywnie).
 **Autorzy:** B. Choiński i L.E. Stefański
 **Gatunek:** Manifest teoretyczny — trójjęzyczny (niemiecki, polski, francuski)
 **Data:** 1954 (odręczny dopisek na IMG_0146)

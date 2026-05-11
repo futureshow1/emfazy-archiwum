@@ -1,6 +1,23 @@
 # WYRZUTY SKOJARZENIA (1956) — scenariusz reżyserski
 
 **Źródło:** IMG_7797–7812 (ZIP 3, Biblioteka Narodowa)
+
+**Oryginalne skany:**
+- [IMG_7797.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/03_BN_maszynopisy_62/iCloud%20Photos/IMG_7797.JPG)
+- [IMG_7798.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/03_BN_maszynopisy_62/iCloud%20Photos/IMG_7798.JPG)
+- [IMG_7799.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/03_BN_maszynopisy_62/iCloud%20Photos/IMG_7799.JPG)
+- [IMG_7800.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/03_BN_maszynopisy_62/iCloud%20Photos/IMG_7800.JPG)
+- [IMG_7801.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/03_BN_maszynopisy_62/iCloud%20Photos/IMG_7801.JPG)
+- [IMG_7802.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/03_BN_maszynopisy_62/iCloud%20Photos/IMG_7802.JPG)
+- [IMG_7803.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/03_BN_maszynopisy_62/iCloud%20Photos/IMG_7803.JPG)
+- [IMG_7804.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/03_BN_maszynopisy_62/iCloud%20Photos/IMG_7804.JPG)
+- [IMG_7805.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/03_BN_maszynopisy_62/iCloud%20Photos/IMG_7805.JPG)
+- [IMG_7806.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/03_BN_maszynopisy_62/iCloud%20Photos/IMG_7806.JPG)
+- [IMG_7807.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/03_BN_maszynopisy_62/iCloud%20Photos/IMG_7807.JPG)
+- [IMG_7808.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/03_BN_maszynopisy_62/iCloud%20Photos/IMG_7808.JPG)
+- [IMG_7810.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/03_BN_maszynopisy_62/iCloud%20Photos/IMG_7810.JPG)
+- [IMG_7811.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/03_BN_maszynopisy_62/iCloud%20Photos/IMG_7811.JPG)
+- [IMG_7812.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/03_BN_maszynopisy_62/iCloud%20Photos/IMG_7812.JPG)
 **Autor:** Lech Emfazy Stefański
 **Gatunek:** Scenariusz reżyserski / partytura inscenizacyjna
 **Forma:** Rękopiśmienne notatki reżyserskie z maszynopisowymi wstawkami, strzałki, schematy, dopiski kolorowym atramentem (czerwony, różowy, niebieski)

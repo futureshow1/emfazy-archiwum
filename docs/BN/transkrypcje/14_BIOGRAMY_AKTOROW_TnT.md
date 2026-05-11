@@ -1,6 +1,12 @@
 # BIOGRAMY AKTORÓW TEATRU NA TARCZYŃSKIEJ
 
 **Źródło:** IMG_0119–0120 (ZIP 4, Instytut Teatralny)
+
+**Oryginalne skany:**
+- [IMG_0119.HEIC](https://emfazy-178-104-197-58.nip.io/BN_archiwum/04_IT_i_inne_121/iCloud%20Photos/IMG_0119.HEIC)
+- [IMG_0120.HEIC](https://emfazy-178-104-197-58.nip.io/BN_archiwum/04_IT_i_inne_121/iCloud%20Photos/IMG_0120.HEIC)
+
+> ⚠️ Pliki .HEIC są w formacie Apple — w przeglądarce mogą wymagać pobrania (Safari/macOS otwiera natywnie).
 **Gatunek:** Publikacja — biogramy z fotografiami (prawdopodobnie program Mirokaliów '99)
 **Fotografka:** Irena Małek-Jarosińska
 

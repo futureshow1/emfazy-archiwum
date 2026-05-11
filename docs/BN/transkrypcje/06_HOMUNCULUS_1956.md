@@ -1,6 +1,25 @@
 # HOMUNCULUS — monodram (1956)
 
 **Źródło:** IMG_7256–7271 (ZIP 1, Instytut Teatralny)
+
+**Oryginalne skany:**
+- [IMG_7256.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/01_archiwum_teatralne_68/iCloud%20Photos/IMG_7256.JPG)
+- [IMG_7257.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/01_archiwum_teatralne_68/iCloud%20Photos/IMG_7257.JPG)
+- [IMG_7258.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/01_archiwum_teatralne_68/iCloud%20Photos/IMG_7258.JPG)
+- [IMG_7259.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/01_archiwum_teatralne_68/iCloud%20Photos/IMG_7259.JPG)
+- [IMG_7260.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/01_archiwum_teatralne_68/iCloud%20Photos/IMG_7260.JPG)
+- [IMG_7261.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/01_archiwum_teatralne_68/iCloud%20Photos/IMG_7261.JPG)
+- [IMG_7262.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/01_archiwum_teatralne_68/iCloud%20Photos/IMG_7262.JPG)
+- [IMG_7263.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/01_archiwum_teatralne_68/iCloud%20Photos/IMG_7263.JPG)
+- [IMG_7264.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/01_archiwum_teatralne_68/iCloud%20Photos/IMG_7264.JPG)
+- [IMG_7265.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/01_archiwum_teatralne_68/iCloud%20Photos/IMG_7265.JPG)
+- [IMG_7266.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/01_archiwum_teatralne_68/iCloud%20Photos/IMG_7266.JPG)
+- [IMG_7267.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/01_archiwum_teatralne_68/iCloud%20Photos/IMG_7267.JPG)
+- [IMG_7268.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/01_archiwum_teatralne_68/iCloud%20Photos/IMG_7268.JPEG)
+- [IMG_7269.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/01_archiwum_teatralne_68/iCloud%20Photos/IMG_7269.JPEG)
+- [IMG_7270.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/01_archiwum_teatralne_68/iCloud%20Photos/IMG_7270.JPEG)
+- [IMG_7271.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/01_archiwum_teatralne_68/iCloud%20Photos/IMG_7271.JPEG)
+- [IMG_7313.JPG](https://emfazy-178-104-197-58.nip.io/BN_archiwum/01_archiwum_teatralne_68/iCloud%20Photos/IMG_7313.JPG)
 **Autor:** Lech Emfazy Stefański
 **Postacie:** NARRATOR, DIABEŁ (DIABLO), PACYNKA, CHRYSTUSIK, KOBIECA LALKA (KSIĄŻĘ LALKI), ŚMIERTKA
 **Gatunek:** monodram lalkowy — jednosobowy teatr lalek "Homunculus"

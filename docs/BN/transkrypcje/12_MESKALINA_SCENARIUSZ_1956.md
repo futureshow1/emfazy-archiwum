@@ -1,6 +1,20 @@
 # MESKALINA — pełny scenariusz monodramu (1956)
 
 **Źródło:** IMG_0097–0105 (ZIP 4, Instytut Teatralny, pliki HEIC skonwertowane do JPG)
+
+**Oryginalne skany:**
+- [IMG_0095.HEIC](https://emfazy-178-104-197-58.nip.io/BN_archiwum/04_IT_i_inne_121/iCloud%20Photos/IMG_0095.HEIC)
+- [IMG_0097.HEIC](https://emfazy-178-104-197-58.nip.io/BN_archiwum/04_IT_i_inne_121/iCloud%20Photos/IMG_0097.HEIC)
+- [IMG_0098.HEIC](https://emfazy-178-104-197-58.nip.io/BN_archiwum/04_IT_i_inne_121/iCloud%20Photos/IMG_0098.HEIC)
+- [IMG_0099.HEIC](https://emfazy-178-104-197-58.nip.io/BN_archiwum/04_IT_i_inne_121/iCloud%20Photos/IMG_0099.HEIC)
+- [IMG_0100.HEIC](https://emfazy-178-104-197-58.nip.io/BN_archiwum/04_IT_i_inne_121/iCloud%20Photos/IMG_0100.HEIC)
+- [IMG_0101.HEIC](https://emfazy-178-104-197-58.nip.io/BN_archiwum/04_IT_i_inne_121/iCloud%20Photos/IMG_0101.HEIC)
+- [IMG_0102.HEIC](https://emfazy-178-104-197-58.nip.io/BN_archiwum/04_IT_i_inne_121/iCloud%20Photos/IMG_0102.HEIC)
+- [IMG_0103.HEIC](https://emfazy-178-104-197-58.nip.io/BN_archiwum/04_IT_i_inne_121/iCloud%20Photos/IMG_0103.HEIC)
+- [IMG_0104.HEIC](https://emfazy-178-104-197-58.nip.io/BN_archiwum/04_IT_i_inne_121/iCloud%20Photos/IMG_0104.HEIC)
+- [IMG_0105.HEIC](https://emfazy-178-104-197-58.nip.io/BN_archiwum/04_IT_i_inne_121/iCloud%20Photos/IMG_0105.HEIC)
+
+> ⚠️ Pliki .HEIC są w formacie Apple — w przeglądarce mogą wymagać pobrania (Safari/macOS otwiera natywnie).
 **Autor:** Lech Emfazy Stefański
 **Scenografia/Muzyka:** Stanisław Prószyński
 **Gatunek:** Monodram — scenariusz sceniczny
