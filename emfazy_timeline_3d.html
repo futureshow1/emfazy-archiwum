@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1920, initial-scale=1.0">
+<title>Lech Emfazy Stefański — Timeline</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&family=JetBrains+Mono:wght@400;700&display=swap');
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --current-era-color: hsl(140,80%,45%);
+  --current-era-h: 140;
+  --current-era-s: 80%;
+  --current-era-l: 45%;
+}
+
+html, body {
+  width: 1920px;
+  height: 1080px;
+  overflow: hidden;
+  background: #050510;
+  font-family: 'Inter', sans-serif;
+  color: #fff;
+  cursor: default;
+  user-select: none;
+}
+
+/* ======================== CANVAS PARTICLES ======================== */
+#particles {
+  position: fixed;
+  top: 0; left: 0;
+  width: 1920px; height: 1080px;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ======================== AMBIENT ======================== */
+#ambient {
+  position: fixed;
+  top: 0; left: 0;
+  width: 1920px; height: 1080px;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.2;
+  transition: background 1.5s ease;
+}
+
+#scanlines {
+  position: fixed;
+  top: 0; left: 0;
+  width: 1920px; height: 1080px;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px, transparent 2px,
+    rgba(0,0,0,0.12) 2px, rgba(0,0,0,0.12) 4px
+  );
+  transition: opacity 1s;
+}
+
+#vignette {
+  position: fixed;
+  top: 0; left: 0;
+  width: 1920px; height: 1080px;
+  z-index: 3;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.65) 100%);
+}
+
+/* ======================== TITLE CARD ======================== */
+#title-card {
+  position: fixed;
+  top: 0; left: 0;
+  width: 1920px; height: 1080px;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #050510;
+  transition: opacity 0.8s ease;
+}
+
+#title-card h1 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 4.5rem;
+  font-weight: 700;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow:
+    0 0 20px rgba(255,255,255,0.5),
+    0 0 60px rgba(140,255,160,0.3),
+    0 0 120px rgba(140,255,160,0.15);
+  margin-bottom: 20px;
+  line-height: 1.1;
+  text-align: center;
+}
+
+#title-card .years {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 2.2rem;
+  font-weight: 400;
+  letter-spacing: 16px;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 40px;
+}
+
+#title-card .subtitle {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 300;
+  font-style: italic;
+  color: rgba(140,255,160,0.7);
+  letter-spacing: 4px;
+  text-shadow: 0 0 30px rgba(140,255,160,0.4);
+}
+
+#title-card .scroll-hint {
+  margin-top: 60px;
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: rgba(255,255,255,0.25);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  animation: pulse-hint 2.5s ease-in-out infinite;
+}
+
+@keyframes pulse-hint {
+  0%, 100% { opacity: 0.25; }
+  50% { opacity: 0.7; }
+}
+
+/* ======================== HORIZONTAL TIMELINE ======================== */
+#timeline-viewport {
+  position: fixed;
+  top: 0; left: 0;
+  width: 1920px; height: 1080px;
+  z-index: 10;
+  overflow: hidden;
+}
+
+#timeline-track {
+  position: absolute;
+  top: 0; left: 0;
+  height: 1080px;
+  /* width set by JS */
+  transform: translateX(0px);
+  will-change: transform;
+}
+
+/* The horizontal line */
+#timeline-line {
+  position: absolute;
+  top: 540px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, transparent 0%, rgba(255,255,255,0.08) 2%, rgba(255,255,255,0.08) 98%, transparent 100%);
+  z-index: 1;
+}
+
+#timeline-line-glow {
+  position: absolute;
+  top: 538px;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background: linear-gradient(to right, transparent 0%, var(--current-era-color) 2%, var(--current-era-color) 98%, transparent 100%);
+  opacity: 0.12;
+  z-index: 1;
+  filter: blur(3px);
+  transition: background 1s, opacity 1s;
+}
+
+/* ======================== ERA LABELS ======================== */
+.era-marker {
+  position: absolute;
+  top: 480px;
+  height: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  opacity: 0;
+  transition: opacity 0.6s;
+}
+
+.era-marker h2 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.era-marker .era-years {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  letter-spacing: 4px;
+  opacity: 0.5;
+  margin-top: 4px;
+}
+
+/* Vertical era divider */
+.era-divider {
+  position: absolute;
+  top: 200px;
+  width: 1px;
+  height: 680px;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 0.6s;
+}
+
+/* ======================== EVENT CARDS ======================== */
+.event {
+  position: absolute;
+  width: 420px;
+  padding: 26px 30px;
+  background: rgba(8, 8, 20, 0.85);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 14px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.event.visible {
+  opacity: 1;
+  transform: translateY(0px);
+  pointer-events: auto;
+}
+
+.event.above {
+  /* bottom edge at timeline - gap */
+}
+
+.event.below {
+  /* top edge at timeline + gap */
+}
+
+.event::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 15px;
+  padding: 1px;
+  background: linear-gradient(135deg, var(--card-color) 0%, transparent 50%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Connector line from card to timeline */
+.event .connector {
+  position: absolute;
+  width: 1px;
+  background: var(--card-color);
+  opacity: 0.3;
+  left: 50%;
+  z-index: -1;
+}
+
+.event.above .connector {
+  top: 100%;
+  height: 40px;
+}
+
+.event.below .connector {
+  bottom: 100%;
+  height: 40px;
+}
+
+/* Dot on timeline */
+.event .dot {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--card-color);
+  box-shadow: 0 0 12px var(--card-color), 0 0 24px var(--card-color);
+  z-index: 5;
+}
+
+.event.above .dot {
+  top: calc(100% + 40px - 4px);
+}
+
+.event.below .dot {
+  bottom: calc(100% + 40px - 4px);
+}
+
+.event .event__year {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 8px;
+  color: var(--card-color);
+  text-shadow: 0 0 20px var(--card-color);
+  letter-spacing: -0.5px;
+}
+
+.event .event__title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 8px;
+  color: #fff;
+}
+
+.event .event__desc {
+  font-size: 0.85rem;
+  font-weight: 300;
+  line-height: 1.55;
+  color: rgba(255,255,255,0.6);
+}
+
+.event .event__quote {
+  margin-top: 10px;
+  padding-left: 14px;
+  border-left: 2px solid var(--card-color);
+  font-style: italic;
+  font-size: 0.82rem;
+  color: var(--card-color);
+  opacity: 0.75;
+  line-height: 1.4;
+}
+
+.event.highlight .event__year {
+  font-size: 2.4rem;
+}
+
+.event.highlight {
+  width: 480px;
+  padding: 30px 34px;
+}
+
+/* ======================== END CARD ======================== */
+#end-card {
+  position: absolute;
+  top: 0;
+  height: 1080px;
+  width: 1920px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 15;
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+#end-card .eclipse {
+  width: 160px; height: 160px;
+  border-radius: 50%;
+  margin-bottom: 36px;
+  background: radial-gradient(circle, #1a0000 30%, hsl(0, 80%, 25%) 60%, hsl(0, 90%, 15%) 80%, transparent 100%);
+  box-shadow: 0 0 80px hsl(0, 80%, 30%), 0 0 160px hsl(0, 70%, 20%);
+}
+
+#end-card .end-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 2;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+#end-card .end-name {
+  margin-top: 28px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: 6px;
+  color: rgba(255,255,255,0.2);
+}
+
+/* ======================== FOCUS MARKER (center line) ======================== */
+#focus-line {
+  position: fixed;
+  top: 160px;
+  left: 960px;
+  width: 2px;
+  height: 760px;
+  background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.04), transparent);
+  z-index: 6;
+  pointer-events: none;
+}
+
+/* ======================== CONTROLS ======================== */
+#controls {
+  position: fixed;
+  bottom: 0; left: 0;
+  width: 1920px;
+  padding: 20px 40px;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  background: linear-gradient(to top, rgba(5,5,16,0.85) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+#controls > * { pointer-events: auto; }
+
+#autoplay-btn {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.6);
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 8px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: all 0.3s;
+  white-space: nowrap;
+}
+
+#autoplay-btn:hover {
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+}
+
+#autoplay-btn.active {
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+  border-color: var(--current-era-color);
+}
+
+#progress-wrap {
+  flex: 1;
+  height: 3px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 2px;
+  cursor: pointer;
+  position: relative;
+}
+
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  border-radius: 2px;
+  background: var(--current-era-color);
+  transition: width 0.1s linear, background 0.8s;
+  position: relative;
+}
+
+#progress-bar::after {
+  content: '';
+  position: absolute;
+  right: -4px; top: -3px;
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 10px var(--current-era-color);
+}
+
+#era-indicator {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--current-era-color);
+  transition: color 0.8s;
+  min-width: 280px;
+  text-align: right;
+  white-space: nowrap;
+}
+
+#year-display {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.3);
+  min-width: 60px;
+  text-align: center;
+}
+</style>
+</head>
+<body>
+
+<canvas id="particles" width="1920" height="1080"></canvas>
+<div id="ambient"></div>
+<div id="scanlines"></div>
+<div id="vignette"></div>
+
+<div id="title-card">
+  <h1>Lech Emfazy<br>Stefański</h1>
+  <div class="years">1 9 2 8 — 2 0 1 0</div>
+  <div class="subtitle">Łowca Dziwności — The Hunter of Strangeness</div>
+  <div class="scroll-hint">scroll to begin · przewiń aby rozpocząć</div>
+</div>
+
+<div id="timeline-viewport">
+  <div id="timeline-track">
+    <div id="timeline-line"></div>
+    <div id="timeline-line-glow"></div>
+  </div>
+</div>
+
+<div id="focus-line"></div>
+
+<div id="controls">
+  <button id="autoplay-btn">&#9654; Auto-Play</button>
+  <div id="year-display"></div>
+  <div id="progress-wrap">
+    <div id="progress-bar"></div>
+  </div>
+  <div id="era-indicator"></div>
+</div>
+
+<script>
+// ================================================================
+// DATA
+// ================================================================
+
+const ERAS = [
+  { id: 0, name: 'Prelude', years: '', hue: 0, sat: 0, light: 100, color: '#ffffff' },
+  { id: 1, name: 'The Invisible World', namepl: 'Niewidzialny Świat', years: '1928–1944', hue: 140, sat: 80, light: 45, color: 'hsl(140,80%,45%)' },
+  { id: 2, name: 'The Avant-Garde Alchemist', namepl: 'Alchemik Awangardy', years: '1945–1958', hue: 35, sat: 90, light: 55, color: 'hsl(35,90%,55%)' },
+  { id: 3, name: 'The Professional Director', namepl: 'Reżyser', years: '1958–1972', hue: 210, sat: 70, light: 60, color: 'hsl(210,70%,60%)' },
+  { id: 4, name: 'The Magus', namepl: 'Mag', years: '1973–1989', hue: 270, sat: 75, light: 55, color: 'hsl(270,75%,55%)' },
+  { id: 5, name: 'The Mystic', namepl: 'Mistyk', years: '1990–2003', hue: 45, sat: 85, light: 65, color: 'hsl(45,85%,65%)' },
+  { id: 6, name: 'The Final Exteriorization', namepl: 'Ostatnia Eksterioryzacja', years: '2004–2010', hue: 0, sat: 80, light: 45, color: 'hsl(0,80%,45%)' },
+  { id: 7, name: 'End', years: '', hue: 0, sat: 0, light: 0, color: '#000' }
+];
+
+const EVENTS = [
+  // ERA 1: THE INVISIBLE WORLD (1928-1944)
+  { year: '1928', title: 'Narodziny w Warszawie', desc: 'Lech Emfazy Stefański przychodzi na świat 2 lipca. Ul. Tarczyńska 11, m. 33 — adres, który stanie się legendą polskiej awangardy.', era: 1, highlight: false },
+  { year: '~1935', title: 'Mikroskop od „Barłoga"', desc: 'Chłopiec kupuje starą soczewkę od handlarza żyjącego w skrajnym ubóstwie. Osiąga 300-krotne powiększenie i po raz pierwszy widzi bakterie — pierwsze spotkanie z niewidzialnym światem.', era: 1, highlight: false },
+  { year: '26 VIII 1939', title: 'Pierwsze spotkanie z telewizją', desc: 'II Ogólnopolska Wystawa Radiowa i Telewizyjna w Warszawie. 11-letni Lech widzi zielono-czarny ekran fosforowy z dyskiem Nipkowa.', era: 1, highlight: true, quote: '„Kulminacyjny dzień mojego życia"' },
+  { year: '1940–41', title: 'Zaprogramowany przez Witkacego', desc: 'W prywatnej bibliotece odkrywa dzieła Witkiewicza — Czystą Formę, metafizykę sztuki, nieświadomość. Witkacy „zaprogramuje" całą jego intelektualną drogę.', era: 1, highlight: false },
+  { year: '1939–45', title: 'Tajne nauczanie i pierwsze eksperymenty', desc: 'Prywatna Szkoła Chemiczna jako przykrywka AK. Czyta przedwojenne magazyny ezoteryczne „Lotos", prace Ochorowicza. Pierwsze próby hipnozy i radiestezji.', era: 1, highlight: false },
+  { year: '1944', title: 'Powstanie Warszawskie — pseudonim „Emfazy"', desc: 'Żołnierz Armii Krajowej w Powstaniu Warszawskim. Przyjmuje pseudonim „Emfazy", który stanie się jego drugim imieniem na całe życie.', era: 1, highlight: true },
+
+  // ERA 2: THE AVANT-GARDE ALCHEMIST (1945-1958)
+  { year: '1946', title: 'Teatr Cynobrowych Snów', desc: 'Współzakłada z Hilarym Krzysztofiakiem teatr lalkowy przy ul. Wiejskiej. Pisze tekst, komponuje muzykę, gra i projektuje scenografię.', era: 2, highlight: false },
+  { year: '1946', title: 'Spotkanie z Białoszewskim', desc: 'Kompozytor Stanisław Prószyński przedstawia mu Mirona Białoszewskiego i Stanisława Czachorowskiego. Powstaje jądro najważniejszego kręgu awangardowego Warszawy lat 50.', era: 2, highlight: false },
+  { year: '1950–54', title: 'Grupa Kobyłkowska', desc: 'Maratony pisarskie na werandzie w Kobyłce. Białoszewski, Choiński, Prószyński, Czachorowski. Godziny pisania w ciszy, potem odczytywanie przy mocnej herbacie.', era: 2, highlight: false },
+  { year: '1954', title: 'Mieszkanie zmienia się w teatr', desc: 'Tarczyńska 11 staje się teatrem eksperymentalnym. Pierwsza scena to malowana czarna skrzynka po cebuli — narodziny „teatru skrzynkowego". Aktorami są: palce, grzebień, solniczka i trzepaczka.', era: 2, highlight: true },
+  { year: '1955', title: '„Homunculus" i bestseller', desc: 'Alchemiczny monodram LES-a w skrzynce po cebuli. Powieść „Alchemicy" staje się bestsellerem — wszystkie tantiemy idą na teatr.', era: 2, highlight: false },
+  { year: 'II 1956', title: 'Straż pożarna na schodach', desc: 'Teatr na Tarczyńskiej tak popularny, że straż pożarna wezwana na klatkę schodową — kamienica może się zawalić pod ciężarem publiczności.', era: 2, highlight: false },
+  { year: '1956', title: 'Czerwony Atrament — zdrada', desc: 'Na plakacie w klubie Hybrydy imię Stefańskiego zostaje przekreślone czerwonym atramentem. Krytyk Sandauer nazywa przedsięwzięcie „Teatrem Białoszewskiego". Początek wieloletniego wymazywania.', era: 2, highlight: true, quote: '„Kto jest właścicielem czyjejś historii?"' },
+  { year: '1958', title: '„Biały Pył" — zaginiony serial', desc: 'Pierwszy polski serial telewizyjny na żywo (6 odcinków TVP). Wszystkie 6 odcinków bezpowrotnie zaginęło — żaden ślad w archiwach.', era: 2, highlight: true },
+
+  // ERA 3: THE PROFESSIONAL DIRECTOR (1958-1972)
+  { year: '1958–60', title: 'Wygnanie — nauczyciel rysunku', desc: 'Po rozpadzie teatru opuszcza Warszawę. Uczy rysunku w domach dziecka w Lucieniu i Śródborowie. Adoptuje syna Stefana Iwanka.', era: 3, highlight: false },
+  { year: '1961', title: 'PWST — pod okiem Bardiniego', desc: 'Wraca do Warszawy na Wydział Reżyserii PWST. Studiuje u prof. Aleksandra Bardiniego, asystuje mu przy operach.', era: 3, highlight: false },
+  { year: 'VIII 1963', title: 'Narodziny Bogny', desc: 'Na świat przychodzi córka Bogna Stefańska. Jej życie splecie się tragicznie z psychotronicznymi ambicjami ojca.', era: 3, highlight: true },
+  { year: '1965–72', title: 'Kariera telewizyjna i teatralna', desc: 'Reżyseruje w całej Polsce — Gorzów, Koszalin, Szczecin, Opole, Lublin. Opery, komedie, musicale w TVP. Od Moliera po Offenbacha.', era: 3, highlight: false },
+  { year: 'lato 1968', title: 'Fakir Artin w Sozopolu', desc: 'Spotkanie z praktykującym hipnotyzerem w Bułgarii. Punkt zwrotny — od sztuki ku praktycznemu okultyzmowi i „prawdziwej magii".', era: 3, highlight: true },
+  { year: '1972', title: 'Sekcja Parapsychologiczna', desc: 'Współzakłada z Choińskim sekcję parapsychologiczną w klubie studenckim „3 Kontynenty". Pierwsze publiczne zaangażowanie w parapsychologię.', era: 3, highlight: false },
+
+  // ERA 4: THE MAGUS (1973-1989)
+  { year: '1973', title: 'Widzenie skórne — eksperymenty z Bogną', desc: '10-letnia Bogna jako główny podmiot badań nad widzeniem dermoskopowym. Badania z 34 niewidomymi dziećmi w Laskach — „zdumiewające" wyniki, przerwane przez zakonnice.', era: 4, highlight: true },
+  { year: '1974', title: 'Publiczne upokorzenie', desc: 'III Ogólnopolskie Sympozjum Cybernetyki. Profesor z Poznania publicznie oskarża ich o oszustwo. 10-letnia Bogna wybucha histerycznym płaczem.', era: 4, highlight: false },
+  { year: '4 IX 1975', title: 'Pierwsza inwigilacja SB', desc: 'Kpt. H. Turkowski spotyka LES-a w kawiarni „Świtezianka". Służba Bezpieczeństwa interesuje się jego kontaktami zagranicznymi. Szantaż.', era: 4, highlight: false },
+  { year: '29 XII 1975', title: 'Agent „Zygmuntowicz"', desc: 'Podpisuje zobowiązanie do współpracy z SB. Ale gra podwójną grę — podaje tylko trywialne informacje, a manipuluje oficerami, by za darmo tłumaczyli mu teksty okultystyczne.', era: 4, highlight: true, quote: '„Całkowicie nieużyteczny" — ocena SB, 1977' },
+  { year: '1980', title: '„Od magii do psychotroniki"', desc: 'Współautorstwo z Michałem Komarem. Książka staje się „biblią polskiego New Age".', era: 4, highlight: false },
+  { year: '13 XII 1981', title: 'Zniszczony „Teleranek"', desc: 'Nagrany odcinek programu dziecięcego — LES uczy dzieci o sabatach czarownic i psychotronice — zostaje zniszczony po wprowadzeniu stanu wojennego.', era: 4, highlight: false },
+  { year: '1984', title: 'Poltergeist w Sochaczewie', desc: 'Z Romanem Bugajem bada przypadek poltergeista. Łyżki pękają, przedmioty się przesuwają. Cegła spada z nieba — mimo braku budowy w okolicy.', era: 4, highlight: false },
+  { year: '1987', title: 'Prezes Polskiego Towarzystwa Psychotronicznego', desc: '24 oddziały w całej Polsce. LES na szczycie ruchu psychotronicznego. Kongresy w Bratysławie i Zagrzebiu.', era: 4, highlight: false },
+  { year: 'XII 1988', title: '„Adept wysokiej magii"', desc: 'Monodram w Teatrze Stara Prochownia. LES wciela się w okultystę Czesława Czyńskiego — w rytualnych szatach z odwróconym krzyżem. Plotki o „czarnej magii" towarzyszą mu latami.', era: 4, highlight: true },
+
+  // ERA 5: THE MYSTIC (1990-2003)
+  { year: '1990', title: 'Wydawnictwo Athanor', desc: 'Zakłada z Heleną wydawnictwo nazwane od alchemicznego pieca. Publikuje „Magię run", „Prognostikon", „Wyrocznię słowiańską", „Supernauczanie".', era: 5, highlight: false },
+  { year: 'lata 90.', title: 'Kasety Synchro-Theta', desc: '15 kaset nagranych w legendarnym „Czarnym Pokoju" Studia Eksperymentalnego Polskiego Radia. Fale theta (4–7 Hz) mają synchronizować półkule mózgu i ułatwiać eksterioryzację.', era: 5, highlight: true },
+  { year: 'IV–V 1992', title: '500 osób w Eleusis', desc: 'Organizuje masową ekspedycję do Grecji — do miejsca starożytnych Misteriów Eleuzyńskich. 500 uczestników próbuje metodami psychometrycznymi odtworzyć antyczne wtajemniczenia.', era: 5, highlight: true, quote: '„Wtajemniczenia eleuzyńskie"' },
+  { year: '1995', title: 'Rodzimy Kościół Polski', desc: 'Współzakłada związek wyznaniowy i pisze liturgię prasłowiańską. Ratomir Wilkowski zostanie jego następcą jako żerca (kapłan).', era: 5, highlight: false },
+  { year: '1996', title: '„Homunculus" — powrót po 41 latach', desc: 'Wznowienie założycielskiego monodramu w Galerii Studio. Koło się zamyka — od skrzynki po cebuli do sceny galeryjnej.', era: 5, highlight: false },
+
+  // ERA 6: THE FINAL EXTERIORIZATION (2004-2010)
+  { year: '2004', title: 'Śmierć Heleny', desc: 'Żona Helena Adamska-Stefańska umiera. LES wycofuje się z życia publicznego do daczki w Załubicach pod Warszawą.', era: 6, highlight: false },
+  { year: '~2008', title: 'Śmierć Bogny', desc: 'Córka Bogna umiera przed ojcem. Strata, która go ostatecznie łamie. Żyje w narastającej izolacji.', era: 6, highlight: false },
+  { year: '21 XII 2010', title: 'Przesilenie — zaćmienie — pełnia', desc: 'Umiera w Załubicach. Przesilenie zimowe. Pełnia księżyca. Całkowite zaćmienie Księżyca. W ostatnich godzinach stoi nagi w oknie i krzyczy „BOGNA!"', era: 6, highlight: true, quote: '„Ostatnia zaplanowana eksterioryzacja"' },
+  { year: 'po 2010', title: 'Zniknięte archiwum', desc: 'Obrazy Witkacego i Lebensteina, całe „archiwum niesamowitości" — znikają z daczki w Załubicach. Wymazany człowiek, który nie daje się wymazać.', era: 6, highlight: true },
+];
+
+// ================================================================
+// LAYOUT CONSTANTS
+// ================================================================
+
+const EVENT_SPACING = 560;       // horizontal px between events
+const FIRST_EVENT_X = 2800;      // left margin — title card has time to fade before first event
+const CARD_GAP = 46;             // gap between card edge and timeline line
+const VIEWPORT_W = 1920;
+const TIMELINE_CENTER_Y = 540;   // y of the timeline line
+const CARD_ABOVE_BOTTOM = TIMELINE_CENTER_Y - CARD_GAP;
+const CARD_BELOW_TOP = TIMELINE_CENTER_Y + CARD_GAP;
+
+// Calculate total track width
+const TOTAL_EVENTS = EVENTS.length;
+const END_CARD_MARGIN = 2400;
+const TRACK_WIDTH = FIRST_EVENT_X + (TOTAL_EVENTS * EVENT_SPACING) + END_CARD_MARGIN;
+const SCROLLABLE = TRACK_WIDTH - VIEWPORT_W + 400;
+
+// ================================================================
+// DOM REFS
+// ================================================================
+
+const titleCard = document.getElementById('title-card');
+const track = document.getElementById('timeline-track');
+const ambientEl = document.getElementById('ambient');
+const scanlinesEl = document.getElementById('scanlines');
+const progressBar = document.getElementById('progress-bar');
+const eraIndicator = document.getElementById('era-indicator');
+const yearDisplay = document.getElementById('year-display');
+const autoplayBtn = document.getElementById('autoplay-btn');
+const progressWrap = document.getElementById('progress-wrap');
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+
+track.style.width = TRACK_WIDTH + 'px';
+
+// ================================================================
+// BUILD EVENTS
+// ================================================================
+
+// Era zones: track X ranges for each era
+const eraStartX = {};
+const eraEndX = {};
+
+// Assign X positions and build DOM
+const eventEls = [];
+let prevEra = 0;
+
+EVENTS.forEach((ev, i) => {
+  ev.x = FIRST_EVENT_X + i * EVENT_SPACING;
+  const isAbove = (i % 2 === 0);
+  ev.above = isAbove;
+
+  if (!eraStartX[ev.era]) eraStartX[ev.era] = ev.x;
+  eraEndX[ev.era] = ev.x;
+
+  const eraData = ERAS[ev.era];
+
+  // Create card
+  const div = document.createElement('article');
+  div.className = 'event ' + (isAbove ? 'above' : 'below') + (ev.highlight ? ' highlight' : '');
+  div.style.left = ev.x + 'px';
+  div.style.setProperty('--card-color', eraData.color);
+
+  // Vertical positioning: measure after append, but estimate for now
+  if (isAbove) {
+    div.style.bottom = (1080 - CARD_ABOVE_BOTTOM) + 'px';
+  } else {
+    div.style.top = CARD_BELOW_TOP + 'px';
+  }
+  // Center the card horizontally on its X position
+  div.style.marginLeft = '-210px'; // half of 420px width
+
+  let inner = `
+    <div class="connector"></div>
+    <div class="dot"></div>
+    <div class="event__year">${ev.year}</div>
+    <h3 class="event__title">${ev.title}</h3>
+    <p class="event__desc">${ev.desc}</p>
+  `;
+  if (ev.quote) {
+    inner += `<div class="event__quote">${ev.quote}</div>`;
+  }
+  div.innerHTML = inner;
+  track.appendChild(div);
+  eventEls.push({ el: div, x: ev.x, era: ev.era, above: isAbove });
+
+  // Add era divider + label at era transitions
+  if (ev.era !== prevEra) {
+    prevEra = ev.era;
+
+    // Divider line
+    const divider = document.createElement('div');
+    divider.className = 'era-divider';
+    divider.style.left = (ev.x - EVENT_SPACING * 0.45) + 'px';
+    divider.style.background = `linear-gradient(to bottom, transparent, ${eraData.color}33, transparent)`;
+    divider.dataset.x = ev.x - EVENT_SPACING * 0.45;
+    track.appendChild(divider);
+
+    // Era marker label
+    const marker = document.createElement('div');
+    marker.className = 'era-marker';
+    marker.style.left = (ev.x - EVENT_SPACING * 0.45 - 150) + 'px';
+    marker.style.color = eraData.color;
+    marker.innerHTML = `
+      <h2>${eraData.name}</h2>
+      <div class="era-years">${eraData.years}</div>
+    `;
+    marker.dataset.x = ev.x - EVENT_SPACING * 0.45;
+    track.appendChild(marker);
+  }
+});
+
+// Fix highlight card margin
+document.querySelectorAll('.event.highlight').forEach(el => {
+  el.style.marginLeft = '-240px'; // half of 480px
+});
+
+// End card
+const endCardX = FIRST_EVENT_X + TOTAL_EVENTS * EVENT_SPACING + 600;
+const endCard = document.createElement('div');
+endCard.id = 'end-card';
+endCard.style.left = endCardX + 'px';
+endCard.innerHTML = `
+  <div class="eclipse"></div>
+  <div class="end-text">
+    Przesilenie zimowe · Pełnia księżyca · Całkowite zaćmienie<br>
+    Winter Solstice · Full Moon · Total Lunar Eclipse<br><br>
+    21 grudnia 2010
+  </div>
+  <div class="end-name">L E C H &nbsp; E M F A Z Y &nbsp; S T E F A Ń S K I</div>
+`;
+track.appendChild(endCard);
+
+// ================================================================
+// SCROLL & CAMERA
+// ================================================================
+
+let virtualScroll = 0;      // 0 to 1
+let trackX = 0;             // current track X offset (lerped)
+let targetTrackX = 0;
+let currentEra = 0;
+let isAutoplay = false;
+const autoplaySpeed = 0.0000035; // ~4.5 minutes full playthrough
+
+// Title card disappears after first ~3% of scroll
+const TITLE_FADE_END = 0.07;
+
+window.addEventListener('wheel', (e) => {
+  e.preventDefault();
+  virtualScroll = Math.max(0, Math.min(1, virtualScroll + e.deltaY * 0.0004));
+}, { passive: false });
+
+let touchStartX = 0;
+window.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; });
+window.addEventListener('touchmove', (e) => {
+  e.preventDefault();
+  const delta = touchStartX - e.touches[0].clientX;
+  touchStartX = e.touches[0].clientX;
+  virtualScroll = Math.max(0, Math.min(1, virtualScroll + delta * 0.001));
+}, { passive: false });
+
+window.addEventListener('keydown', (e) => {
+  if (e.code === 'Space') {
+    e.preventDefault();
+    toggleAutoplay();
+  } else if (e.code === 'ArrowRight' || e.code === 'ArrowDown') {
+    e.preventDefault();
+    virtualScroll = Math.min(1, virtualScroll + 0.012);
+  } else if (e.code === 'ArrowLeft' || e.code === 'ArrowUp') {
+    e.preventDefault();
+    virtualScroll = Math.max(0, virtualScroll - 0.012);
+  }
+});
+
+progressWrap.addEventListener('click', (e) => {
+  const rect = progressWrap.getBoundingClientRect();
+  virtualScroll = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+});
+
+function toggleAutoplay() {
+  isAutoplay = !isAutoplay;
+  autoplayBtn.classList.toggle('active', isAutoplay);
+  autoplayBtn.innerHTML = isAutoplay ? '&#9646;&#9646; Pause' : '&#9654; Auto-Play';
+}
+autoplayBtn.addEventListener('click', toggleAutoplay);
+
+// ================================================================
+// ERA DETECTION
+// ================================================================
+
+function getEraForTrackX(tx) {
+  // tx is the viewport left edge position in track coordinates
+  const centerX = tx + VIEWPORT_W / 2;
+  for (let i = EVENTS.length - 1; i >= 0; i--) {
+    if (centerX >= EVENTS[i].x - EVENT_SPACING * 0.3) {
+      return EVENTS[i].era;
+    }
+  }
+  return 0;
+}
+
+function getYearForProgress(progress) {
+  return Math.round(1925 + progress * (2013 - 1925));
+}
+
+// ================================================================
+// PARTICLE SYSTEM
+// ================================================================
+
+class Particle {
+  constructor() { this.reset(true); }
+  reset(randomX = false) {
+    this.x = randomX ? Math.random() * 1920 : 1930;
+    this.y = Math.random() * 1080;
+    this.vx = -(Math.random() * 0.3 + 0.05);
+    this.vy = (Math.random() - 0.5) * 0.15;
+    this.size = Math.random() * 2 + 0.5;
+    this.alpha = Math.random() * 0.4 + 0.1;
+    this.baseAlpha = this.alpha;
+    this.layer = Math.random();
+  }
+}
+
+const BASE_PARTICLE_COUNT = 160;
+const baseParticles = [];
+for (let i = 0; i < BASE_PARTICLE_COUNT; i++) baseParticles.push(new Particle());
+
+const ERA_PARTICLE_COUNT = 50;
+const eraParticles = [];
+for (let i = 0; i < ERA_PARTICLE_COUNT; i++) {
+  eraParticles.push({
+    x: Math.random() * 1920, y: Math.random() * 1080,
+    vx: 0, vy: 0, size: 2, alpha: 0,
+    angle: Math.random() * Math.PI * 2,
+    speed: Math.random() * 0.5 + 0.2,
+    life: Math.random(),
+  });
+}
+
+let prevTrackX = 0;
+
+function updateParticles(dt, era) {
+  const scrollSpeed = (trackX - prevTrackX);
+  prevTrackX = trackX;
+  const eraData = ERAS[era] || ERAS[1];
+  const t = dt * 0.06;
+
+  // Base starfield — drift left with parallax
+  for (const p of baseParticles) {
+    const parallax = 0.3 + p.layer * 0.7;
+    p.x += (p.vx - Math.abs(scrollSpeed) * 0.008 * parallax) * t;
+    p.y += p.vy * t;
+    if (p.x < -10 || p.x > 1930 || p.y < -10 || p.y > 1090) p.reset(false);
+  }
+
+  // Era particles
+  for (const p of eraParticles) {
+    p.life -= 0.001 * t;
+    if (p.life <= 0) {
+      p.x = Math.random() * 1920; p.y = Math.random() * 1080;
+      p.angle = Math.random() * Math.PI * 2;
+      p.speed = Math.random() * 0.5 + 0.2;
+      p.life = 1; p.alpha = 0;
+    }
+    switch (era) {
+      case 1:
+        p.vx = (Math.random() - 0.5) * 2; p.vy = (Math.random() - 0.5) * 2;
+        p.size = Math.random() * 3 + 1; p.alpha = Math.random() * 0.5 * p.life;
+        break;
+      case 2:
+        p.vx = Math.sin(p.angle) * 0.3; p.vy = -p.speed * 0.7;
+        p.angle += 0.01 * t; p.size = Math.random() * 2.5 + 1; p.alpha = p.life * 0.45;
+        break;
+      case 3:
+        p.vx = -p.speed * 0.4; p.vy = Math.sin(p.angle) * 0.12;
+        p.angle += 0.005 * t; p.size = 1.5; p.alpha = p.life * 0.3;
+        break;
+      case 4:
+        p.angle += 0.025 * t;
+        const r = (1 - p.life) * 180;
+        p.x = 960 + Math.cos(p.angle) * r + (Math.random() - 0.5) * 300;
+        p.y = 540 + Math.sin(p.angle) * r + (Math.random() - 0.5) * 200;
+        p.size = 2 + (1 - p.life) * 2.5; p.alpha = p.life * 0.4;
+        break;
+      case 5:
+        p.vx = Math.sin(p.angle * 2) * 0.3; p.vy = -p.speed * 0.4;
+        p.angle += 0.008 * t; p.size = 2 + (1 - p.life) * 3; p.alpha = p.life * 0.3;
+        break;
+      case 6:
+        p.vx *= 0.99; p.vy += 0.008 * t;
+        p.size = 2; p.alpha = p.life * 0.2 * Math.max(0, 1 - virtualScroll * 1.1);
+        break;
+      default: p.alpha = 0;
+    }
+    if (era !== 4) { p.x += p.vx * t; p.y += p.vy * t; }
+    if (p.x < -20) p.x = 1940; if (p.x > 1940) p.x = -20;
+    if (p.y < -20) p.y = 1100; if (p.y > 1100) p.y = -20;
+  }
+}
+
+function drawParticles(era) {
+  ctx.clearRect(0, 0, 1920, 1080);
+  const eraData = ERAS[era] || ERAS[1];
+  const hue = eraData.hue;
+
+  ctx.globalCompositeOperation = 'lighter';
+
+  for (const p of baseParticles) {
+    const a = p.baseAlpha * 0.35;
+    if (a < 0.01) continue;
+    ctx.fillStyle = `hsla(${hue}, 15%, 75%, ${a})`;
+    ctx.fillRect(p.x, p.y, p.size, p.size);
+  }
+
+  for (const p of eraParticles) {
+    if (p.alpha < 0.01) continue;
+    ctx.fillStyle = `hsla(${hue}, ${eraData.sat}%, ${eraData.light}%, ${p.alpha})`;
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  // Era overlays
+  if (era === 1 && Math.random() > 0.85) {
+    const y = Math.random() * 1080;
+    ctx.fillStyle = `hsla(140, 80%, 50%, ${Math.random() * 0.03})`;
+    ctx.fillRect(0, y, 1920, 2);
+  }
+  if (era === 4) {
+    const phase = (Date.now() % 4000) / 4000;
+    ctx.strokeStyle = `hsla(270, 75%, 55%, ${(1 - phase) * 0.06})`;
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.arc(960, 540, phase * 400, 0, Math.PI * 2);
+    ctx.stroke();
+  }
+  if (era === 5) {
+    const a = 0.015 + Math.sin(Date.now() * 0.001) * 0.008;
+    ctx.strokeStyle = `hsla(45, 85%, 65%, ${a})`;
+    ctx.lineWidth = 1;
+    for (let i = 0; i < 4; i++) {
+      const ang = (Date.now() * 0.0001 + i * 0.7) % (Math.PI * 2);
+      ctx.beginPath(); ctx.moveTo(960, 0);
+      ctx.lineTo(960 + Math.cos(ang) * 1100, 540 + Math.sin(ang) * 700);
+      ctx.stroke();
+    }
+  }
+  if (era === 6) {
+    const ea = Math.min(0.1, virtualScroll * 0.12);
+    const g = ctx.createRadialGradient(960, 540, 40, 960, 540, 350);
+    g.addColorStop(0, `hsla(0, 80%, 20%, ${ea})`);
+    g.addColorStop(1, 'transparent');
+    ctx.fillStyle = g;
+    ctx.fillRect(560, 140, 800, 800);
+  }
+
+  ctx.globalCompositeOperation = 'source-over';
+}
+
+// ================================================================
+// UPDATE VISIBILITY
+// ================================================================
+
+function updateVisibility(tx) {
+  const viewLeft = tx;
+  const viewRight = tx + VIEWPORT_W;
+  const viewCenter = tx + VIEWPORT_W / 2;
+
+  // Events
+  for (const item of eventEls) {
+    const relX = item.x - viewLeft;
+    // Visible if event X is within viewport + some margin
+    if (relX > -300 && relX < VIEWPORT_W + 500) {
+      item.el.classList.add('visible');
+    } else {
+      item.el.classList.remove('visible');
+    }
+  }
+
+  // Era markers & dividers
+  document.querySelectorAll('.era-marker, .era-divider').forEach(el => {
+    const elX = parseFloat(el.dataset.x || el.style.left);
+    const relX = elX - viewLeft;
+    el.style.opacity = (relX > -200 && relX < VIEWPORT_W + 200) ? '0.7' : '0';
+  });
+
+  // End card
+  const endRelX = endCardX - viewLeft;
+  if (endRelX < VIEWPORT_W + 200 && endRelX > -VIEWPORT_W) {
+    const fade = Math.max(0, Math.min(1, 1 - (endRelX - VIEWPORT_W * 0.3) / (VIEWPORT_W * 0.5)));
+    endCard.style.opacity = fade;
+  } else {
+    endCard.style.opacity = 0;
+  }
+}
+
+function updateEra(tx) {
+  const newEra = getEraForTrackX(tx);
+  if (newEra !== currentEra) {
+    currentEra = newEra;
+    const eraData = ERAS[currentEra] || ERAS[0];
+    document.documentElement.style.setProperty('--current-era-color', eraData.color || '#fff');
+    document.documentElement.style.setProperty('--current-era-h', eraData.hue);
+    document.documentElement.style.setProperty('--current-era-s', eraData.sat + '%');
+    document.documentElement.style.setProperty('--current-era-l', eraData.light + '%');
+
+    if (currentEra > 0 && currentEra <= 6) {
+      eraIndicator.textContent = `${ERAS[currentEra].name} · ${ERAS[currentEra].years}`;
+      ambientEl.style.background = `radial-gradient(ellipse at 50% 50%, hsla(${eraData.hue}, 50%, 20%, 0.3) 0%, transparent 70%)`;
+    } else {
+      eraIndicator.textContent = '';
+      ambientEl.style.background = 'transparent';
+    }
+    scanlinesEl.style.opacity = currentEra === 1 ? '0.25' : '0';
+  }
+}
+
+// ================================================================
+// MAIN LOOP
+// ================================================================
+
+let lastTime = 0;
+
+function animate(timestamp) {
+  const dt = Math.min(timestamp - lastTime, 50) || 16;
+  lastTime = timestamp;
+
+  // Autoplay
+  if (isAutoplay) {
+    virtualScroll = Math.min(1, virtualScroll + autoplaySpeed * dt);
+    if (virtualScroll >= 1) {
+      isAutoplay = false;
+      autoplayBtn.classList.remove('active');
+      autoplayBtn.innerHTML = '&#9654; Auto-Play';
+    }
+  }
+
+  // Title card fade
+  if (virtualScroll < TITLE_FADE_END) {
+    titleCard.style.opacity = 1 - (virtualScroll / TITLE_FADE_END);
+    titleCard.style.pointerEvents = 'auto';
+  } else {
+    titleCard.style.opacity = 0;
+    titleCard.style.pointerEvents = 'none';
+  }
+
+  // Track position (horizontal scroll)
+  targetTrackX = virtualScroll * SCROLLABLE;
+  trackX += (targetTrackX - trackX) * 0.09;
+  track.style.transform = `translateX(${-trackX}px)`;
+
+  // Updates
+  updateVisibility(trackX);
+  updateEra(trackX);
+  updateParticles(dt, currentEra);
+  drawParticles(currentEra);
+
+  // Progress bar
+  progressBar.style.width = (virtualScroll * 100) + '%';
+
+  // Year display
+  const yr = getYearForProgress(virtualScroll);
+  yearDisplay.textContent = yr >= 1928 && yr <= 2012 ? yr : '';
+
+  requestAnimationFrame(animate);
+}
+
+requestAnimationFrame(animate);
+</script>
+</body>
+</html>
