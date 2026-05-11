@@ -1,6 +1,12 @@
 # ŚPIEWACY NORYMBERSEY — operomontaż Wagnera (1948)
 
 **Źródło:** IMG_8077–8079 (ZIP 5, Instytut Teatralny)
+**Oryginalne skany:**
+- [IMG_8077.JPG — strona tytułowa](https://emfazy-178-104-197-58.nip.io/BN_archiwum/05_IT_i_inne_49/iCloud%20Photos/IMG_8077.JPG)
+- [IMG_8078.JPG — wstęp historyczny (s.3)](https://emfazy-178-104-197-58.nip.io/BN_archiwum/05_IT_i_inne_49/iCloud%20Photos/IMG_8078.JPG)
+- [IMG_8079.JPG — uwertura (s.4)](https://emfazy-178-104-197-58.nip.io/BN_archiwum/05_IT_i_inne_49/iCloud%20Photos/IMG_8079.JPG)
+
+> ⚠️ **Uwaga:** Strony 3–4 maszynopisu są silnie wyblakłe — OCR zwrócił nieczytelne artefakty. Tekst poniżej to najlepsze przybliżenie; oryginalne skany (linki powyżej) są bardziej wiarygodnym źródłem.
 **Autorzy:** Lech Emfazy Stefański i Stanisław Podczysański
 **Gatunek:** Operomontaż (adaptacja operowa)
 **Oryginał:** Richard Wagner, "Die Meistersinger von Nürnberg" (1868)
