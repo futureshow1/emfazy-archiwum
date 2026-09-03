@@ -496,6 +496,45 @@ html, body {
 </style>
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png"><link rel="apple-touch-icon" href="apple-touch-icon.png"></head>
 <body>
+<!-- bramka dostepu: has bcrypt nie, SHA-256 hasla; sprawdzane w przegladarce -->
+<style>
+  body.ea-locked > :not(#ea-gate) { display: none !important; }
+  #ea-gate { min-height: 100vh; display: flex; align-items: center; justify-content: center; background: #0a0a0f; color: #e5e7eb; font-family: Inter, -apple-system, system-ui, sans-serif; padding: 24px; }
+  #ea-gate form { width: 100%; max-width: 380px; text-align: center; }
+  #ea-gate h1 { font-size: 1.1rem; letter-spacing: .22em; text-transform: uppercase; color: #9ca3af; margin: 0 0 6px; font-weight: 600; }
+  #ea-gate p { color: #6b7280; font-size: .9rem; margin: 0 0 22px; }
+  #ea-gate input { width: 100%; box-sizing: border-box; background: #111827; border: 1px solid #1f2937; color: #e5e7eb; border-radius: 10px; padding: 13px 16px; font-size: 1rem; text-align: center; outline: none; }
+  #ea-gate input:focus { border-color: #63b3ff; }
+  #ea-gate button { margin-top: 12px; width: 100%; background: #63b3ff; color: #0a0e17; border: 0; border-radius: 10px; padding: 13px; font-weight: 700; font-size: .95rem; cursor: pointer; }
+  #ea-gate .err { color: #f87171; font-size: .85rem; min-height: 1.2em; margin-top: 10px; }
+</style>
+<div id="ea-gate">
+  <form id="ea-form" autocomplete="off">
+    <h1>EMFAZY — oś czasu</h1>
+    <p>Materiały robocze. Dostęp na hasło.</p>
+    <input type="password" id="ea-pass" placeholder="hasło" autofocus>
+    <button type="submit">Wejdź</button>
+    <div class="err" id="ea-err"></div>
+  </form>
+</div>
+<script>
+(function () {
+  var H = '2551eb15843903b4186e2b3e41f37eb941408466a6ca4cb47fd77c9bbabb8f5d', KEY = 'emfazy.archiwum.ok';
+  var body = document.body;
+  function unlock() { body.classList.remove('ea-locked'); var g = document.getElementById('ea-gate'); if (g) g.remove(); }
+  try { if (sessionStorage.getItem(KEY) === H) { unlock(); return; } } catch (e) {}
+  body.classList.add('ea-locked');
+  document.getElementById('ea-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var v = document.getElementById('ea-pass').value;
+    crypto.subtle.digest('SHA-256', new TextEncoder().encode(v)).then(function (buf) {
+      var hex = Array.from(new Uint8Array(buf)).map(function (b) { return b.toString(16).padStart(2, '0'); }).join('');
+      if (hex === H) { try { sessionStorage.setItem(KEY, H); } catch (x) {} unlock(); }
+      else { document.getElementById('ea-err').textContent = 'Nieprawidłowe hasło.'; }
+    });
+  });
+})();
+</script>
 
 <canvas id="particles" width="1920" height="1080"></canvas>
 <div id="ambient"></div>

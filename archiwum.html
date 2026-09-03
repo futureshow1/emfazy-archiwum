@@ -148,14 +148,14 @@ a.local:hover::after{opacity:.7}
   var H = '2551eb15843903b4186e2b3e41f37eb941408466a6ca4cb47fd77c9bbabb8f5d', KEY = 'emfazy.archiwum.ok';
   var body = document.body;
   function unlock() { body.classList.remove('ea-locked'); var g = document.getElementById('ea-gate'); if (g) g.remove(); }
-  try { if (localStorage.getItem(KEY) === H) { unlock(); return; } } catch (e) {}
+  try { if (sessionStorage.getItem(KEY) === H) { unlock(); return; } } catch (e) {}
   body.classList.add('ea-locked');
   document.getElementById('ea-form').addEventListener('submit', function (e) {
     e.preventDefault();
     var v = document.getElementById('ea-pass').value;
     crypto.subtle.digest('SHA-256', new TextEncoder().encode(v)).then(function (buf) {
       var hex = Array.from(new Uint8Array(buf)).map(function (b) { return b.toString(16).padStart(2, '0'); }).join('');
-      if (hex === H) { try { localStorage.setItem(KEY, H); } catch (x) {} unlock(); }
+      if (hex === H) { try { sessionStorage.setItem(KEY, H); } catch (x) {} unlock(); }
       else { document.getElementById('ea-err').textContent = 'Nieprawidłowe hasło.'; }
     });
   });
