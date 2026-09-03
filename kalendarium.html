@@ -72,7 +72,7 @@ mark{background:rgba(201,168,76,.3);color:#fff;border-radius:2px}
     var v = document.getElementById('ea-pass').value;
     crypto.subtle.digest('SHA-256', new TextEncoder().encode(v)).then(function (buf) {
       var hex = Array.from(new Uint8Array(buf)).map(function (b) { return b.toString(16).padStart(2, '0'); }).join('');
-      if (hex === H) { try { sessionStorage.setItem(KEY, H); } catch (x) {} unlock(); }
+      if (hex === H) { try { sessionStorage.setItem(KEY, H); sessionStorage.setItem('emfazy.archiwum.pw', v); } catch (x) {} unlock(); }
       else { document.getElementById('ea-err').textContent = 'Nieprawidłowe hasło.'; }
     });
   });
@@ -422,6 +422,44 @@ btns.all.onclick=()=>{mode='all';setBtn();apply();};
 btns.d.onclick=()=>{mode='d';setBtn();apply();};
 btns.c.onclick=()=>{mode='c';setBtn();apply();};
 function setBtn(){btns.all.classList.toggle('on',mode==='all');btns.d.classList.toggle('on',mode==='d');btns.c.classList.toggle('on',mode==='c');}
+</script>
+<script>
+// ===== zaszyfrowane materialy: docs-enc/<sciezka>.enc (openssl enc -aes-256-cbc -pbkdf2 -iter 200000 -md sha256) =====
+(function(){
+  var ITER=200000, MIME={md:'text/markdown;charset=utf-8',txt:'text/plain;charset=utf-8',pdf:'application/pdf',jpg:'image/jpeg',jpeg:'image/jpeg',png:'image/png',docx:'application/vnd.openxmlformats-officedocument.wordprocessingml.document',odt:'application/vnd.oasis.opendocument.text',xml:'application/xml'};
+  function getPw(){ var p=null; try{ p=sessionStorage.getItem('emfazy.archiwum.pw'); }catch(e){} if(!p){ p=prompt('Hasło do materiałów:'); if(p){ try{ sessionStorage.setItem('emfazy.archiwum.pw',p);}catch(e){} } } return p; }
+  async function decrypt(buf, pw){
+    var u8=new Uint8Array(buf); var magic=new TextDecoder().decode(u8.slice(0,8));
+    if(magic!=='Salted__') throw new Error('format');
+    var salt=u8.slice(8,16), data=u8.slice(16);
+    var km=await crypto.subtle.importKey('raw',new TextEncoder().encode(pw),'PBKDF2',false,['deriveBits']);
+    var bits=new Uint8Array(await crypto.subtle.deriveBits({name:'PBKDF2',salt:salt,iterations:ITER,hash:'SHA-256'},km,48*8));
+    var key=await crypto.subtle.importKey('raw',bits.slice(0,32),{name:'AES-CBC'},false,['decrypt']);
+    return crypto.subtle.decrypt({name:'AES-CBC',iv:bits.slice(32,48)},key,data);
+  }
+  async function open(rel, a){
+    var pw=getPw(); if(!pw) return;
+    var label=a.textContent; a.textContent='… odszyfrowywanie';
+    try{
+      var r=await fetch('docs-enc/'+rel.split('/').map(encodeURIComponent).join('/')+'.enc'); if(!r.ok) throw new Error('brak pliku');
+      var plain=await decrypt(await r.arrayBuffer(), pw);
+      var ext=rel.split('.').pop().toLowerCase(), type=MIME[ext]||'application/octet-stream';
+      var blob=new Blob([plain],{type:type}), url=URL.createObjectURL(blob), name=decodeURIComponent(rel.split('/').pop());
+      if(ext==='md'||ext==='txt'||ext==='pdf'||ext==='jpg'||ext==='jpeg'||ext==='png'){ var w=window.open(url,'_blank'); if(!w) location.href=url; }
+      else { var l=document.createElement('a'); l.href=url; l.download=name; document.body.appendChild(l); l.click(); l.remove(); }
+    }catch(e){
+      try{ sessionStorage.removeItem('emfazy.archiwum.pw'); }catch(x){}
+      alert('Nie udało się odszyfrować materiału — sprawdź hasło i spróbuj ponownie.');
+    }
+    a.textContent=label;
+  }
+  document.addEventListener('click',function(e){
+    var a=e.target.closest('a[href*="/emfazy-archiwum/blob/main/docs/"],a[href^="docs/"],a[href^="docs-enc/"]'); if(!a) return;
+    e.preventDefault();
+    var h=a.getAttribute('href'); var rel=h.indexOf('blob/main/docs/')>=0?h.split('blob/main/docs/')[1]:h.replace(/^docs(-enc)?\//,'').replace(/\.enc$/,'');
+    open(decodeURIComponent(rel), a);
+  });
+})();
 </script>
 </body>
 </html>
