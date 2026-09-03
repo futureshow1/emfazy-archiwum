@@ -1267,5 +1267,10 @@ document.addEventListener('click', e => {
 });
 </script>
 
+<script>
+// materialy z docs/ zostaly wycofane z publicznego repozytorium — link pokazuje informacje zamiast 404
+document.addEventListener('click',function(e){var a=e.target.closest('a[href*="/emfazy-archiwum/blob/main/docs/"],a[href^="docs/"]');if(!a)return;e.preventDefault();
+var n=a.getAttribute('href').split('/').pop();alert('Materiał „'+decodeURIComponent(n)+'” nie jest już publicznie dostępny.\nUdostępniamy go na życzenie: futureshow@proton.me');});
+</script>
 </body>
 </html>
