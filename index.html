@@ -1186,6 +1186,8 @@ window.addEventListener('scroll', () => {
   topbar.classList.toggle('scrolled', window.scrollY > 80);
 }, { passive: true });
 
+const HASH_WEJSCIOWY = location.hash;   // obserwator sekcji nadpisuje adres w ułamku sekundy
+
 // ===== ACTIVE NAV (Intersection Observer — like Elders Project) =====
 const sections = document.querySelectorAll('section[id]');
 const menuLinks = document.querySelectorAll('.fullmenu__item');
@@ -1197,7 +1199,8 @@ const navObserver = new IntersectionObserver((entries) => {
       menuLinks.forEach(link => {
         link.classList.toggle('active', link.getAttribute('href') === '#' + id);
       });
-      if (history.replaceState) {
+      const lb = document.getElementById('lightbox');
+      if (history.replaceState && !(lb && lb.classList.contains('active'))) {
         history.replaceState(null, null, '#' + id);
       }
     }
@@ -1223,6 +1226,9 @@ document.querySelectorAll('.fade-in').forEach(el => fadeObserver.observe(el));
 
 
 // ===== LIGHTBOX =====
+function galeria() {
+  return [...document.querySelectorAll('.gallery-strip__item')];
+}
 function openLightbox(el) {
   const img = el.querySelector('img');
   const cap = el.querySelector('figcaption');
@@ -1230,12 +1236,27 @@ function openLightbox(el) {
   document.getElementById('lightbox-caption').textContent = cap ? cap.textContent : '';
   document.getElementById('lightbox').classList.add('active');
   document.body.style.overflow = 'hidden';
+  const i = galeria().indexOf(el);
+  if (i >= 0) { try { history.replaceState(null, '', '#foto=' + (i + 1)); } catch (e) {} }
 }
 function closeLightbox(e) {
   if (e && e.target.tagName === 'IMG') return;
   document.getElementById('lightbox').classList.remove('active');
   document.body.style.overflow = '';
+  if (location.hash.indexOf('#foto=') === 0) {
+    try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
+  }
 }
+
+/* ---- udostępnianie: #foto=<numer> otwiera zdjęcie z galerii ---- */
+function openFromHash(h) {
+  const m = String(h || location.hash).match(/^#foto=(\d+)$/);
+  if (!m) return;
+  const el = galeria()[+m[1] - 1];
+  if (el) openLightbox(el);
+}
+addEventListener('hashchange', openFromHash);
+setTimeout(function () { openFromHash(HASH_WEJSCIOWY); }, 200);
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 </script>
 
